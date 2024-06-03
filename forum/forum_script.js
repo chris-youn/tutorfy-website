@@ -73,6 +73,7 @@ function submitForm(event) {
         if (data.success) {
             console.log('Post successfully saved to server');
             document.querySelector('.forum-posts .posts .archive-button').dataset.threadId = data.thread_id;
+            location.reload();
         } else {
             console.error('Error:', data.error);
         }
@@ -118,9 +119,10 @@ function archivePost(threadId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            alert("Post Archived Successfully!");
             location.reload();
         } else {
-            alert('Failed to archive post: ' + data.message);
+            location.reload();
         }
     });
 }
