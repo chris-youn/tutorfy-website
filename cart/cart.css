@@ -1,0 +1,117 @@
+h4 {
+    display: flex;
+    margin-bottom: -10px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 35px;
+}
+
+#expiry-cvc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+#expiry-cvc > div {
+    padding-right: 30px;
+    margin-top: -10px;
+    justify-content: space-around;
+    width: 150px;
+}
+#couponcode {
+   width:auto !important;
+   margin-left:15px;
+}
+
+#expiry-cvc > #cvc {
+    position: relative;
+    left: 5px;
+}
+
+#payment, #cart-summary {
+    width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form > div > div > p > input,
+form > div > div > div > p > input,
+form > div > p > input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type=submit] {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #AC3B61;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type=submit]:hover {
+    background-color: #902749;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#fullName, #email, #cardNo {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-items li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+}

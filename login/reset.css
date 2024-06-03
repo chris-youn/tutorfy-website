@@ -1,0 +1,140 @@
+:root {
+    font-family: "Sora", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #EEE2DC;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EDC7B7;
+    padding: 20px 30px;
+}
+
+.topnav .logo {
+    display: flex;
+    align-items: center;
+}
+
+.topnav .logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.topnav .logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.topnav .nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.topnav .nav-links .nav-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.topnav .nav-links .nav-link:hover {
+    background-color: #EEE2DC;
+    color: #AC3B61;
+    border-radius: 4px;
+}
+
+.topnav .nav-links .nav-link.active {
+    font-weight: bold;
+    color: #AC3B61;
+}
+
+.topnav .icons {
+    display: flex;
+    gap: 20px;
+}
+
+.topnav .icons .icon {
+    font-size: 24px;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.topnav .icons .icon:hover {
+    color: #AC3B61;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+form h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+}
+
+form input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #AC3B61;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #922D50;
+}
+
+.footer {
+    background-color: #EDC7B7;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+}

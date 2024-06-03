@@ -1,0 +1,114 @@
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+h4 {
+    display: flex;
+    margin-bottom: -10px;
+    padding-bottom: 10px;
+}
+
+
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.signup-box button {
+    width: 100%;
+    margin: 20px 0 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #AC3B61;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-box button:hover {
+    background-color: #902749;
+}
+
+.signup-box input[type="text"],
+.signup-box input[type="email"],
+.signup-box input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.captcha {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.captcha img {
+    width: 100px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+    margin: 5px 0;
+}
+
+.links span {
+    color: #AC3B61;
+}
+
+.footer {
+    background-color: #EDC7B7;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+#passwordChecklist {
+    margin-top: 10px;
+}
+
+#passwordChecklist ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#passwordChecklist li {
+    margin-bottom: 5px;
+}
+
+#passwordChecklist li.valid {
+    position: relative;
+    display: none;
+}
+
+#passwordChecklist li.invalid {
+    color: black;
+}
