@@ -332,3 +332,24 @@ header, footer {
 .profileMenu:hover .profileMenuContent {
     display: block;
 }
+@media (max-width: 900px) {
+    .search input[type="text"] {
+        width: 100%;
+    }
+
+    .topnav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topnav .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .topnav .icons {
+        margin-top: 10px;
+        margin-left: auto;
+    }
+}
