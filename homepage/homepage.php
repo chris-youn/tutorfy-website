@@ -21,6 +21,20 @@ function getProfileOptions() {
                 ';
     }
 }
+
+function getProfileFooter() {
+    if (isUserLoggedIn()) {
+        return '
+                <a href="../login/profile.php">Profile</a>
+                <a href="../cart/cart.ph">Cart</a>
+                ';
+    } else {
+        return '
+                <a href="../login/login.php">Sign In</a>
+                <a href="../cart/cart.ph">Cart</a>
+                ';
+    }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -194,8 +208,7 @@ function getProfileOptions() {
 
             <div class="account">
                 <h4>Account</h4>
-                <a href="../login/login.php" class="`sec-nav">Login</a>
-                <a href="../cart/cart.php" class="sec-nav">Cart</a>
+                <?php echo getProfileFooter() ?>
             </div>
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
