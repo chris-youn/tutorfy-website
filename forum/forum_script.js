@@ -1,5 +1,3 @@
-document.getElementById('search').addEventListener('input', search);
-
 document.getElementById('new-thread-form').addEventListener('submit', submitForm);
 
 function submitForm(event) {
@@ -127,12 +125,6 @@ function archivePost(threadId) {
     });
 }
 
-document.getElementById('search-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const searchInput = document.getElementById('search').value;
-    fetchThreads(searchInput);
-});
-
 function fetchThreads(search = '') {
     const order = new URLSearchParams(window.location.search).get('order') || 'newest';
     fetch(`forum.php?search=${encodeURIComponent(search)}&order=${order}`)
@@ -156,7 +148,3 @@ function attachArchiveEventListeners() {
         });
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    attachArchiveEventListeners();
-});

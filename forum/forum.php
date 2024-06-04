@@ -32,21 +32,41 @@ $search = $_GET['search'] ?? '';
 $orderBy = ($order == 'oldest') ? "ORDER BY created_at ASC" : "ORDER BY created_at DESC";
 
 $searchQuery = '';
+$searchParam = '';
+
 if (!empty($search)) {
-    $searchQuery = "AND MATCH(title, content) AGAINST(:search IN NATURAL LANGUAGE MODE)";
-    $orderBy = "ORDER BY MATCH(title, content) AGAINST(:search IN NATURAL LANGUAGE MODE) DESC";
+    $searchQuery = "AND MATCH(title) AGAINST(:search IN BOOLEAN MODE)";
+    $searchParam = $search;
 }
 
-$stmt = $pdo->prepare("SELECT threads.*, users.profile_image, users.username FROM threads 
-                       JOIN users ON threads.user_id = users.id 
-                       WHERE threads.archived = 0 $searchQuery $orderBy");
+$sql = "SELECT threads.*, users.profile_image, users.username 
+        FROM threads 
+        JOIN users ON threads.user_id = users.id 
+        WHERE threads.archived = 0 $searchQuery $orderBy";
+
+$stmt = $pdo->prepare($sql);
 
 if (!empty($search)) {
-    $stmt->bindParam(':search', $search);
+    $stmt->bindParam(':search', $searchParam);
 }
 
 $stmt->execute();
 $threads = $stmt->fetchAll();
+
+// Fetching the next most relevant title if no exact matches found
+$nextRelevantThread = null;
+if (empty($threads) && !empty($search)) {
+    $nextSql = "SELECT threads.*, users.profile_image, users.username 
+                FROM threads 
+                JOIN users ON threads.user_id = users.id 
+                WHERE threads.archived = 0 
+                ORDER BY MATCH(title) AGAINST(:search IN BOOLEAN MODE) DESC, created_at DESC
+                LIMIT 1";
+    $nextStmt = $pdo->prepare($nextSql);
+    $nextStmt->bindParam(':search', $searchParam);
+    $nextStmt->execute();
+    $nextRelevantThread = $nextStmt->fetch();
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -149,35 +169,68 @@ $threads = $stmt->fetchAll();
         </div>
 
         <div class="forum-posts">
-            <?php foreach ($threads as $thread): ?>
-                <div class="post-wrapper">
-                    <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>" class="post-link">
-                        <div class="posts">
-                            <div class="profile-picture">
-                                <img src="<?= htmlspecialchars($thread['profile_image'] ?: 'default-profile.png') ?>" alt="Profile Picture">
-                            </div>
-                            <div class="username">
-                                <p><?= htmlspecialchars($thread['username']) ?></p>
-                            </div>
-                            <div class="date-posted">
-                                <p><?= $thread['created_at'] ?></p>
-                            </div>
-                            <h2><?= htmlspecialchars($thread['title']) ?></h2>
-                            <div class="content-text">
-                                <p><?= htmlspecialchars($thread['content']) ?></p>
-                            </div>
-                            <?php if (!empty($thread['image_path'])): ?>
-                                <div class="content-image">
-                                    <img src="<?= htmlspecialchars($thread['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
+            <?php if (empty($threads) && !empty($search)): ?>
+                <div class="no-results">
+                    <p>No exact matches found for "<?= htmlspecialchars($search) ?>". Showing the most relevant result:</p>
+                    <div class="post-wrapper">
+                        <a href="../forum/external_forum.php?id=<?= $nextRelevantThread['id'] ?>" class="post-link">
+                            <div class="posts">
+                                <div class="profile-picture">
+                                    <img src="<?= htmlspecialchars($nextRelevantThread['profile_image'] ?: 'default-profile.png') ?>" alt="Profile Picture">
                                 </div>
-                            <?php endif; ?>
-                            <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
-                                <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Archive</button>
-                            <?php endif; ?>
-                        </div>
-                    </a>
+                                <div class="username">
+                                    <p><?= htmlspecialchars($nextRelevantThread['username']) ?></p>
+                                </div>
+                                <div class="date-posted">
+                                    <p><?= $nextRelevantThread['created_at'] ?></p>
+                                </div>
+                                <h2><?= htmlspecialchars($nextRelevantThread['title']) ?></h2>
+                                <div class="content-text">
+                                    <p><?= htmlspecialchars($nextRelevantThread['content']) ?></p>
+                                </div>
+                                <?php if (!empty($nextRelevantThread['image_path'])): ?>
+                                    <div class="content-image">
+                                        <img src="<?= htmlspecialchars($nextRelevantThread['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id']): ?>
+                                    <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Archive</button>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($threads as $thread): ?>
+                    <div class="post-wrapper">
+                        <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>" class="post-link">
+                            <div class="posts">
+                                <div class="profile-picture">
+                                    <img src="<?= htmlspecialchars($thread['profile_image'] ?: 'default-profile.png') ?>" alt="Profile Picture">
+                                </div>
+                                <div class="username">
+                                    <p><?= htmlspecialchars($thread['username']) ?></p>
+                                </div>
+                                <div class="date-posted">
+                                    <p><?= $thread['created_at'] ?></p>
+                                </div>
+                                <h2><?= htmlspecialchars($thread['title']) ?></h2>
+                                <div class="content-text">
+                                    <p><?= htmlspecialchars($thread['content']) ?></p>
+                                </div>
+                                <?php if (!empty($thread['image_path'])): ?>
+                                    <div class="content-image">
+                                        <img src="<?= htmlspecialchars($thread['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
+                                    <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Archive</button>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         <div class="time-posted">
@@ -196,29 +249,13 @@ $threads = $stmt->fetchAll();
         </div>
     </div>  
 
-    <footer>
-        <div class="sec-links">
-            <div class="tutorfy">
-                <h4>Tutorfy</h4>
-                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
-                <a href="../article/article.php" class="sec-nav">Articles</a>
-                <a href="../store/store.php" class="sec-nav">Store</a>
-                <a href="../forum/forum.php" class="sec-nav">Forums</a>
-            </div>
-
-            <div class="about">
-                <h4>About</h4>
-                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
-                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
-            </div>
-
-            <div class="account">
-                <h4>Account</h4>
-                <a href="../login/login.php" class="`sec-nav">Login</a>
-                <a href="../cart/cart.php" class="sec-nav">Cart</a>
-            </div>
+    <footer class="footer">
+        <div class="socials">
+            <p>Socials:</p>
+            <a href="https://www.facebook.com/"><img src="../images/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/"><img src="../images/instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/"><img src="../images/twitter.png" alt="Twitter"></a>
         </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
     </footer>
 </body>
 </html>

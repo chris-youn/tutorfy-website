@@ -117,7 +117,7 @@ $replies = $replies_stmt->fetchAll();
                 </div>
             </div>
             <div class="profileMenu">
-                <span class="profileIcon">👤</span>>
+                <span class="profileIcon">👤</span>
                     <div class="profileMenuContent">
                         <?php echo getProfileOptions() ?>
                     </div>
