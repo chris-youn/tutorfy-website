@@ -1,6 +1,19 @@
+function getNoOfItems() {
+    let shortSession = sessionStorage.getItem("tutorSessionShort");
+    let longSession = sessionStorage.getItem("tutorSessionLong");
+    let shortSessionBulk = sessionStorage.getItem("tutorSessionShortBulk");
+    let longSessionBulk = sessionStorage.getItem("tutorSessionLongBulk");
+    if ((parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0) == 0) {
+        document.getElementById("cartBadge").style.display = "none";
+    } else {
+        document.getElementById("cartBadge").style.display = "inline-block";
+        document.getElementById("cartBadge").innerHTML = (parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0);
+
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     
-        
+        getNoOfItems();
         document.querySelector('.shopping-cart').style.display = 'block';
         updateCart();
         const tutorButtonShort = document.getElementById('tutorButtonShort');
@@ -107,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.setItem("total", total);
                 console.log(sessionStorage.getItem("total"))
                 updateCart();
+                getNoOfItems();
             }
             function updateCart() {
                 let listItem = document.getElementById('tutorSessionListItem')
@@ -150,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     listItemLongBulk.style.display="none";
                 }
+                getNoOfItems();
             }
         
             function addToCart(item, quantity) {
@@ -157,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.setItem(item, currentQuantity + quantity);
                 updateTotal();
                 updateCart();
+                getNoOfItems();
             }
         
             function removeFromCart(item) {
@@ -167,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 updateTotal();
                 updateCart();
-                
+                getNoOfItems();
                 updateTotal();
             }
         
@@ -176,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.removeItem(item);
                 document.getElementById('tutorSessionListItem').style.display = 'none';
                 updateTotal();
+                getNoOfItems();
             }
         
             // Cookie consent functionality

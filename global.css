@@ -259,7 +259,15 @@ button#tutorSessionShortBulkRemove:hover, button#tutorSessionShortBulkAdd:hover,
 .cookie-accept-btn:hover, .cookie-decline-btn:hover {
     background-color: #902749;
 }
-
+#cartBadge {
+    background-color:white;
+    border-radius:15px;
+    font-size:13px;
+    padding:5px;
+    position:relative;
+    bottom:10px;
+    margin-left:5px;
+}
 footer {
     display: flex;
     flex-direction: column;
