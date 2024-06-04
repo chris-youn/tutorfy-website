@@ -1,6 +1,19 @@
+function getNoOfItems() {
+    let shortSession = sessionStorage.getItem("tutorSessionShort");
+    let longSession = sessionStorage.getItem("tutorSessionLong");
+    let shortSessionBulk = sessionStorage.getItem("tutorSessionShortBulk");
+    let longSessionBulk = sessionStorage.getItem("tutorSessionLongBulk");
+    if ((parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0) == 0) {
+        document.getElementById("cartBadge").style.display = "none";
+    } else {
+        document.getElementById("cartBadge").style.display = "inline-block";
+        document.getElementById("cartBadge").innerHTML = (parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0);
+
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     
-        
+        getNoOfItems();
         document.querySelector('.shopping-cart').style.display = 'block';
         updateCart();
         const tutorButtonShort = document.getElementById('tutorButtonShort');
@@ -107,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.setItem("total", total);
                 console.log(sessionStorage.getItem("total"))
                 updateCart();
+                getNoOfItems();
             }
             function updateCart() {
                 let listItem = document.getElementById('tutorSessionListItem')
@@ -123,14 +137,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 let type = sessionStorage.getItem('tutorSession') || 0;
                 if (sessionStorage.getItem("tutorSessionShort")) {
                     listItem.style.display="flex";
-                    listItemText.innerHTML = "Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionShort") + " Price: $"+ sessionStorage.getItem("tutorSessionShort")*40;
+                    listItemText.innerHTML = "1hr Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionShort") + " Price: $"+ sessionStorage.getItem("tutorSessionShort")*40;
                 } else {
                     listItem.style.display="none";
                 }
 
                 if (sessionStorage.getItem("tutorSessionLong")) {
                     listItemLong.style.display="flex";
-                    listItemLongText.innerHTML = "Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionLong")
+                    listItemLongText.innerHTML = "2hr Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionLong")
                      + " Price: $"+ sessionStorage.getItem("tutorSessionLong")*70;
                 } else {
                     listItemLong.style.display="none";
@@ -138,18 +152,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (sessionStorage.getItem("tutorSessionShortBulk")) {
                     listItemShortBulk.style.display="flex";
-                    listItemShortBulkText.innerHTML = "Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionShortBulk")
+                    listItemShortBulkText.innerHTML = "5 x 1hr Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionShortBulk")
                      + " Price: $"+ sessionStorage.getItem("tutorSessionShortBulk")*170;
                 } else {
                     listItemShortBulk.style.display="none";
                 }
                 if (sessionStorage.getItem("tutorSessionLongBulk")) {
                     listItemLongBulk.style.display="flex";
-                    listItemLongBulkText.innerHTML = "Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionLongBulk")
+                    listItemLongBulkText.innerHTML = "5 x 2hr Tutor Session(s) QTY: "+ sessionStorage.getItem("tutorSessionLongBulk")
                      + " Price: $"+ sessionStorage.getItem("tutorSessionLongBulk")*300;
                 } else {
                     listItemLongBulk.style.display="none";
                 }
+                getNoOfItems();
             }
         
             function addToCart(item, quantity) {
@@ -157,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.setItem(item, currentQuantity + quantity);
                 updateTotal();
                 updateCart();
+                getNoOfItems();
             }
         
             function removeFromCart(item) {
@@ -167,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 updateTotal();
                 updateCart();
-                
+                getNoOfItems();
                 updateTotal();
             }
         
@@ -176,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 sessionStorage.removeItem(item);
                 document.getElementById('tutorSessionListItem').style.display = 'none';
                 updateTotal();
+                getNoOfItems();
             }
         
             // Cookie consent functionality

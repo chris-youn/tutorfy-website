@@ -75,7 +75,7 @@ $replies = $replies_stmt->fetchAll();
         </nav>
         <div class="icons">
             <div class="container">
-                <span class="icon" id="cartIcon">🛒</span>
+                <span class="icon" id="cartIcon">🛒<span id="cartBadge" class="badge">0</span></span>
                 <div id ="shopping-cart" class="shopping-cart" style="display:none;">
                     <div class="shopping-cart-header">
                         <div class="shopping-cart-total">

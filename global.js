@@ -1,8 +1,22 @@
+function getNoOfItems() {
+    let shortSession = sessionStorage.getItem("tutorSessionShort");
+    let longSession = sessionStorage.getItem("tutorSessionLong");
+    let shortSessionBulk = sessionStorage.getItem("tutorSessionShortBulk");
+    let longSessionBulk = sessionStorage.getItem("tutorSessionLongBulk");
+    if ((parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0) == 0) {
+        document.getElementById("cartBadge").style.display = "none";
+    } else {
+        document.getElementById("cartBadge").style.display = "inline-block";
+        document.getElementById("cartBadge").innerHTML = (parseInt(shortSession) || 0) + (parseInt(longSession)||0) + (parseInt(shortSessionBulk)||0) + (parseInt(longSessionBulk)||0);
+
+    }
+}
 function addToCart(item, quantity) {
     let currentQuantity = parseInt(sessionStorage.getItem(item))|| 0;
     sessionStorage.setItem(item, currentQuantity + quantity);
     updateTotal();
     updateCart();
+    getNoOfItems();
 }
 function updateTotal() {
     let total = 0;
@@ -22,6 +36,7 @@ function updateTotal() {
     sessionStorage.setItem("total", total);
     console.log(sessionStorage.getItem("total"))
     updateCart();
+    
 }
 function updateCart() {
     let listItem = document.getElementById('tutorSessionListItem')
@@ -74,7 +89,7 @@ function removeFromCart(item) {
     }
     updateTotal();
     updateCart();
-    
+    getNoOfItems();
     updateTotal();
 }
 
@@ -83,6 +98,7 @@ function clearItem(item) {
     sessionStorage.removeItem(item);
     document.getElementById('tutorSessionListItem').style.display = 'none';
     updateTotal();
+    getNoOfItems();
 } 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -134,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
         updateTotal();
+        getNoOfItems();
         document.querySelector('.shopping-cart').style.display = 'none';
     
         document.getElementById('cartIcon').addEventListener('click', function () {
