@@ -51,7 +51,7 @@ if (isset($_COOKIE['userConsent']) && $_COOKIE['userConsent'] === 'true') {
             <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
         </nav>
         <div class="icons">
-            <span class="icon" id="cartIcon">🛒</span>
+            <span class="icon" id="cartIcon">🛒<span id="cartBadge" class="badge">0</span></span>
             <div class="shopping-cart" style="display:none;">
                 <div class="shopping-cart-header">
                     <div class="shopping-cart-total">
