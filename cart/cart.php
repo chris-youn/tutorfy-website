@@ -52,7 +52,8 @@ function getProfileOptions() {
         </nav>
         <div class="icons">
             <div class="container">
-                <span class="icon" id="cartIcon">🛒</span>
+            
+            <span class="icon" id="cartIcon">🛒<span id="cartBadge" class="badge">0</span></span>
                 <div id="shopping-cart" class="shopping-cart" style="display:none;">
                     <div class="shopping-cart-header">
                         <div class="shopping-cart-total">
@@ -153,13 +154,7 @@ function getProfileOptions() {
                             </p>
                         </div>
                     </div>
-                    <div id="couponcode">
-                        <h4>Coupon Code</h4>
-                        <p>
-                        <label for="coupon_code"></label>
-                        <input type="text" name="coupon_code" id="coupon_code" placeholder="ABCD1234">
-</p>
-                    </div>
+                    
                 </div>
                 <button type="submit" target="order_complete.php">Pay now</button>
             </form>
@@ -167,11 +162,20 @@ function getProfileOptions() {
             <div id="cart-summary" class="cart-summary">
                 <h2>Your Cart</h2>
                 <ul class="cart-items" id="cart-summary-items">
+                    
                     <!-- Cart items will be dynamically populated here -->
                 </ul>
+                
                 <div class="cart-total">
                     <span id="cart-total-text">Total: $0</span>
                 </div>
+                <div id="couponcode">
+                        <h4>Coupon Code</h4>
+                        <p>
+                        <label for="coupon_code"></label>
+                        <input type="text" name="coupon_code" id="coupon_code" placeholder="ABCD1234">
+</p>
+                    </div>
             </div>
         </div>
     </main>
