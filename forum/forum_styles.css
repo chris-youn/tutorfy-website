@@ -252,6 +252,7 @@ footer {
 }
 
 .reply-button {
+    font-family: "Sora", sans-serif;
     padding: 10px 15px;
     border: none;
     background-color: #6A0572;

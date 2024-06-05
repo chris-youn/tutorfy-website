@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Profile updated!";
+        header("Location: ../login/profile.php");
     } else {
         echo "Error: " . $stmt->error;
     }

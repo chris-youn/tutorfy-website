@@ -39,10 +39,12 @@ $stmt->close();
 <html>
 <head>
     <title>Tutorfy | Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="profile.css">
     <link rel="stylesheet" type="text/css" href="../global.css">
     <script src="../global.js" defer></script>
-
 </head>
 
 <body>
@@ -61,96 +63,76 @@ $stmt->close();
         <div class="icons">
             <div class="container">
                 <span class="icon" id="cartIcon">🛒<span id="cartBadge" class="badge">0</span></span>
-                <div id ="shopping-cart" class="shopping-cart" style="display:none;">
+                <div id="shopping-cart" class="shopping-cart" style="display:none;">
                     <div class="shopping-cart-header">
                         <div class="shopping-cart-total">
                             <span id="totalText" class="light-text">Total: $0</span>
                         </div>
                     </div>
                     <ul class="shopping-cart-items" id="items">
-                        <li id="tutorSessionListItem">
-                                    <div id='tutorSessionCartShort'></div>
-                                    <button id="tutorSessionClear">X</button>
-                                    <button id="tutorSessionRemove">-</button>
-                                    <button id="tutorSessionAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongListItem">
-                                    <div id='tutorSessionCartLong'></div>
-                                    <button id="tutorSessionLongClear">X</button>
-                                    <button id="tutorSessionLongRemove">-</button>
-                                    <button id="tutorSessionLongAdd">+</button>
-                                </li>
-                                <li id="tutorSessionShortBulkListItem">
-                                    <div id='tutorSessionCartShortBulk'></div>
-                                    <button id="tutorSessionShortBulkClear">X</button>
-                                    <button id="tutorSessionShortBulkRemove">-</button>
-                                    <button id="tutorSessionShortBulkAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongBulkListItem">
-                                    <div id='tutorSessionCartLongBulk'></div>
-                                    <button id="tutorSessionLongBulkClear">X</button>
-                                    <button id="tutorSessionLongBulkRemove">-</button>
-                                    <button id="tutorSessionLongBulkAdd">+</button>
-                                </li>
+                        <!-- Shopping cart items will go here -->
                     </ul>
-
                     <form action="../cart/cart.php" method="post">
                         <div class="checkout">
-                            <input id="cartCheckout" type="submit" value="Checkout"></input>
+                            <input id="cartCheckout" type="submit" value="Checkout">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="profileMenu">
                 <span class="profileIcon">👤</span>
-                    <div class="profileMenuContent">
-                        <?php echo getProfileOptions() ?>
-                    </div>
+                <div class="profileMenuContent">
+                    <?php echo getProfileOptions() ?>
+                </div>
             </div>
         </div>
     </header>
     
-    <main>
-        <h2>Profile</h2>
-        <form action="update_profile.php" method="POST" enctype="multipart/form-data">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required><br>
+    <main class="profile-page">
+        <div class="profile-container">
+            <h2>Profile</h2>
+            <form action="update_profile.php" method="POST" enctype="multipart/form-data" class="profile-form">
+                <div class="profile-image">
+                    <?php if ($profile_image): ?>
+                        <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image" class="profile-pic">
+                    <?php else: ?>
+                        <div class="image-placeholder">Image here</div>
+                    <?php endif; ?>
+                    <label for="profile_image" class="upload-button">Upload Image</label>
+                    <input type="file" id="profile_image" name="profile_image" style="display:none;">
+                </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br>
+                <div class="information">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
 
-            <label for="theme">Theme:</label>
-            <select id="theme" name="theme">
-                <option value="light" <?php if($theme == 'light') echo 'selected'; ?>>Light</option>
-                <option value="dark" <?php if($theme == 'dark') echo 'selected'; ?>>Dark</option>
-            </select><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
 
-            <label for="profile_image">Profile Image:</label>
-            <input type="file" id="profile_image" name="profile_image"><br>
-            <?php if ($profile_image): ?>
-                <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image" width="100"><br>
-            <?php endif; ?>
+                    <label for="theme">Theme:</label>
+                    <div class="themes">
+                        <label>
+                            <input type="radio" name="theme" value="light" <?php if($theme == 'light') echo 'checked'; ?>> Light
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="dark" <?php if($theme == 'dark') echo 'checked'; ?>> Dark
+                        </label>
+                    </div>
 
-            <input type="submit" value="Update Profile">
-        </form>
+                    <input type="submit" value="Save Profile" class="save-button">
+                </div>
+            </form>
 
-        <form action="archive_account.php" method="POST">
-            <input type="submit" value="Archive Account">
-        </form>
+            <form action="archive_account.php" method="POST" class="archive-logout-form">
+                <input type="submit" value="Archive Account" class="archive-button">
+            </form>
 
-        <form action="logout.php" method="POST">
-            <input type="submit" value="Logout">
-        </form>
+            <form action="logout.php" method="POST" class="archive-logout-form">
+                <input type="submit" value="Logout" class="logout-button">
+            </form>
+        </div>
     </main>
 
-    <div class="cookie-consent-overlay" id="cookieConsent">
-        <div class="cookie-consent-box">
-            <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
-            <button class="cookie-accept-btn">Accept</button>
-            <button class="cookie-decline-btn">Decline</button>
-        </div>
-    </div>  
-    
     <footer>
         <div class="sec-links">
             <div class="tutorfy">

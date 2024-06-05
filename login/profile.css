@@ -5,12 +5,6 @@ body {
     margin: 0;
 }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .topnav {
     display: flex;
     justify-content: space-between;
@@ -56,11 +50,6 @@ body {
     border-radius: 4px;
 }
 
-.topnav .nav-links .nav-link.active {
-    font-weight: bold;
-    color: #AC3B61;
-}
-
 .topnav .icons {
     display: flex;
     gap: 20px;
@@ -69,20 +58,13 @@ body {
 .topnav .icons .icon {
     font-size: 24px;
     color: #2c3e50;
-    text-decoration: none;
-    transition: color 0.3s;
 }
 
-.topnav .icons .icon:hover {
-    color: #EEE2DC;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 20px 30px;
+.profile-page {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 50px 20px;
     background-color: #F5F5F5;
 }
 
@@ -98,8 +80,15 @@ body {
     align-items: center;
 }
 
-.profile-container h1, .profile-container h2 {
-    margin: 0 0 20px;
+.profile-container h2 {
+    margin-bottom: 20px;
+}
+
+.profile-form, .archive-logout-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-image {
@@ -114,15 +103,15 @@ body {
     height: 100px;
     background-color: #ccc;
     border-radius: 50%;
-    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.profile-image .image-placeholder img {
-    width: 100%;
-    height: 100%;
+.profile-pic {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
@@ -147,7 +136,11 @@ body {
     max-width: 400px;
 }
 
-.information input {
+.information label {
+    margin-bottom: 5px;
+}
+
+.information input, .information select {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -155,7 +148,14 @@ body {
     width: 100%;
 }
 
-.save-button {
+.themes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.save-button, .archive-button, .logout-button {
     background-color: #AC3B61;
     color: white;
     border: none;
@@ -163,30 +163,13 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    align-self: center;
-    margin-top: 10px;
 }
 
-.save-button:hover {
+.save-button:hover, .archive-button:hover, .logout-button:hover {
     background-color: #902B50;
 }
 
-.optional-settings {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.optional-settings h3 {
-    margin-bottom: 10px;
-}
-
-.themes {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer {
+.footer-content {
     background-color: #EDC7B7;
     text-align: center;
     padding: 20px;
