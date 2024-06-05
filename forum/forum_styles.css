@@ -38,8 +38,13 @@ main {
     align-items: center;
 }
 
+.search form {
+    display: flex;
+    width: 100%;
+}
+
 .search input[type="text"] {
-    width: 70%;
+    flex: 1;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -198,6 +203,7 @@ main {
 }
 
 .time-posted {
+    grid-area: time-posted;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,14 +212,13 @@ main {
 }
 
 .time-posted button {
-    padding: 20px;
+    padding: 10px 15px;
     border: none;
     background-color: #AC3B61;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 4px;
-    font-size: 1em;
 }
 
 .time-posted button:hover {
@@ -228,6 +233,39 @@ footer {
     padding: 20px;
     position: relative;
     bottom: 0;
+}
+
+.archive-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #AC3B61;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.archive-button:hover {
+    background-color: #dd8c6a;
+    color: #2c3e50;
+}
+
+.reply-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #6A0572;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.reply-button:hover {
+    background-color: #9B30A7;
+    color: #EEE2DC;
 }
 
 /* Responsive design */
@@ -251,46 +289,20 @@ footer {
         grid-template-areas: 
             "search"
             "new-thread"
-            "posts"
-            "time-posted";
+            "time-posted"
+            "posts";
     }
 
     .search input[type="text"] {
         width: 100%;
     }
-}
 
-.search {
-    grid-area: search;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .time-posted {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
 
-.search form {
-    display: flex;
-    width: 100%;
+    .time-posted button {
+        width: 100%;
+    }
 }
-
-.search input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.search button {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    background-color: #EDC7B7;
-    color: #2c3e50;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.search button:hover {
-    background-color: #AC3B61;
-    color: #EEE2DC;
-}
-

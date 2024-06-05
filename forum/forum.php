@@ -168,6 +168,11 @@ if (empty($threads) && !empty($search)) {
             </form>
         </div>
 
+        <div class="time-posted">
+            <button type="button" onclick="window.location.href='forum.php?order=oldest'">Order by Oldest</button>
+            <button type="button" onclick="window.location.href='forum.php?order=newest'">Order by Newest</button>
+        </div>
+
         <div class="forum-posts">
             <?php if (empty($threads) && !empty($search)): ?>
                 <div class="no-results">
@@ -195,6 +200,9 @@ if (empty($threads) && !empty($search)) {
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id']): ?>
                                     <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Archive</button>
+                                    <a href="../forum/external_forum.php?id=<?= $nextRelevantThread['id'] ?>#reply">
+                                        <button type="button" class="reply-button">Reply</button>
+                                    </a>
                                 <?php endif; ?>
                             </div>
                         </a>
@@ -225,6 +233,9 @@ if (empty($threads) && !empty($search)) {
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
                                     <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Archive</button>
+                                    <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>#reply">
+                                        <button type="button" class="reply-button">Reply</button>
+                                    </a>
                                 <?php endif; ?>
                             </div>
                         </a>
@@ -232,30 +243,10 @@ if (empty($threads) && !empty($search)) {
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
-        <div class="time-posted">
-            <form method="GET" action="forum.php">
-                <button type="submit" name="order" value="newest" class="recent-post">Most recent post uploaded</button>
-                <button type="submit" name="order" value="oldest" class="oldest-post">Oldest post uploaded</button>
-            </form>
-        </div>
     </main>
 
-    <div class="cookie-consent-overlay" id="cookieConsent">
-        <div class="cookie-consent-box">
-            <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
-            <button class="cookie-accept-btn">Accept</button>
-            <button class="cookie-decline-btn">Decline</button>
-        </div>
-    </div>  
-
-    <footer class="footer">
-        <div class="socials">
-            <p>Socials:</p>
-            <a href="https://www.facebook.com/"><img src="../images/facebook.png" alt="Facebook"></a>
-            <a href="https://www.instagram.com/"><img src="../images/instagram.png" alt="Instagram"></a>
-            <a href="https://twitter.com/"><img src="../images/twitter.png" alt="Twitter"></a>
-        </div>
+    <footer>
+        <p>&copy; 2023 Tutorfy. All rights reserved.</p>
     </footer>
 </body>
 </html>
