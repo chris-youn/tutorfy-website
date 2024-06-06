@@ -1,24 +1,6 @@
 <?php
-session_start();
 require '../forum/config.php';
-
-function isUserLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function getProfileOptions() {
-    if (isUserLoggedIn()) {
-        return '
-                <a href="../login/profile.php">View Profile</a>
-                <a href="../login/logout.php">Sign Out</a>
-                ';
-    } else {
-        return '
-                <a href="../login/login.php">Sign In</a>
-                <a href="../login/register.php">Sign Up</a>
-                ';
-    }
-}
+include('../scripts/functions.php');
 
 if (!isset($_SESSION['user_id'])) {
     $referrer = urlencode($_SERVER['REQUEST_URI']);
@@ -246,7 +228,27 @@ if (empty($threads) && !empty($search)) {
     </main>
 
     <footer>
-        <p>&copy; 2023 Tutorfy. All rights reserved.</p>
+        <div class="sec-links">
+            <div class="tutorfy">
+                <h4>Tutorfy</h4>
+                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
+                <a href="../article/article.php" class="sec-nav">Articles</a>
+                <a href="../store/store.php" class="sec-nav">Store</a>
+                <a href="../forum/forum.php" class="sec-nav">Forums</a>
+            </div>
+
+            <div class="about">
+                <h4>About</h4>
+                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
+                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
+            </div>
+
+            <div class="account">
+                <h4>Account</h4>
+                <?php echo getProfileFooter() ?>
+            </div>
+        </div>
+        <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
     </footer>
 </body>
 </html>

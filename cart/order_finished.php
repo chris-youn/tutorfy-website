@@ -1,24 +1,6 @@
 <?php
-session_start();
+include('../scripts/functions.php');
 $orderID = time() . mt_rand();
-
-function isUserLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function getProfileOptions() {
-    if (isUserLoggedIn()) {
-        return '
-                <a href="../login/profile.php">View Profile</a>
-                <a href="../login/logout.php">Sign Out</a>
-                ';
-    } else {
-        return '
-                <a href="../login/login.php">Sign In</a>
-                <a href="../login/register.php">Sign Up</a>
-                ';
-    }
-}
 ?>
 <!DOCTYPE html>
 

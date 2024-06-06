@@ -27,12 +27,12 @@ function getProfileFooter() {
     if (isUserLoggedIn()) {
         return '
                 <a href="../login/profile.php">Profile</a>
-                <a href="../cart/cart.ph">Cart</a>
+                <a href="../cart/cart.php">Cart</a>
                 ';
     } else {
         return '
                 <a href="../login/login.php">Sign In</a>
-                <a href="../cart/cart.ph">Cart</a>
+                <a href="../cart/cart.php">Cart</a>
                 ';
     }
 }

@@ -1,27 +1,5 @@
 <?php
-session_start();
-
-function isUserLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function getProfileOptions() {
-    if (isUserLoggedIn()) {
-        return '
-                <a href="../login/profile.php">View Profile</a>
-                <a href="../login/logout.php">Sign Out</a>
-                ';
-    } else {
-        return '
-                <a href="../login/login.php">Sign In</a>
-                <a href="../login/register.php">Sign Up</a>
-                ';
-    }
-}
-
-if (isset($_COOKIE['userConsent']) && $_COOKIE['userConsent'] === 'true') {
-    echo '<script src="additionalScript.js" defer></script>';
-}
+include('../scripts/functions.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -170,8 +148,7 @@ if (isset($_COOKIE['userConsent']) && $_COOKIE['userConsent'] === 'true') {
 
             <div class="account">
                 <h4>Account</h4>
-                <a href="../login/login.php" class="`sec-nav">Login</a>
-                <a href="../cart/cart.php" class="sec-nav">Cart</a>
+                <?php echo getProfileFooter() ?>
             </div>
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
