@@ -340,6 +340,11 @@ header, footer {
 .profileMenu:hover .profileMenuContent {
     display: block;
 }
+
+a {
+    text-decoration: none;
+}
+
 @media (max-width: 900px) {
     .search input[type="text"] {
         width: 100%;

@@ -69,10 +69,12 @@ if (empty($threads) && !empty($search)) {
 
 <body>
     <header class="topnav">
-        <div class="logo">
+        <a href="../homepage/homepage.php">
+            <div class="logo">
             <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
             <span>Tutorfy</span>
-        </div>
+            </div>
+        </a>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
