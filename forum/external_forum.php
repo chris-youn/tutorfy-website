@@ -66,7 +66,7 @@ $replies = $replies_stmt->fetchAll();
 <body>
     <header class="topnav">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
             <span>Tutorfy</span>
         </div>
         <nav class="nav-links">
