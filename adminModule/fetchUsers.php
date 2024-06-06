@@ -12,9 +12,15 @@ function fetchUsers($pdo) {
     </tr>";
     foreach ($users as $user) {
         // Array keys `id`, `name`, `population` are IDENTICAL TO table (countries) column names
-        echo "<tr><td>".$user["id"]."</td><td>".$user["email"]."</td><td>".$user["username"]."</td><td>".$user["created_at"]."</td>
+        echo "<tr>
+        <td>".$user["id"]."</td>
+        <td>".$user["email"]."</td><td>"
+        .$user["username"]."</td><td>"
+        .$user["created_at"]."</td>
         <td>".$user["theme"]."</td>
-        <td>".($user["archived"] == 1 ? 'Yes' : 'No')."</td><td>".($user["isAdmin"] == 1 ? 'Yes' : 'No')."</td><td>".($user["isTutor"] == 1 ? 'Yes' : 'No')."</td>
+        <td>".($user["archived"] == 1 ? 'Yes' : 'No')."</td>
+        <td>".($user["isAdmin"] == 1 ? 'Yes' : 'No')."</td>
+        <td>".($user["isTutor"] == 1 ? 'Yes' : 'No')."</td>
         <td>Actions</td></tr>";
     }
     echo "</table>";

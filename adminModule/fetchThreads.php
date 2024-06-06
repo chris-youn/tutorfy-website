@@ -6,10 +6,20 @@ function fetchThreads($pdo) {
     $stmt->execute();
     $threads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    header('Content-Type: application/json');
-    echo json_encode($threads);
-    exit;
+    echo "<table border=\"1\"><tr>
+        <th>Thread ID</th><th>User ID</th><th>Title</th><th>Content</th><th>Created At</th><th>Archived</th><th>Actions</th>
+    </tr>";
+    foreach ($threads as $thread) {
+        echo "<tr>
+            <td>".$thread["id"]."</td>
+            <td>".$thread["user_id"]."</td>
+            <td>".$thread["title"]."</td>
+            <td>".$thread["content"]."</td>
+            <td>".$thread["created_at"]."</td>
+            <td>".($thread["archived"] == 1 ? 'Yes' : 'No')."</td>
+            <td>Actions</td>
+        </tr>";
+    }
+    echo "</table>";
 }
-
-fetchThreads($pdo);
 ?>

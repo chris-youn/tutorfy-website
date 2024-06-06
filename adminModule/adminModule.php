@@ -3,6 +3,7 @@ include('../adminModule/configuration.php');
 
 include('../adminModule/fetchUsers.php');
 
+include('../adminModule/fetchThreads.php');
 session_start();
 
 function isUserLoggedIn() {
@@ -104,7 +105,8 @@ function getProfileOptions() {
 
         <section class="thread-management">
         <h2>Manage Forum Threads</h2>
-        <table id="threadTable">
+        <?php fetchThreads($pdo) ?>
+        <!-- <table id="threadTable">
             <thead>
                 <tr>
                     <th>Thread ID</th>
@@ -119,7 +121,7 @@ function getProfileOptions() {
             <tbody>
 
             </tbody>
-            </table>
+            </table> -->
         </section>
 
         <section class="reply-management">
