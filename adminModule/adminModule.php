@@ -4,6 +4,8 @@ include('../adminModule/configuration.php');
 include('../adminModule/fetchUsers.php');
 
 include('../adminModule/fetchThreads.php');
+
+include('../adminModule/fetchReplies.php');
 session_start();
 
 function isUserLoggedIn() {
@@ -126,7 +128,8 @@ function getProfileOptions() {
 
         <section class="reply-management">
         <h2>Manage Individual Forum Posts/Replies</h2>
-        <table id="replyTable">
+        <?php fetchReplies($pdo) ?>
+        <!-- <table id="replyTable">
             <thead>
                 <tr>
                     <th>Post ID</th>
@@ -141,7 +144,7 @@ function getProfileOptions() {
             <tbody>
 
             </tbody>
-            </table>
+            </table> -->
         </section>
 
 
