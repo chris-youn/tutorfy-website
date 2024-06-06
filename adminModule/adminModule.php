@@ -1,6 +1,8 @@
 <?php
 include('../adminModule/configuration.php');
 
+include('../adminModule/fetchUsers.php');
+
 session_start();
 
 function isUserLoggedIn() {
@@ -79,7 +81,8 @@ function getProfileOptions() {
 
         <section class="user-management">
         <h2>Manage Users</h2>
-        <table id="userTable">
+        <?php fetchUsers($pdo) ?>
+        <!-- <table id="userTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -96,7 +99,7 @@ function getProfileOptions() {
             <tbody>
 
             </tbody>
-            </table>
+            </table> -->
         </section>
 
         <section class="thread-management">
