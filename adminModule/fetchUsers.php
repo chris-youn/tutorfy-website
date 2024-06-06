@@ -8,7 +8,7 @@ function fetchUsers($pdo) {
 
     
     echo "<table border=\"1\"><tr>
-        <th>ID</th><th>Email</th><th>Userame</th><th>Created At</th><th>Theme</th><th>Archived</th><th>Admin</th><th>Tutor</th><th>Actions</th>
+        <th>ID</th><th>Email</th><th>Userame</th><th>Created At</th><th>Theme</th><th>Archived</th><th>Administrator</th><th>Tutor</th><th>Actions</th>
     </tr>";
     foreach ($users as $user) {
         // Array keys `id`, `name`, `population` are IDENTICAL TO table (countries) column names
@@ -21,7 +21,13 @@ function fetchUsers($pdo) {
         <td>".($user["archived"] == 1 ? 'Yes' : 'No')."</td>
         <td>".($user["isAdmin"] == 1 ? 'Yes' : 'No')."</td>
         <td>".($user["isTutor"] == 1 ? 'Yes' : 'No')."</td>
-        <td>Actions</td></tr>";
+        <td>
+            <form method='post' action='toggleArchive.php'>
+                    <!--Added button, not yet functional-->
+                    <button type='submit'>".($user["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
+            </form>
+        </td>
+        </tr>";
     }
     echo "</table>";
 }

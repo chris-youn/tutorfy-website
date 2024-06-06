@@ -14,9 +14,7 @@ $stmt = $pdo->prepare($sql);
 
 $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
 
-if ($stmt->execute()) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'error' => $stmt->errorInfo()]);
-}
+$stmt->execute();
+
+header("Location: adminModule.php");
 ?>
