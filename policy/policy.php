@@ -151,7 +151,7 @@ include('../scripts/functions.php');
                 <?php echo getProfileFooter() ?>
             </div>
         </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
+        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
 </body>
 </html>
