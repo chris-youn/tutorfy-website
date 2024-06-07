@@ -104,10 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header class="topnav">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+        <a href="../homepage/homepage.php">
+            <div class="logo">
+            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
             <span>Tutorfy</span>
-        </div>
+            </div>
+        </a>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
