@@ -158,7 +158,7 @@ $replies = $replies_stmt->fetchAll();
                     </div>
                     <p><?= htmlspecialchars($reply['content']) ?></p>
                     <?php if ($_SESSION['user_id'] == $reply['user_id']): ?>
-                        <button class="archive-reply-button" data-reply-id="<?= $reply['id'] ?>">Archive</button>
+                        <button class="archive-reply-button" data-reply-id="<?= $reply['id'] ?>">Delete</button>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

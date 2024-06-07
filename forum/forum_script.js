@@ -117,7 +117,7 @@ function archivePost(threadId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Post Archived Successfully!");
+            alert("Post Deleted Successfully!");
             location.reload();
         } else {
             location.reload();
