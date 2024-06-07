@@ -129,7 +129,7 @@ $replies = $replies_stmt->fetchAll();
                 <p><?= htmlspecialchars($thread['content']) ?></p>
                 <?php if (!empty($thread['image_path'])): ?>
                     <div class="content-image">
-                        <img src="../forum/<?= htmlspecialchars($thread['image_path']) ?>" alt="Thread Image" style="max-width: 200px; max-height: 150px;">
+                        <img src="../forum/<?= htmlspecialchars($thread['image_path']) ?>" alt="Thread Image" style="max-width: 500px; max-height: 450px;">
                     </div>
                 <?php endif; ?>
             </div>
