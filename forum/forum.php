@@ -71,8 +71,8 @@ if (empty($threads) && !empty($search)) {
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
-            <span>Tutorfy</span>
+                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <span>Tutorfy</span>
             </div>
         </a>
         <nav class="nav-links">
@@ -93,30 +93,29 @@ if (empty($threads) && !empty($search)) {
                     </div>
                     <ul class="shopping-cart-items" id="items">
                         <li id="tutorSessionListItem">
-                                <div id='tutorSessionCartShort'></div>
-                                <button id="tutorSessionClear">X</button>
-                                <button id="tutorSessionRemove">-</button>
-                                <button id="tutorSessionAdd">+</button>
-                            </li>
-                            <li id="tutorSessionLongListItem">
-                                <div id='tutorSessionCartLong'></div>
-                                <button id="tutorSessionLongClear">X</button>
-                                <button id="tutorSessionLongRemove">-</button>
-                                <button id="tutorSessionLongAdd">+</button>
-                            </li>
-                            <li id="tutorSessionShortBulkListItem">
-                                <div id='tutorSessionCartShortBulk'></div>
-                                <button id="tutorSessionShortBulkClear">X</button>
-                                <button id="tutorSessionShortBulkRemove">-</button>
-                                <button id="tutorSessionShortBulkAdd">+</button>
-                            </li>
-                            <li id="tutorSessionLongBulkListItem">
-                                <div id='tutorSessionCartLongBulk'></div>
-                                <button id="tutorSessionLongBulkClear">X</button>
-                                <button id="tutorSessionLongBulkRemove">-</button>
-                                <button id="tutorSessionLongBulkAdd">+</button>
-                            </li>
-                        
+                            <div id='tutorSessionCartShort'></div>
+                            <button id="tutorSessionClear">X</button>
+                            <button id="tutorSessionRemove">-</button>
+                            <button id="tutorSessionAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongListItem">
+                            <div id='tutorSessionCartLong'></div>
+                            <button id="tutorSessionLongClear">X</button>
+                            <button id="tutorSessionLongRemove">-</button>
+                            <button id="tutorSessionLongAdd">+</button>
+                        </li>
+                        <li id="tutorSessionShortBulkListItem">
+                            <div id='tutorSessionCartShortBulk'></div>
+                            <button id="tutorSessionShortBulkClear">X</button>
+                            <button id="tutorSessionShortBulkRemove">-</button>
+                            <button id="tutorSessionShortBulkAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongBulkListItem">
+                            <div id='tutorSessionCartLongBulk'></div>
+                            <button id="tutorSessionLongBulkClear">X</button>
+                            <button id="tutorSessionLongBulkRemove">-</button>
+                            <button id="tutorSessionLongBulkAdd">+</button>
+                        </li>
                     </ul>
                     <form action="../cart/cart.php" method="post">
                         <div class="checkout">
@@ -127,9 +126,9 @@ if (empty($threads) && !empty($search)) {
             </div>
             <div class="profileMenu">
                 <span class="profileIcon">👤</span>
-                    <div class="profileMenuContent">
-                        <?php echo getProfileOptions() ?>
-                    </div>
+                <div class="profileMenuContent">
+                    <?php echo getProfileOptions() ?>
+                </div>
             </div>
         </div>
     </header>
@@ -184,10 +183,11 @@ if (empty($threads) && !empty($search)) {
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id']): ?>
                                     <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Archive</button>
-                                    <a href="../forum/external_forum.php?id=<?= $nextRelevantThread['id'] ?>#reply">
-                                        <button type="button" class="reply-button">Reply</button>
-                                    </a>
                                 <?php endif; ?>
+                                <!-- Ensure reply button is always visible -->
+                                <a href="../forum/external_forum.php?id=<?= $nextRelevantThread['id'] ?>#reply">
+                                    <button type="button" class="reply-button">Reply</button>
+                                </a>
                             </div>
                         </a>
                     </div>
@@ -217,10 +217,11 @@ if (empty($threads) && !empty($search)) {
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
                                     <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Archive</button>
-                                    <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>#reply">
-                                        <button type="button" class="reply-button">Reply</button>
-                                    </a>
                                 <?php endif; ?>
+                                <!-- Ensure reply button is always visible -->
+                                <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>#reply">
+                                    <button type="button" class="reply-button">Reply</button>
+                                </a>
                             </div>
                         </a>
                     </div>
