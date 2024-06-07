@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header class="topnav">
         <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+            <img src="logo.png" alt="Logo">
             <span>Tutorfy</span>
         </div>
         <nav class="nav-links">
@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="../cart/cart.php" class="sec-nav">Cart</a>
             </div>
         </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2023</h4>
+        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
 </body>
 </html>
