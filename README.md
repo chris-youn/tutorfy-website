@@ -46,7 +46,7 @@ This section in the prototype phase will allow users to archive users, threads, 
 Currently this page will be on the navigation bar for all users to access, but in the final version, it will only be accessible to admin users.
 
 ## Accessing the website:
-- You can access the website under this link: https://titan.csit.rmit.edu.au/~s4015064/assignment-2-website-prototype-wps_group_3/homepage/homepage.php
+- You can access the website under this link: https://titan.csit.rmit.edu.au/~s4015064/assignment-3-final-website-wps_group_3/homepage/homepage.php
 
 ## User Accounts: 
 Username: user1
