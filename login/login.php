@@ -1,6 +1,24 @@
 <?php
 include('../login/config.php');
-include('../scripts/functions.php');
+session_start();
+
+function isUserLoggedIn() {
+    return isset($_SESSION['user_id']);
+}
+
+function getProfileOptions() {
+    if (isUserLoggedIn()) {
+        return '
+                <a href="../login/profile.php">View Profile</a>
+                <a href="../login/logout.php">Sign Out</a>
+                ';
+    } else {
+        return '
+                <a href="../login/login.php">Sign In</a>
+                <a href="../login/register.php">Sign Up</a>
+                ';
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
@@ -86,12 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header class="topnav">
-        <a href="../homepage/homepage.php">
-            <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
             <span>Tutorfy</span>
-            </div>
-        </a>
+        </div>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
@@ -204,7 +220,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="account">
                 <h4>Account</h4>
-                <?php echo getProfileFooter() ?>
+                <a href="../login/login.php" class="`sec-nav">Login</a>
+                <a href="../cart/cart.php" class="sec-nav">Cart</a>
             </div>
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
