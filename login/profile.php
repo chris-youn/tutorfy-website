@@ -108,7 +108,7 @@ $stmt->close();
             </form>
 
             <form action="archive_account.php" method="POST" class="archive-logout-form">
-                <input type="submit" value="Archive Account" class="archive-button">
+                <input type="submit" value="Delete Account" class="archive-button">
             </form>
 
             <form action="logout.php" method="POST" class="archive-logout-form">

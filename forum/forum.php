@@ -182,7 +182,7 @@ if (empty($threads) && !empty($search)) {
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id']): ?>
-                                    <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Archive</button>
+                                    <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Delete</button>
                                 <?php endif; ?>
                                 <!-- Ensure reply button is always visible -->
                                 <a href="../forum/external_forum.php?id=<?= $nextRelevantThread['id'] ?>#reply">
@@ -216,7 +216,7 @@ if (empty($threads) && !empty($search)) {
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
-                                    <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Archive</button>
+                                    <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Delete</button>
                                 <?php endif; ?>
                                 <!-- Ensure reply button is always visible -->
                                 <a href="../forum/external_forum.php?id=<?= $thread['id'] ?>#reply">
