@@ -8,10 +8,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $thread_id = $_GET['id'];
+$user_id = $_SESSION['user_id'];
+
+// Fetch the isAdmin status
+$stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$isAdmin = $stmt->fetchColumn();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_reply'])) {
     $reply_content = $_POST['reply_content'];
-    $user_id = $_SESSION['user_id'];
 
     if (!empty($reply_content)) {
         $insert_reply_stmt = $pdo->prepare("INSERT INTO replies (thread_id, user_id, content) VALUES (?, ?, ?)");
@@ -49,8 +54,8 @@ $replies = $replies_stmt->fetchAll();
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
-            <span>Tutorfy</span>
+                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <span>Tutorfy</span>
             </div>
         </a>
         <nav class="nav-links">
@@ -71,31 +76,30 @@ $replies = $replies_stmt->fetchAll();
                     </div>
                     <ul class="shopping-cart-items" id="items">
                         <li id="tutorSessionListItem">
-                                    <div id='tutorSessionCartShort'></div>
-                                    <button id="tutorSessionClear">X</button>
-                                    <button id="tutorSessionRemove">-</button>
-                                    <button id="tutorSessionAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongListItem">
-                                    <div id='tutorSessionCartLong'></div>
-                                    <button id="tutorSessionLongClear">X</button>
-                                    <button id="tutorSessionLongRemove">-</button>
-                                    <button id="tutorSessionLongAdd">+</button>
-                                </li>
-                                <li id="tutorSessionShortBulkListItem">
-                                    <div id='tutorSessionCartShortBulk'></div>
-                                    <button id="tutorSessionShortBulkClear">X</button>
-                                    <button id="tutorSessionShortBulkRemove">-</button>
-                                    <button id="tutorSessionShortBulkAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongBulkListItem">
-                                    <div id='tutorSessionCartLongBulk'></div>
-                                    <button id="tutorSessionLongBulkClear">X</button>
-                                    <button id="tutorSessionLongBulkRemove">-</button>
-                                    <button id="tutorSessionLongBulkAdd">+</button>
-                                </li>
+                            <div id='tutorSessionCartShort'></div>
+                            <button id="tutorSessionClear">X</button>
+                            <button id="tutorSessionRemove">-</button>
+                            <button id="tutorSessionAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongListItem">
+                            <div id='tutorSessionCartLong'></div>
+                            <button id="tutorSessionLongClear">X</button>
+                            <button id="tutorSessionLongRemove">-</button>
+                            <button id="tutorSessionLongAdd">+</button>
+                        </li>
+                        <li id="tutorSessionShortBulkListItem">
+                            <div id='tutorSessionCartShortBulk'></div>
+                            <button id="tutorSessionShortBulkClear">X</button>
+                            <button id="tutorSessionShortBulkRemove">-</button>
+                            <button id="tutorSessionShortBulkAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongBulkListItem">
+                            <div id='tutorSessionCartLongBulk'></div>
+                            <button id="tutorSessionLongBulkClear">X</button>
+                            <button id="tutorSessionLongBulkRemove">-</button>
+                            <button id="tutorSessionLongBulkAdd">+</button>
+                        </li>
                     </ul>
-
                     <form action="../cart/cart.php" method="post">
                         <div class="checkout">
                             <input id="cartCheckout" type="submit" value="Checkout"></input>
@@ -157,7 +161,7 @@ $replies = $replies_stmt->fetchAll();
                         </div>
                     </div>
                     <p><?= htmlspecialchars($reply['content']) ?></p>
-                    <?php if ($_SESSION['user_id'] == $reply['user_id']): ?>
+                    <?php if ($_SESSION['user_id'] == $reply['user_id'] || $isAdmin): ?>
                         <button class="archive-reply-button" data-reply-id="<?= $reply['id'] ?>">Delete</button>
                     <?php endif; ?>
                 </div>

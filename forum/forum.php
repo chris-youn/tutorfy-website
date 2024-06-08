@@ -8,6 +8,13 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+$user_id = $_SESSION['user_id'];
+
+// Fetch the isAdmin status
+$stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$isAdmin = $stmt->fetchColumn();
+
 $order = $_GET['order'] ?? 'newest';
 $search = $_GET['search'] ?? '';
 
@@ -181,7 +188,7 @@ if (empty($threads) && !empty($search)) {
                                         <img src="<?= htmlspecialchars($nextRelevantThread['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
                                     </div>
                                 <?php endif; ?>
-                                <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id']): ?>
+                                <?php if ($_SESSION['user_id'] == $nextRelevantThread['user_id'] || $isAdmin): ?>
                                     <button class="archive-button" data-thread-id="<?= $nextRelevantThread['id'] ?>">Delete</button>
                                 <?php endif; ?>
                                 <!-- Ensure reply button is always visible -->
@@ -215,7 +222,7 @@ if (empty($threads) && !empty($search)) {
                                         <img src="<?= htmlspecialchars($thread['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
                                     </div>
                                 <?php endif; ?>
-                                <?php if ($_SESSION['user_id'] == $thread['user_id']): ?>
+                                <?php if ($_SESSION['user_id'] == $thread['user_id'] || $isAdmin): ?>
                                     <button class="archive-button" data-thread-id="<?= $thread['id'] ?>">Delete</button>
                                 <?php endif; ?>
                                 <!-- Ensure reply button is always visible -->
