@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("register");
+    const password = document.getElementById("password");
+
+    password.addEventListener("input", validatePassword);
 
     form.addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission for validation
 
         const username = document.getElementById("username");
         const email = document.getElementById("email");
-        const password = document.getElementById("password");
         const passwordConfirm = document.getElementById("passwordConfirm");
         const captcha = document.getElementById("captcha");
 
@@ -26,41 +28,13 @@ document.addEventListener("DOMContentLoaded", function() {
             email.setCustomValidity("");
         }
 
-        // Password Validation
-        const passwordPatternLower = /(?=.*[a-z])/;
-        const passwordPatternUpper = /(?=.*[A-Z])/;
-        const passwordPatternDigit = /(?=.*\d)/;
-        const passwordPatternSpecial = /(?=.*[@$!%*?&])/;
-        const passwordError = document.getElementById('passwordError');
-
-        let errorMessages = [];
-
-        if (!passwordPatternLower.test(password.value)) {
-            errorMessages.push("Password must include at least one lowercase letter.");
-        }
-        if (!passwordPatternUpper.test(password.value)) {
-            errorMessages.push("Password must include at least one uppercase letter.");
-        }
-        if (!passwordPatternDigit.test(password.value)) {
-            errorMessages.push("Password must include at least one number.");
-        }
-        if (!passwordPatternSpecial.test(password.value)) {
-            errorMessages.push("Password must include at least one special character (@$!%*?&).");
-        }
-        if (password.value.length < 8) {
-            errorMessages.push("Password must be at least 8 characters long.");
-        }
-
-        if (errorMessages.length > 0) {
-            passwordError.innerHTML = "<ul><li>" + errorMessages.join("</li><li>") + "</li></ul>";
-            isValid = false;
-        } else {
-            passwordError.innerHTML = ""; 
-        }
+        // Validate Password criteria on submit to ensure messages turn red if not met
+        validatePassword(true);
 
         // Password Confirmation Validation
         if (password.value !== passwordConfirm.value) {
             document.getElementById("passwordConfirmError").textContent = "Passwords do not match.";
+            document.getElementById("passwordConfirmError").style.color = "red";
             isValid = false;
         } else {
             document.getElementById("passwordConfirmError").textContent = "";
@@ -81,8 +55,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     if (data.message === "Username is already taken") {
                         document.getElementById("usernameError").textContent = data.message;
+                        document.getElementById("usernameError").style.color = "red";
                     } else if (data.message === "User already exists for this email") {
                         document.getElementById("emailError").textContent = data.message;
+                        document.getElementById("emailError").style.color = "red";
                     } else {
                         alert(data.message);
                     }
@@ -100,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function validatePassword() {
+function validatePassword(isSubmit = false) {
     const password = document.getElementById('password').value;
     
     const lowercase = document.getElementById('lowercase');
@@ -109,43 +85,41 @@ function validatePassword() {
     const special = document.getElementById('special');
     const length = document.getElementById('length');
 
+    if (!isSubmit) {
+        lowercase.style.color = "black";
+        uppercase.style.color = "black";
+        number.style.color = "black";
+        special.style.color = "black";
+        length.style.color = "black";
+    }
+
     if (/(?=.*[a-z])/.test(password)) {
-        lowercase.classList.remove('invalid');
-        lowercase.classList.add('valid');
-    } else {
-        lowercase.classList.remove('valid');
-        lowercase.classList.add('invalid');
+        lowercase.style.color = "green";
+    } else if (isSubmit) {
+        lowercase.style.color = "red";
     }
 
     if (/(?=.*[A-Z])/.test(password)) {
-        uppercase.classList.remove('invalid');
-        uppercase.classList.add('valid');
-    } else {
-        uppercase.classList.remove('valid');
-        uppercase.classList.add('invalid');
+        uppercase.style.color = "green";
+    } else if (isSubmit) {
+        uppercase.style.color = "red";
     }
 
     if (/(?=.*\d)/.test(password)) {
-        number.classList.remove('invalid');
-        number.classList.add('valid');
-    } else {
-        number.classList.remove('valid');
-        number.classList.add('invalid');
+        number.style.color = "green";
+    } else if (isSubmit) {
+        number.style.color = "red";
     }
 
     if (/(?=.*[@$!%*?&])/.test(password)) {
-        special.classList.remove('invalid');
-        special.classList.add('valid');
-    } else {
-        special.classList.remove('valid');
-        special.classList.add('invalid');
+        special.style.color = "green";
+    } else if (isSubmit) {
+        special.style.color = "red";
     }
 
     if (password.length >= 8) {
-        length.classList.remove('invalid');
-        length.classList.add('valid');
-    } else {
-        length.classList.remove('valid');
-        length.classList.add('invalid');
+        length.style.color = "green";
+    } else if (isSubmit) {
+        length.style.color = "red";
     }
 }
