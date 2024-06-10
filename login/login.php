@@ -43,10 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if the account is locked due to too many failed attempts
         $current_time = new DateTime();
-        $last_failed_login_time = new DateTime($last_failed_login);
-        $interval = $last_failed_login_time->diff($current_time);
+        if ($last_failed_login) {
+            $last_failed_login_time = new DateTime($last_failed_login);
+            $interval = $last_failed_login_time->diff($current_time);
+            $minutes_since_last_failed_login = ($interval->days * 24 * 60) + ($interval->h * 60) + $interval->i;
+        } else {
+            $minutes_since_last_failed_login = 61; // Set to more than 60 to allow login
+        }
 
-        if ($failed_attempts >= 3 && $interval->i < 60) {
+        if ($failed_attempts >= 3 && $minutes_since_last_failed_login < 60) {
             echo json_encode(['success' => false, 'message' => 'Account locked. Try again later.']);
         } else {
             // Verify password
@@ -141,7 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </li>
                                 <li id="tutorSessionShortBulkListItem">
                                     <div id='tutorSessionCartShortBulk'></div>
-                                    <button id="tutorSessionShortBulkClear">X</button>
                                     <button id="tutorSessionShortBulkRemove">-</button>
                                     <button id="tutorSessionShortBulkAdd">+</button>
                                 </li>
