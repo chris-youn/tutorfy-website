@@ -48,9 +48,15 @@ Currently this page will be on the navigation bar for all users to access, but i
 ## Accessing the website:
 - You can access the website under this link: https://titan.csit.rmit.edu.au/~s4015064/assignment-3-final-website-wps_group_3/homepage/homepage.php
 
-## User Accounts: 
-Username: user1
-Password: user1
+## User Accounts:
+
+### Non-Admin Accounts:
+- Username: user1
+- Password: user1
+
+### Admin Accounts:
+- Username: aqua
+- Password: gura
 
 ## Website Developed By:
 - Shawn Chew (s4015064)
