@@ -1,19 +1,16 @@
 :root {
     font-family: "Sora", sans-serif;
     width: 100%;
-    background-color: #EEE2DC;
+    background-color: #4A403A; /* Dark brown background */
+    color: #EEE2DC; /* Light text color for readability */
 }
-input[type="text"] {
-    font-family: "Sora", sans-serif;
-}
-input[type="submit"] {
-    font-family: "Sora", sans-serif;
-}
-input[type="button"] {
-    font-family: "Sora", sans-serif;
-}
+
+input[type="text"],
+input[type="submit"],
+input[type="button"],
 input[type="email"] {
     font-family: "Sora", sans-serif;
+    color: #3E2723; /* Dark text color for inputs */
 }
 
 .content {
@@ -26,6 +23,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #4A403A; /* Dark brown background */
+    color: #EEE2DC; /* Light text color */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,9 +41,9 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #EDC7B7; */
     padding: 20px 30px;
     margin: 0;
+    background-color: #5C524A; /* Slightly lighter dark brown */
 }
 
 .topnav .logo {
@@ -62,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 .topnav .logo span {
     font-size: 24px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #EEE2DC; /* Light text color */
 }
 
 .topnav .nav-links {
@@ -72,8 +71,8 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.topnav .nav-links .nav-link{
-    color: #2c3e50;
+.topnav .nav-links .nav-link {
+    color: #EEE2DC; /* Light text color */
     text-decoration: none;
     font-size: 18px;
     padding: 10px 15px;
@@ -81,14 +80,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topnav .nav-links .nav-link:hover {
-    background-color: #EEE2DC;
-    color: #AC3B61;
+    background-color: #4A403A; /* Dark brown background */
+    color: #AC3B61; /* Highlight color */
     border-radius: 4px;
 }
 
 .topnav .nav-links .nav-link.active {
     font-weight: bold;
-    color: #AC3B61;
+    color: #AC3B61; /* Highlight color */
 }
 
 .topnav .icons {
@@ -98,13 +97,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .topnav .icons .icon {
     font-size: 24px;
-    color: #2c3e50;
+    color: #EEE2DC; /* Light text color */
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .topnav .icons .icon:hover {
-    color: #EEE2DC;
+    color: #AC3B61; /* Highlight color */
     cursor: pointer;
 }
 
@@ -116,12 +115,12 @@ h1, h2, h3, h4, h5, h6 {
     width: 320px;
     padding: 25px;
     border-radius: 5px;
-    background: white;
+    background: #4E342E; /* Slightly lighter dark brown */
     z-index: 10;
+    color: #EEE2DC; /* Light text color */
 }
 
 .shopping-cart-header {
-    background-color: white;
     border-bottom: 1px solid #e8e8e8;
     padding-bottom: 10px;
 }
@@ -139,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 0;
     width: 0;
     position: absolute;
-    border-bottom-color: white;
+    border-bottom-color: #4E342E; /* Slightly lighter dark brown */
     border-width: 9px;
 }
 
@@ -148,44 +147,45 @@ input[type=submit]#cartCheckout {
     border:0;
     padding: 10px;
     border-radius: 3px;
-    background-color: #AC3B61;
+    background-color: #AC3B61; /* Highlight color */
     transition: 500ms;
-    color:white;
+    color: #EEE2DC; /* Light text color */
 }
 
 input[type=submit]#cartCheckout:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color:black;
+    background-color: #4A403A; /* Dark brown background */
+    color: #EEE2DC; /* Light text color */
 }
 
 .shopping-cart-items li button {
     border: 0;
     width: 10vh;
-    font-size:15px;
-    background-color: #AC3B61;
+    font-size: 15px;
+    background-color: #AC3B61; /* Highlight color */
     transition: 250ms;
-    color: white;
+    color: #EEE2DC; /* Light text color */
     margin-right: 10px;
     border-radius: 3px;
-    padding:4px;
-    margin-left:10px;
-    margin-bottom:20px;
+    padding: 4px;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .shopping-cart-items {
-    padding:0px;
+    padding: 0px;
 }
 
 .shopping-cart-items li button:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color: black;
+    background-color: #4A403A; /* Dark brown background */
+    color: #EEE2DC; /* Light text color */
 }
 
 .shopping-cart-items li {
     display: flex;
     font-size: 15px;
+    color: #EEE2DC; /* Light text color */
 }
 
 .container {
@@ -212,29 +212,30 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .cookie-consent-box {
-    background-color: #fff;
+    background-color: #5C524A; /* Slightly lighter dark brown */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     max-width: 400px;
     width: 80%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #EEE2DC; /* Light text color */
 }
 
 .cookie-consent-box p {
     margin: 0 0 10px;
     font-size: 14px;
-    color: #333;
+    color: #EEE2DC; /* Light text color */
 }
 
 .cookie-consent-box a {
-    color: #AC3B61;
+    color: #AC3B61; /* Highlight color */
     text-decoration: underline;
 }
 
 .cookie-accept-btn {
-    background-color: #AC3B61;
-    color: #FFF;
+    background-color: #AC3B61; /* Highlight color */
+    color: #EEE2DC; /* Light text color */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -243,9 +244,9 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .cookie-decline-btn {
-    background-color: #ffffff;
-    color: #000;
-    border: solid 0.5px black;
+    background-color: #5C524A; /* Slightly lighter dark brown */
+    color: #EEE2DC; /* Light text color */
+    border: solid 0.5px #EEE2DC; /* Light border color */
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -253,28 +254,31 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .cookie-accept-btn:hover, .cookie-decline-btn:hover {
-    background-color: #6D5F58;
+    background-color: #6D5F58; /* Darker highlight color */
 }
 
 #cartBadge {
-    background-color:white;
-    border-radius:15px;
-    font-size:13px;
-    padding:5px;
-    position:relative;
-    bottom:10px;
-    margin-left:5px;
+    background-color: #5C524A; /* Slightly lighter dark brown */
+    border-radius: 15px;
+    font-size: 13px;
+    padding: 5px;
+    position: relative;
+    bottom: 10px;
+    margin-left: 5px;
+    color: #EEE2DC; /* Light text color */
 }
+
 footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #EDC7B7;
+    background-color: #5C524A; /* Slightly lighter dark brown */
     padding: 10px;
     border-top: solid 1px #ccc;
     margin-top: auto;
     font-size: 15px;
+    color: #EEE2DC; /* Light text color */
 }
 
 .sec-links {
@@ -292,15 +296,15 @@ footer {
     align-items: center;
     gap: 5px;
     padding-bottom: 20px;
-} 
+}
 
 .sec-links > div > a {
     text-decoration: none;
-    color: black;
+    color: #EEE2DC; /* Light text color */
 }
 
 header, footer {
-    background-color: #e1af9a;
+    background-color: #5C524A; /* Slightly lighter dark brown */
 }
 
 .profileMenu {
@@ -308,30 +312,29 @@ header, footer {
     display: inline-block;
 }
 
-.profileIcon {  
-  font-size: 24px;
-  border: 0px;
-  position: static;
-  /* background-color: #e1af9a; */
+.profileIcon {
+    font-size: 24px;
+    border: 0px;
+    position: static;
+    color: #EEE2DC; /* Light text color */
 }
 
-
 .profileMenuContent {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  width: 120px;
-  right: -60%;
+    display: none;
+    position: absolute;
+    background-color: #5C524A; /* Slightly lighter dark brown */
+    width: 120px;
+    right: -60%;
 }
 
 .profileMenuContent a {
-  color: black;
-  padding: 10px;
-  display: block;
+    color: #EEE2DC; /* Light text color */
+    padding: 10px;
+    display: block;
 }
 
 .profileMenuContent a:hover {
-    background-color: #ddd; 
+    background-color: #6D5F58; /* Darker highlight color */
 }
 
 .profileMenu:hover .profileMenuContent {
@@ -340,6 +343,7 @@ header, footer {
 
 a {
     text-decoration: none;
+    color: #EEE2DC; /* Light text color */
 }
 
 @media (max-width: 900px) {

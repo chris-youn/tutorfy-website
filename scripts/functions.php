@@ -32,6 +32,7 @@ function getProfileFooter() {
     } else {
         return '
                 <a href="../login/login.php">Sign In</a>
+                <a href="../login/register.php">Sign Up</a>
                 <a href="../cart/cart.php">Cart</a>
                 ';
     }
