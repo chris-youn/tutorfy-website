@@ -1,4 +1,5 @@
-h4 {
+.payment-form h4,
+.cart-summary h4 {
     display: flex;
     margin-bottom: -10px;
     padding-bottom: 10px;

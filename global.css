@@ -159,7 +159,8 @@ input[type=submit]#cartCheckout:hover {
     color:black;
 }
 
-.shopping-cart-items li button {
+.shopping-cart-items li button,
+.cart-summary li button {
     border: 0;
     width: 10vh;
     font-size:15px;
@@ -174,10 +175,11 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .shopping-cart-items {
-    padding:0px;
+    padding: 0px;
 }
 
-.shopping-cart-items li button:hover {
+.shopping-cart-items li button:hover,
+.cart-summary li button:hover {
     cursor: pointer;
     background-color: #EEE2DC;
     color: black;
