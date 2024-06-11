@@ -1,6 +1,18 @@
-<?php 
+<?php
+require '../forum/config.php';
 include('../scripts/functions.php');
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +43,9 @@ include('../scripts/functions.php');
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
-            <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php if ($isAdmin): ?>
+                <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php endif; ?>
         </nav>
         <div class="icons">
             <div class="container">
