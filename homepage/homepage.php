@@ -1,5 +1,16 @@
 <?php
+require '../forum/config.php';
 include('../scripts/functions.php');
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -21,8 +32,8 @@ include('../scripts/functions.php');
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
-            <span>Tutorfy</span>
+                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <span>Tutorfy</span>
             </div>
         </a>
         <nav class="nav-links">
@@ -30,7 +41,9 @@ include('../scripts/functions.php');
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
-            <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php if ($isAdmin): ?>
+                <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php endif; ?>
         </nav>
         <div class="icons">
             <div class="container">
@@ -43,29 +56,29 @@ include('../scripts/functions.php');
                     </div>
                     <ul class="shopping-cart-items" id="items">
                         <li id="tutorSessionListItem">
-                                    <div id='tutorSessionCartShort'></div>
-                                    <button id="tutorSessionClear">X</button>
-                                    <button id="tutorSessionRemove">-</button>
-                                    <button id="tutorSessionAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongListItem">
-                                    <div id='tutorSessionCartLong'></div>
-                                    <button id="tutorSessionLongClear">X</button>
-                                    <button id="tutorSessionLongRemove">-</button>
-                                    <button id="tutorSessionLongAdd">+</button>
-                                </li>
-                                <li id="tutorSessionShortBulkListItem">
-                                    <div id='tutorSessionCartShortBulk'></div>
-                                    <button id="tutorSessionShortBulkClear">X</button>
-                                    <button id="tutorSessionShortBulkRemove">-</button>
-                                    <button id="tutorSessionShortBulkAdd">+</button>
-                                </li>
-                                <li id="tutorSessionLongBulkListItem">
-                                    <div id='tutorSessionCartLongBulk'></div>
-                                    <button id="tutorSessionLongBulkClear">X</button>
-                                    <button id="tutorSessionLongBulkRemove">-</button>
-                                    <button id="tutorSessionLongBulkAdd">+</button>
-                                </li>
+                            <div id='tutorSessionCartShort'></div>
+                            <button id="tutorSessionClear">X</button>
+                            <button id="tutorSessionRemove">-</button>
+                            <button id="tutorSessionAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongListItem">
+                            <div id='tutorSessionCartLong'></div>
+                            <button id="tutorSessionLongClear">X</button>
+                            <button id="tutorSessionLongRemove">-</button>
+                            <button id="tutorSessionLongAdd">+</button>
+                        </li>
+                        <li id="tutorSessionShortBulkListItem">
+                            <div id='tutorSessionCartShortBulk'></div>
+                            <button id="tutorSessionShortBulkClear">X</button>
+                            <button id="tutorSessionShortBulkRemove">-</button>
+                            <button id="tutorSessionShortBulkAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongBulkListItem">
+                            <div id='tutorSessionCartLongBulk'></div>
+                            <button id="tutorSessionLongBulkClear">X</button>
+                            <button id="tutorSessionLongBulkRemove">-</button>
+                            <button id="tutorSessionLongBulkAdd">+</button>
+                        </li>
                     </ul>
 
                     <form action="../cart/cart.php" method="post">
@@ -77,9 +90,9 @@ include('../scripts/functions.php');
             </div>
             <div class="profileMenu">
                 <span class="profileIcon">👤</span>
-                    <div class="profileMenuContent">
-                        <?php echo getProfileOptions() ?>
-                    </div>
+                <div class="profileMenuContent">
+                    <?php echo getProfileOptions() ?>
+                </div>
             </div>
         </div>
     </header>

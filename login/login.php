@@ -1,5 +1,6 @@
 <?php
 include('../login/config.php');
+include('../forum/config.php');
 session_start();
 
 function isUserLoggedIn() {
@@ -43,10 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if the account is locked due to too many failed attempts
         $current_time = new DateTime();
-        $last_failed_login_time = new DateTime($last_failed_login);
-        $interval = $last_failed_login_time->diff($current_time);
+        if ($last_failed_login) {
+            $last_failed_login_time = new DateTime($last_failed_login);
+            $interval = $last_failed_login_time->diff($current_time);
+            $minutes_since_last_failed_login = ($interval->days * 24 * 60) + ($interval->h * 60) + $interval->i;
+        } else {
+            $minutes_since_last_failed_login = 61; // Set to more than 60 to allow login
+        }
 
-        if ($failed_attempts >= 3 && $interval->i < 60) {
+        if ($failed_attempts >= 3 && $minutes_since_last_failed_login < 60) {
             echo json_encode(['success' => false, 'message' => 'Account locked. Try again later.']);
         } else {
             // Verify password
@@ -83,6 +89,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
     exit;
 }
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -115,7 +131,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
-            <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php if ($isAdmin): ?>
+                <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php endif; ?>
         </nav>
         <div class="icons">
             <div class="container">
@@ -141,7 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </li>
                                 <li id="tutorSessionShortBulkListItem">
                                     <div id='tutorSessionCartShortBulk'></div>
-                                    <button id="tutorSessionShortBulkClear">X</button>
                                     <button id="tutorSessionShortBulkRemove">-</button>
                                     <button id="tutorSessionShortBulkAdd">+</button>
                                 </li>
