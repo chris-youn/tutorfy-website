@@ -24,21 +24,29 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!email.validity.valid) {
             email.setCustomValidity("Please enter a valid email address.");
             isValid = false;
+            console.log("Email is invalid.");
         } else {
             email.setCustomValidity("");
         }
 
         // Validate Password criteria on submit to ensure messages turn red if not met
-        validatePassword(true);
+        const isPasswordValid = validatePassword(true);
+        if (!isPasswordValid) {
+            isValid = false;
+            console.log("Password criteria not met.");
+        }
 
         // Password Confirmation Validation
         if (password.value !== passwordConfirm.value) {
             document.getElementById("passwordConfirmError").textContent = "Passwords do not match.";
             document.getElementById("passwordConfirmError").style.color = "red";
             isValid = false;
+            console.log("Passwords do not match.");
         } else {
             document.getElementById("passwordConfirmError").textContent = "";
         }
+
+        console.log("Form valid:", isValid);
 
         // If the form is valid, proceed with the AJAX request
         if (isValid) {
@@ -85,6 +93,8 @@ function validatePassword(isSubmit = false) {
     const special = document.getElementById('special');
     const length = document.getElementById('length');
 
+    let isValid = true;
+
     if (!isSubmit) {
         lowercase.style.color = "black";
         uppercase.style.color = "black";
@@ -95,31 +105,39 @@ function validatePassword(isSubmit = false) {
 
     if (/(?=.*[a-z])/.test(password)) {
         lowercase.style.color = "green";
-    } else if (isSubmit) {
-        lowercase.style.color = "red";
+    } else {
+        if (isSubmit) lowercase.style.color = "red";
+        isValid = false;
     }
 
     if (/(?=.*[A-Z])/.test(password)) {
         uppercase.style.color = "green";
-    } else if (isSubmit) {
-        uppercase.style.color = "red";
+    } else {
+        if (isSubmit) uppercase.style.color = "red";
+        isValid = false;
     }
 
     if (/(?=.*\d)/.test(password)) {
         number.style.color = "green";
-    } else if (isSubmit) {
-        number.style.color = "red";
+    } else {
+        if (isSubmit) number.style.color = "red";
+        isValid = false;
     }
 
     if (/(?=.*[@$!%*?&])/.test(password)) {
         special.style.color = "green";
-    } else if (isSubmit) {
-        special.style.color = "red";
+    } else {
+        if (isSubmit) special.style.color = "red";
+        isValid = false;
     }
 
     if (password.length >= 8) {
         length.style.color = "green";
-    } else if (isSubmit) {
-        length.style.color = "red";
+    } else {
+        if (isSubmit) length.style.color = "red";
+        isValid = false;
     }
+
+    console.log("Password valid:", isValid);
+    return isValid;
 }
