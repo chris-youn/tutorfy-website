@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit;
 }
+
 include('config.php');
 $user_id = $_SESSION['user_id'];
 
@@ -36,7 +37,11 @@ if ($user_id) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="profile.css">
-    <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php endif; ?>
     <script src="../global.js" defer></script>
 </head>
 

@@ -9,6 +9,20 @@ function isUserLoggedIn() {
     return isset($_SESSION['user_id']);
 }
 
+function getUserTheme() {
+    if (isUserLoggedIn()) {
+        require '../forum/config.php';
+        $user_id = $_SESSION['user_id'];
+
+        $stmt = $pdo->prepare("SELECT theme FROM users WHERE id = ?");
+        $stmt->execute([$user_id]);
+        $theme = $stmt->fetchColumn();
+
+        return $theme ? $theme : 'light';
+    }
+    return 'light';
+}
+
 function getProfileOptions() {
     if (isUserLoggedIn()) {
         return '
