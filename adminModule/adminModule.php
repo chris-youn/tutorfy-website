@@ -66,68 +66,17 @@ include('../scripts/functions.php');
         <section class="user-management">
         <h2>Manage Users</h2>
         <?php fetchUsers($pdo) ?>
-        <!-- <table id="userTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Created At</th>
-                    <th>Theme</th>
-                    <th>Archived</th>
-                    <th>Admin</th>
-                    <th>Tutor</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
 
         <section class="thread-management">
         <h2>Manage Forum Threads</h2>
         <?php fetchThreads($pdo) ?>
-        <!-- <table id="threadTable">
-            <thead>
-                <tr>
-                    <th>Thread ID</th>
-                    <th>User ID</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Created At</th>
-                    <th>Archived</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
 
         <section class="reply-management">
         <h2>Manage Individual Forum Posts/Replies</h2>
         <?php fetchReplies($pdo) ?>
-        <!-- <table id="replyTable">
-            <thead>
-                <tr>
-                    <th>Post ID</th>
-                    <th>User ID</th>
-                    <th>Parent Thread ID</th>
-                    <th>Content</th>
-                    <th>Created At</th>
-                    <th>Archived</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
-
 
     </main>          
     
