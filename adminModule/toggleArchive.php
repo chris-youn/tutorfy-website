@@ -17,4 +17,3 @@ $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
 $stmt->execute();
 
 header("Location: adminModule.php");
-?>
