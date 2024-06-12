@@ -57,77 +57,26 @@ include('../scripts/functions.php');
             <h2>Welcome to the Administration Module</h2>
             <p>
                 This page is designed for the ease of access of the admininstrators.
-                <br>
-                Using this page, you will be able to: check and change details of the users; lock and unlock accounts; 
+                <br><br>
+                Using this page, you will be able to: check the details of the users; lock and unlock accounts; 
                 archive or delete posts or threads in the discussion forum; add and remove aricles. 
             </p>
         </section>
 
-        <section class="user-management">
+        <section class="user-management" id="user-management">
         <h2>Manage Users</h2>
         <?php fetchUsers($pdo) ?>
-        <!-- <table id="userTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Created At</th>
-                    <th>Theme</th>
-                    <th>Archived</th>
-                    <th>Admin</th>
-                    <th>Tutor</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
 
-        <section class="thread-management">
+        <section class="thread-management" id="thread-management">
         <h2>Manage Forum Threads</h2>
         <?php fetchThreads($pdo) ?>
-        <!-- <table id="threadTable">
-            <thead>
-                <tr>
-                    <th>Thread ID</th>
-                    <th>User ID</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Created At</th>
-                    <th>Archived</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
 
-        <section class="reply-management">
+        <section class="reply-management" id="reply-management">
         <h2>Manage Individual Forum Posts/Replies</h2>
         <?php fetchReplies($pdo) ?>
-        <!-- <table id="replyTable">
-            <thead>
-                <tr>
-                    <th>Post ID</th>
-                    <th>User ID</th>
-                    <th>Parent Thread ID</th>
-                    <th>Content</th>
-                    <th>Created At</th>
-                    <th>Archived</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-            </table> -->
         </section>
-
 
     </main>          
     
