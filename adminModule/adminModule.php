@@ -57,8 +57,8 @@ include('../scripts/functions.php');
             <h2>Welcome to the Administration Module</h2>
             <p>
                 This page is designed for the ease of access of the admininstrators.
-                <br>
-                Using this page, you will be able to: check and change details of the users; lock and unlock accounts; 
+                <br><br>
+                Using this page, you will be able to: check the details of the users; lock and unlock accounts; 
                 archive or delete posts or threads in the discussion forum; add and remove aricles. 
             </p>
         </section>
