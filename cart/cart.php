@@ -165,15 +165,16 @@ if ($user_id) {
                 <div class="cart-total">
                     <span id="cart-total-text">Total: $0</span>
                 </div>
+                
                 <div id="couponcode">
                         <h4>Coupon Code</h4>
                         <p>
-                        <label for="coupon_code"></label>
-                        <input type="text" name="coupon_code" id="coupon_code" placeholder="ABCD1234">
-</p>
+                            <label for="coupon_code"></label>
+                            <input type="text" name="coupon_code" id="coupon_code" placeholder="ABCD1234">
+                        </p>
                     </div>
+                </div>
             </div>
-        </div>
     </main>
 
     <div class="cookie-consent-overlay" id="cookieConsent">

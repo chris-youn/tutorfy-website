@@ -17,7 +17,13 @@ function fetchThreads($pdo) {
             <td>".$thread["content"]."</td>
             <td>".$thread["created_at"]."</td>
             <td>".($thread["archived"] == 1 ? 'Yes' : 'No')."</td>
-            <td>Actions</td>
+            <td>
+                <form method='post' action='toggleThread.php'>
+                    <input type='hidden' name='id' value='".$thread["id"]."'>
+                    <input type='hidden' name='action' value='".($thread["archived"] == 1 ? 'unlock' : 'lock')."'>
+                    <button type='submit'>".($thread["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
+                </form>
+            </td>
         </tr>";
     }
     echo "</table>";
