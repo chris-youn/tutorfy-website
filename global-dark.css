@@ -5,12 +5,16 @@
     color: #EEE2DC; /* Light text color for readability */
 }
 
-input[type="text"],
 input[type="submit"],
-input[type="button"],
+input[type="button"] {
+    font-family: "Sora", sans-serif;
+    color: #EEE2DC;
+}
+
+input[type="text"],
 input[type="email"] {
     font-family: "Sora", sans-serif;
-    color: #3E2723; /* Dark text color for inputs */
+    color: #3E2723;
 }
 
 .content {
@@ -31,10 +35,18 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    color: #EEE2DC;
+}
+
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+main > div {
+    background-color: #282420; /* Slightly lighter dark brown */
 }
 
 .topnav {
@@ -43,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     padding: 20px 30px;
     margin: 0;
-    background-color: #5C524A; /* Slightly lighter dark brown */
+    background-color: #282420; /* Slightly lighter dark brown */
 }
 
 .topnav .logo {
@@ -212,7 +224,7 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .cookie-consent-box {
-    background-color: #5C524A; /* Slightly lighter dark brown */
+    background-color: #282420; /* Slightly lighter dark brown */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -244,7 +256,7 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .cookie-decline-btn {
-    background-color: #5C524A; /* Slightly lighter dark brown */
+    background-color: #282420; /* Slightly lighter dark brown */
     color: #EEE2DC; /* Light text color */
     border: solid 0.5px #EEE2DC; /* Light border color */
     padding: 10px 20px;
@@ -273,9 +285,7 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #5C524A; /* Slightly lighter dark brown */
     padding: 10px;
-    /* border-top: solid 1px #ccc; */
     margin-top: auto;
     font-size: 15px;
     color: #EEE2DC; /* Light text color */
@@ -304,7 +314,7 @@ footer {
 }
 
 header, footer {
-    background-color: #5C524A; /* Slightly lighter dark brown */
+    background-color: #282420; /* Slightly lighter dark brown */
 }
 
 .profileMenu {
@@ -322,7 +332,7 @@ header, footer {
 .profileMenuContent {
     display: none;
     position: absolute;
-    background-color: #5C524A; /* Slightly lighter dark brown */
+    background-color: #282420; /* Slightly lighter dark brown */
     width: 120px;
     right: -60%;
 }
@@ -347,12 +357,12 @@ a {
 }
 
 section {
-    background-color: #5C524A;
+    background-color: #282420;
     border: 1px solid #4E342E;
 }
 
 section > div > a {
-    background-color: #8d8279;
+    background-color: #423c38;
 }
 
 @media (max-width: 900px) {

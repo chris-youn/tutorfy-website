@@ -10,11 +10,10 @@ body {
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
-    background-color: #F5F5F5;
 }
 
 .profile-container {
-    background-color: white;
+    /* background-color: white; */
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,6 +60,8 @@ body {
 }
 
 .upload-button {
+    position: relative;
+    top: 5px;
     background-color: #AC3B61;
     color: white;
     border: none;
@@ -100,14 +101,28 @@ body {
     margin-bottom: 10px;
 }
 
-.save-button, .archive-button, .logout-button {
+.save-button {
     background-color: #AC3B61;
     color: white;
     border: none;
-    padding: 10px 20px;
+    margin-top: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    height: 50px;
+    width: 300px;
+}
+
+.archive-button, .logout-button {
+    background-color: #AC3B61;
+    color: white;
+    border: none;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 50px;
+    width: 300px;
 }
 
 .save-button:hover, .archive-button:hover, .logout-button:hover {

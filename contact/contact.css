@@ -32,6 +32,8 @@ ul {
 }
 
 h1 {
+    position: relative;
+    top: 20px;
     text-align: center;
 }
 
@@ -56,7 +58,6 @@ input[type=submit]#contactSubmit {
     position: relative;
     width: 70%;
     text-align: center;
-    box-shadow: 0.3px 0.3px black;
 }
 
 input[type=submit]#contactSubmit:hover {
@@ -74,7 +75,6 @@ input[type=submit]#contactSubmit:hover:disabled {
     position: relative;
     width: 70%;
     text-align: center;
-    box-shadow: 0.3px 0.3px black;
     cursor: not-allowed;
 }
 
@@ -93,6 +93,12 @@ input[type=submit]#contactSubmit:hover:disabled {
     box-sizing: border-box;
     width: 100%;
     font-size: 15px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Responsive design */
