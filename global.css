@@ -42,7 +42,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #EDC7B7; */
     padding: 20px 30px;
     margin: 0;
 }
@@ -72,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.topnav .nav-links .nav-link{
+.topnav .nav-links .nav-link {
     color: #2c3e50;
     text-decoration: none;
     font-size: 18px;
@@ -267,6 +266,7 @@ input[type=submit]#cartCheckout:hover {
     bottom:10px;
     margin-left:5px;
 }
+
 footer {
     display: flex;
     flex-direction: column;
@@ -314,7 +314,6 @@ header, footer {
   font-size: 24px;
   border: 0px;
   position: static;
-  /* background-color: #e1af9a; */
 }
 
 
@@ -344,7 +343,7 @@ a {
     text-decoration: none;
 }
 
-section, .article, .filter {
+section, .article, .filter, .planItem {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }

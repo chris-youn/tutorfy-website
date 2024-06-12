@@ -12,6 +12,8 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $isAdmin = $stmt->fetchColumn();
 }
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,11 @@ if ($user_id) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../global.css">
+    <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php endif; ?>
     <link rel="stylesheet" href="store.css">
     <script src="store.js" defer></script>
 </head>
