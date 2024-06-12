@@ -19,4 +19,6 @@ if ($stmt->execute()) {
 } else {
     echo json_encode(['success' => false, 'error' => $stmt->errorInfo()]);
 }
+
+header("Location: adminModule.php#thread-management");
 ?>

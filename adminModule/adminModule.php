@@ -63,17 +63,17 @@ include('../scripts/functions.php');
             </p>
         </section>
 
-        <section class="user-management">
+        <section class="user-management" id="user-management">
         <h2>Manage Users</h2>
         <?php fetchUsers($pdo) ?>
         </section>
 
-        <section class="thread-management">
+        <section class="thread-management" id="thread-management">
         <h2>Manage Forum Threads</h2>
         <?php fetchThreads($pdo) ?>
         </section>
 
-        <section class="reply-management">
+        <section class="reply-management" id="reply-management">
         <h2>Manage Individual Forum Posts/Replies</h2>
         <?php fetchReplies($pdo) ?>
         </section>
