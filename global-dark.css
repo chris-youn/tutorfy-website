@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, .back-button {
     color: #EEE2DC;
 }
 
@@ -47,7 +47,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 .profile-container, .article, .filter, .planItem,
 .payment-form, .cart-summary, .cookie-policy,
-.contact > .inputForm, .posts, .new-thread {
+.contact > .inputForm, .posts, .new-thread,
+.forum-post, .reply-form, .replies-section {
     background-color: #282420; 
     border: 1px solid #AC3B61;
 }
