@@ -46,7 +46,8 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .profile-container, .article, .filter, .planItem,
-.payment-form, .cart-summary, .cookie-policy {
+.payment-form, .cart-summary, .cookie-policy,
+.contact > .inputForm {
     background-color: #282420; 
 }
 

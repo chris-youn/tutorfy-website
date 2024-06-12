@@ -344,7 +344,8 @@ a {
 }
 
 section, .article, .filter, .planItem,
-.payment-form, .cart-summary, .cookie-policy {
+.payment-form, .cart-summary, .cookie-policy, 
+.contact > .inputForm {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }
