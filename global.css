@@ -180,8 +180,8 @@ input[type=submit]#cartCheckout:hover {
 .shopping-cart-items li button:hover,
 .cart-summary li button:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color: black;
+    background-color: #902749;
+    color: #EEE2DC;
 }
 
 .shopping-cart-items li {
@@ -343,7 +343,8 @@ a {
     text-decoration: none;
 }
 
-section, .article, .filter, .planItem {
+section, .article, .filter, .planItem,
+.payment-form, .cart-summary {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }

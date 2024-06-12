@@ -45,7 +45,8 @@ h1, h2, h3, h4, h5, h6, p {
     flex-direction: column;
 }
 
-.profile-container, .article, .filter, .planItem {
+.profile-container, .article, .filter, .planItem,
+.payment-form, .cart-summary {
     background-color: #282420; 
 }
 
@@ -166,11 +167,12 @@ input[type=submit]#cartCheckout {
 
 input[type=submit]#cartCheckout:hover {
     cursor: pointer;
-    background-color: #4A403A; /* Dark brown background */
+    background-color: #902749; /* Dark brown background */
     color: #EEE2DC; /* Light text color */
 }
 
-.shopping-cart-items li button {
+.shopping-cart-items li button,
+.cart-summary li button {
     border: 0;
     width: 10vh;
     font-size: 15px;
@@ -188,9 +190,10 @@ input[type=submit]#cartCheckout:hover {
     padding: 0px;
 }
 
-.shopping-cart-items li button:hover {
+.shopping-cart-items li button:hover,
+.cart-summary li button:hover {
     cursor: pointer;
-    background-color: #4A403A; /* Dark brown background */
+    background-color: #902749; /* Dark brown background */
     color: #EEE2DC; /* Light text color */
 }
 

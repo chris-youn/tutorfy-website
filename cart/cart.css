@@ -29,13 +29,12 @@
     justify-content: space-around;
     width: 150px;
 }
+
 #couponcode {
-   width:auto !important;
-   
-   
+   width: auto !important; 
 }
-#coupon_code {
-    
+
+#coupon_code {    
     width: 75%;
     padding: 10px;
     margin-bottom: 20px;
@@ -50,9 +49,9 @@
 }
 
 #payment, #cart-summary {
+    height: 600px;
     width: 400px;
     padding: 40px;
-    background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -104,7 +103,6 @@ input:focus, #couponcode input:focus {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
 }
@@ -124,6 +122,7 @@ input:focus, #couponcode input:focus {
     margin-top: 20px;
     font-weight: bold;
 }
+
 @media (max-width: 900px) {
     .checkout-container {
         flex-direction:column;
