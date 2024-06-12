@@ -56,6 +56,8 @@ if (empty($threads) && !empty($search)) {
     $nextStmt->execute();
     $nextRelevantThread = $nextStmt->fetch();
 }
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 
 <!DOCTYPE HTML>
@@ -65,12 +67,15 @@ if (empty($threads) && !empty($search)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="forum_styles.css">
-    <link rel="stylesheet" href="../global.css">
+    <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php endif; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <script src="forum_script.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="../global.css">
     <script src="../global.js" defer></script>
 </head>
 

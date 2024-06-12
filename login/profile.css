@@ -13,7 +13,6 @@ body {
 }
 
 .profile-container {
-    /* background-color: white; */
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -89,7 +88,6 @@ body {
 .information input, .information select {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
 }
@@ -102,15 +100,15 @@ body {
 }
 
 .save-button {
-    background-color: #AC3B61;
-    color: white;
-    border: none;
+    position: relative;
+    right: 10px;
     margin-top: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     height: 50px;
     width: 300px;
+    border: 1px solid red;
 }
 
 .archive-button, .logout-button {
@@ -123,10 +121,6 @@ body {
     transition: background-color 0.3s;
     height: 50px;
     width: 300px;
-}
-
-.save-button:hover, .archive-button:hover, .logout-button:hover {
-    background-color: #902B50;
 }
 
 .footer-content {

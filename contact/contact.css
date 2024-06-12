@@ -61,7 +61,7 @@ input[type=submit]#contactSubmit {
 }
 
 input[type=submit]#contactSubmit:hover {
-    background-color: #902749;
+    background-color: #C45F7F;
     cursor: pointer;
     color: white;
 }

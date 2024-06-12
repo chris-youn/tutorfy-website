@@ -74,7 +74,7 @@ input[type="button"].currentPlan {
 }
 
 input[type="button"].selectPlan:hover {
-    background-color: #902749;
+    background-color: #C45F7F;
     cursor: pointer;
     color: white;
 }
