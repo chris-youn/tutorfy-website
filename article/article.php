@@ -12,6 +12,8 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $isAdmin = $stmt->fetchColumn();
 }
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 
 <!DOCTYPE HTML>
@@ -21,7 +23,11 @@ if ($user_id) {
         <title>Tutorfy | Articles</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="../global.css">
+        <?php if ($theme == 'dark'): ?>
+            <link rel="stylesheet" type="text/css" href="../global-dark.css">
+        <?php else: ?>
+            <link rel="stylesheet" type="text/css" href="../global.css">
+        <?php endif; ?>
         <link rel="stylesheet" type="text/css" href="article.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

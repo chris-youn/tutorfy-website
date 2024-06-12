@@ -45,8 +45,8 @@ h1, h2, h3, h4, h5, h6, p {
     flex-direction: column;
 }
 
-main > div {
-    background-color: #282420; /* Slightly lighter dark brown */
+.profile-container, .article, .filter {
+    background-color: #282420; 
 }
 
 .topnav {

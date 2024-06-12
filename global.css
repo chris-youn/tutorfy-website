@@ -344,12 +344,12 @@ a {
     text-decoration: none;
 }
 
-section {
+section, .article, .filter {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }
 
-section > div > a{
+section > div > a {
     background-color: #f5e6d9;
 }
 
