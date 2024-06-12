@@ -88,17 +88,6 @@ input[type="button"].currentPlan:hover {
     cursor: not-allowed;
 }
 
-/* footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #EDC7B7;
-    padding: 20px;
-    margin-top: auto;
-    box-sizing: border-box;
-} */
-
 /* Responsive design */
 @media (max-width: 768px) {
     .search input[type="text"] {

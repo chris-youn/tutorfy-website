@@ -155,8 +155,8 @@ input[type=submit]#cartCheckout {
 
 input[type=submit]#cartCheckout:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color:black;
+    background-color: #902749;
+    color: white;
 }
 
 .shopping-cart-items li button,
@@ -181,8 +181,8 @@ input[type=submit]#cartCheckout:hover {
 .shopping-cart-items li button:hover,
 .cart-summary li button:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color: black;
+    background-color: #902749;
+    color: white;
 }
 
 .shopping-cart-items li {
@@ -314,7 +314,6 @@ header, footer {
   font-size: 24px;
   border: 0px;
   position: static;
-  /* background-color: #e1af9a; */
 }
 
 
@@ -340,6 +339,13 @@ header, footer {
     display: block;
 }
 
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 a {
     text-decoration: none;
 }
@@ -351,6 +357,24 @@ section {
 
 section > div > a{
     background-color: #f5e6d9;
+}
+
+button[type=submit],
+input[type=submit] {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #AC3B61;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type=submit]:hover,
+input[type=submit]:hover {
+    background-color: #902749;
 }
 
 @media (max-width: 900px) {

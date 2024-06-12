@@ -22,26 +22,30 @@
     width: 100%;
 }
 
-
 #expiry-cvc > div {
     padding-right: 30px;
-    margin-top: -10px;
+    margin-top: -10px;      
     justify-content: space-around;
     width: 150px;
 }
+
 #couponcode {
    width:auto !important;
-   
-   
 }
-#coupon_code {
-    
+
+#coupon_code {   
     width: 75%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+}
+
+#coupon_code:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 #expiry-cvc > #cvc {
@@ -57,37 +61,13 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-form > div > div > p > input,
-form > div > div > div > p > input,
-form > div > p > input {
+form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-}
-
-button[type=submit] {
-    width: 100%;
-    border: none;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #AC3B61;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type=submit]:hover {
-    background-color: #902749;
-}
-
-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 #fullName, #email, #cardNo {
@@ -126,6 +106,7 @@ input:focus {
     margin-top: 20px;
     font-weight: bold;
 }
+
 @media (max-width: 900px) {
     .checkout-container {
         flex-direction:column;

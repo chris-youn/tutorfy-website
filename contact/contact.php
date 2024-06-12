@@ -103,14 +103,22 @@ if ($user_id) {
         <h1>Contact us</h1>
         <div class="contact">
             <form method="post" action="contactform.php" class="inputForm">
-                <label for="emailInput">Email:</label>
-                <input type="email" id="emailInput" name="emailInput" class="input" placeholder="Email">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" class="input" placeholder="Name">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" class="input" placeholder="Subject">
-                <label for="content">Your message:</label>
+                <h4>Email:</h4>
+                <label for="emailInput"></label>
+                <input type="email" id="emailInput" name="emailInput" class="input" placeholder="johndoe@gmail.com">
+
+                <h4>Name:</h4>
+                <label for="name"></label>
+                <input type="text" id="name" name="name" class="input" placeholder="John Doe">
+
+                <h4>Subject:</h4>
+                <label for="subject"></label>
+                <input type="text" id="subject" name="subject" class="input" placeholder="Need help with payment">
+
+                <h4>Your message:</h4>
+                <label for="content"></label>
                 <textarea id="content" name="content" rows="4" cols="50" class="input"></textarea>
+
                 <input type="submit" id="contactSubmit" value="Send">
             </form>
         </div>
