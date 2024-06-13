@@ -20,39 +20,11 @@ ul {
     position: relative;
 }
 
-.shopping-cart {
-    display: inline-block;
-    position: absolute;
-    top: 40px;
-    right: -10px;
-    width: 320px;
-    padding: 25px;
-    border-radius: 5px;
-    background: white;
-    z-index: 10;
-}
-
-.shopping-cart-header {
-    background-color: white;
-    border-bottom: 1px solid #e8e8e8;
+.contact h4 {
+    display: flex;
+    margin-bottom: -10px;
     padding-bottom: 10px;
-}
-
-.shopping-cart-total {
-    display: inline-block;
-    padding-left: 230px;
-}
-
-.shopping-cart:after {
-    bottom: 100%;
-    left: 89%;
-    border: solid transparent;
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    border-bottom-color: white;
-    border-width: 9px;
+    text-align: left;
 }
 
 .light-text {
@@ -60,22 +32,9 @@ ul {
 }
 
 h1 {
+    position: relative;
+    top: 20px;
     text-align: center;
-}
-
-input[type=button].selectPlan:hover {
-    background-color: #123C69;
-    cursor: pointer;
-    color: white;
-}
-
-input[type=button].currentPlan {
-    background-color: #EEE2DC;
-    color: black;
-}
-
-input[type=button].currentPlan:hover {
-    cursor: not-allowed;
 }
 
 .inputForm {
@@ -90,35 +49,32 @@ input[type=button].currentPlan:hover {
 }
 
 input[type=submit]#contactSubmit {
-    border: 2px solid #AC3B61;
     border-radius: 10px;
     padding: 25px 50px 25px 50px;
+    margin-top: 20px;
     transition: background-color 0.3s, color 0.3s;
-    background-color: #EEE2DC;
-    color: #123C69;
+    background-color: #AC3B61;
+    color: white;
     position: relative;
     width: 70%;
     text-align: center;
-    box-shadow: 0.3px 0.3px black;
 }
 
 input[type=submit]#contactSubmit:hover {
-    background-color: #123C69;
+    background-color: #C45F7F;
     cursor: pointer;
     color: white;
 }
 
 input[type=submit]#contactSubmit:hover:disabled {
-    border: 2px solid #AC3B61;
     border-radius: 10px;
     padding: 25px 50px 25px 50px;
     transition: background-color 0.3s, color 0.3s;
     background-color: #EEE2DC;
-    color: #123C69;
+    color: black;
     position: relative;
     width: 70%;
     text-align: center;
-    box-shadow: 0.3px 0.3px black;
     cursor: not-allowed;
 }
 
@@ -126,29 +82,23 @@ input[type=submit]#contactSubmit:hover:disabled {
     resize: vertical;
 }
 
-label {
-    text-align: center;
-}
-
 .input {
     margin: 10px auto;
     display: block;
     border-radius: 5px;
     line-height: 22px;
-    background-color: transparent;
-    border: 2px solid #AC3B61;
+    border: 1px solid #ccc;
+    /* background-color: transparent; */
     padding: 13px;
     box-sizing: border-box;
     width: 100%;
     font-size: 15px;
 }
 
-footer {
-    display: flex;
-    justify-content: center;
-    background-color: #EDC7B7;
-    padding: 20px;
-    margin-top: auto;
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Responsive design */

@@ -11,6 +11,8 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $isAdmin = $stmt->fetchColumn();
 }
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,11 @@ if ($user_id) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="../global.css">
+    <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php endif; ?>
     <script src="contact.js" defer></script>
     <script src="../global.js" defer></script>
 </head>
@@ -103,14 +109,22 @@ if ($user_id) {
         <h1>Contact us</h1>
         <div class="contact">
             <form method="post" action="contactform.php" class="inputForm">
-                <label for="emailInput">Email:</label>
-                <input type="email" id="emailInput" name="emailInput" class="input" placeholder="Email">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" class="input" placeholder="Name">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" class="input" placeholder="Subject">
-                <label for="content">Your message:</label>
+                <h4>Email:</h4>
+                <label for="emailInput"></label>
+                <input type="email" id="emailInput" name="emailInput" class="input" placeholder="johndoe@gmail.com">
+
+                <h4>Name:</h4>
+                <label for="name"></label>
+                <input type="text" id="name" name="name" class="input" placeholder="John Doe">
+
+                <h4>Subject:</h4>
+                <label for="subject"></label>
+                <input type="text" id="subject" name="subject" class="input" placeholder="Need help with payment">
+
+                <h4>Your message:</h4>
+                <label for="content"></label>
                 <textarea id="content" name="content" rows="4" cols="50" class="input"></textarea>
+
                 <input type="submit" id="contactSubmit" value="Send">
             </form>
         </div>

@@ -5,71 +5,14 @@ body {
     margin: 0;
 }
 
-.topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #EDC7B7;
-    padding: 20px 30px;
-}
-
-.topnav .logo {
-    display: flex;
-    align-items: center;
-}
-
-.topnav .logo img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.topnav .logo span {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-.topnav .nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.topnav .nav-links .nav-link {
-    color: #2c3e50;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.topnav .nav-links .nav-link:hover {
-    background-color: #EEE2DC;
-    color: #AC3B61;
-    border-radius: 4px;
-}
-
-.topnav .icons {
-    display: flex;
-    gap: 20px;
-}
-
-.topnav .icons .icon {
-    font-size: 24px;
-    color: #2c3e50;
-}
-
 .profile-page {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
-    background-color: #F5F5F5;
 }
 
 .profile-container {
-    background-color: white;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -116,6 +59,8 @@ body {
 }
 
 .upload-button {
+    position: relative;
+    top: 5px;
     background-color: #AC3B61;
     color: white;
     border: none;
@@ -143,9 +88,9 @@ body {
 .information input, .information select {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    /* border: 1px solid #ccc; */
     width: 100%;
+    border-radius: 4px;
 }
 
 .themes {
@@ -155,18 +100,28 @@ body {
     margin-bottom: 10px;
 }
 
-.save-button, .archive-button, .logout-button {
-    background-color: #AC3B61;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+.save-button {
+    position: relative;
+    right: 10px;
+    margin-top: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    height: 50px;
+    width: 300px;
+    border: 1px solid red;
 }
 
-.save-button:hover, .archive-button:hover, .logout-button:hover {
-    background-color: #902B50;
+.archive-button, .logout-button {
+    background-color: #AC3B61;
+    color: white;
+    border: none;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 50px;
+    width: 300px;
 }
 
 .footer-content {

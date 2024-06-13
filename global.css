@@ -42,7 +42,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #EDC7B7; */
     padding: 20px 30px;
     margin: 0;
 }
@@ -72,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.topnav .nav-links .nav-link{
+.topnav .nav-links .nav-link {
     color: #2c3e50;
     text-decoration: none;
     font-size: 18px;
@@ -160,7 +159,7 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .shopping-cart-items li button,
-.cart-summary li button {
+.cart-summary li button, .save-button {
     border: 0;
     width: 10vh;
     font-size:15px;
@@ -179,10 +178,13 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .shopping-cart-items li button:hover,
-.cart-summary li button:hover {
+.cart-summary li button:hover,
+.time-posted button:hover,
+.new-thread button:hover, .archive-button:hover,
+.save-button:hover {
     cursor: pointer;
-    background-color: #EEE2DC;
-    color: black;
+    background-color: #C45F7F;
+    color: #EEE2DC;
 }
 
 .shopping-cart-items li {
@@ -267,6 +269,7 @@ input[type=submit]#cartCheckout:hover {
     bottom:10px;
     margin-left:5px;
 }
+
 footer {
     display: flex;
     flex-direction: column;
@@ -314,9 +317,7 @@ header, footer {
   font-size: 24px;
   border: 0px;
   position: static;
-  /* background-color: #e1af9a; */
 }
-
 
 .profileMenuContent {
   display: none;
@@ -344,12 +345,15 @@ a {
     text-decoration: none;
 }
 
-section {
+section, .profile-container, .article, .filter, 
+.planItem, .payment-form, .cart-summary, 
+.cookie-policy, .contact > .inputForm, .posts,
+.new-thread, .forum-post, .reply-form, .replies-section {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }
 
-section > div > a{
+section > .articles > a {
     background-color: #f5e6d9;
 }
 

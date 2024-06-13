@@ -67,7 +67,7 @@ main {
 
 .new-thread {
     grid-area: new-thread;
-    background-color: #FFFFFF;
+    /* background-color: #FFFFFF; */
     border: 1px solid #AC3B61;
     padding: 20px;
     border-radius: 10px;
@@ -105,11 +105,6 @@ main {
     border-radius: 4px;
 }
 
-.new-thread button:hover {
-    background-color: #EDC7B7;
-    color: #2c3e50;
-}
-
 .forum-posts {
     grid-area: posts;
     display: flex;
@@ -123,9 +118,7 @@ main {
 }
 
 .posts {
-    border: 1px solid #ccc;
     padding: 20px;
-    background-color: #EDC7B7;
     transition: box-shadow 0.3s, transform 0.3s;
     border-radius: 10px;
 }
@@ -221,20 +214,6 @@ main {
     border-radius: 4px;
 }
 
-.time-posted button:hover {
-    background-color: #EDC7B7;
-    color: #2c3e50;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    background-color: #EDC7B7;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-}
-
 .archive-button {
     padding: 10px 15px;
     border: none;
@@ -246,10 +225,10 @@ footer {
     margin-top: 10px;
 }
 
-.archive-button:hover {
+/* .archive-button:hover {
     background-color: #dd8c6a;
     color: #2c3e50;
-}
+} */
 
 .reply-button {
     font-family: "Sora", sans-serif;

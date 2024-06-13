@@ -4,7 +4,6 @@
 
 body {
     font-family: 'Sora', sans-serif;
-    background-color: #EEE2DC;
     margin: 0;
     padding: 0;
     display: flex;
@@ -17,7 +16,6 @@ main {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: #EEE2DC;
     box-sizing: border-box;
 }
 
@@ -33,8 +31,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     margin-bottom: 20px;
     font-size: 18px;
-    color: #2c3e50;
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s;
 }
 
@@ -43,8 +41,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .forum-post {
-    background-color: #FFFFFF;
-    border: 1px solid #AC3B61;
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0;
@@ -90,9 +86,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .reply-form {
     margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
     border-radius: 5px;
 }
 
@@ -124,14 +119,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .replies-section {
     margin-top: 20px;
+    padding: 10px 30px 30px 30px;
+    border-radius: 5px;
 }
 
 .reply {
     padding: 10px;
     margin-top: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
 }
 
 .reply-header {
@@ -163,11 +158,4 @@ h1, h2, h3, h4, h5, h6 {
 .archive-reply-button:hover {
     background-color: #dd8c6a;
     color: #2c3e50;
-}
-
-footer {
-    background-color: #EDC7B7;
-    padding: 20px;
-    text-align: center;
-    flex-shrink: 0;
 }

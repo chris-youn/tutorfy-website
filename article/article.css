@@ -23,24 +23,11 @@ h2, h3, h4, h5, h6 {
 }
 
 .article {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 20px;
     margin-bottom: 20px;
     cursor: pointer;
-    background-color: #EDC7B7;
     transition: background-color 0.3s;
-}
-
-.article h2 {
-    color: #123C69;
-}
-
-.article h3 {
-    color: #123C69;
-}
-
-.article:hover {
-    background-color: #f1f1f1;
 }
 
 .sidebar {
@@ -56,9 +43,9 @@ h2, h3, h4, h5, h6 {
 }
 
 .filter {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 20px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
 }
 
 .filter h3 {
@@ -91,7 +78,7 @@ h2, h3, h4, h5, h6 {
 
 .filter button:hover {
     color: white;
-    background-color: #902749;
+    background-color: #C45F7F;
     transition: color 0.3s;
 
 }
