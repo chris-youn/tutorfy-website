@@ -353,7 +353,7 @@ section, .profile-container, .article, .filter,
     border: 1px solid #ccc;
 }
 
-section > div > a {
+section > .articles > a {
     background-color: #f5e6d9;
 }
 

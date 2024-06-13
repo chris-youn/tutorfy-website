@@ -44,7 +44,7 @@ section {
     padding: 30px;
     text-align: center;
     width: 100%;
-    height: 400px;
+    height: auto;
 }
 
 .articles {
@@ -158,7 +158,6 @@ button:focus {
     
     .article {
         width: auto;
-
     }
 
     .reviews {

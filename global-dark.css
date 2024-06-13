@@ -370,7 +370,7 @@ section {
     border: 1px solid #4E342E;
 }
 
-section > div > a {
+section > .articles > a {
     background-color: #423c38;
 }
 
