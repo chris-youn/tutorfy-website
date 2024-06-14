@@ -23,53 +23,43 @@ if (!$user || (!$user['isAdmin'] && !$user['isTutor'])) {
 $isAdmin = $user['isAdmin'];
 $isTutor = $user['isTutor'];
 
-$order = $_GET['order'] ?? 'newest';
-$search = $_GET['search'] ?? '';
 
-$orderBy = ($order == 'oldest') ? "ORDER BY created_at ASC" : "ORDER BY created_at DESC";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST['article-title'];
+    $content = $_POST['article-content'];
+    $image_path = null;
 
-$searchQuery = '';
-$searchParam = '';
 
-if (!empty($search)) {
-    $searchQuery = "AND MATCH(title) AGAINST(:search IN BOOLEAN MODE)";
-    $searchParam = $search;
-}
+    if (isset($_FILES['article-image']) && $_FILES['article-image']['error'] == UPLOAD_ERR_OK) {
+        $image = $_FILES['article-image'];
+        $image_name = time() . '_' . basename($image['name']);
+        $image_path = '../forum/uploads/' . $image_name;
 
-$sql = "SELECT articles.*, users.profile_image, users.username 
-        FROM articles 
-        JOIN users ON articles.user_id = users.id 
-        WHERE articles.archived = 0 $searchQuery $orderBy";
+        if (!move_uploaded_file($image['tmp_name'], $image_path)) {
+            echo "Image upload failed";
+            exit();
+        }
+    }
 
-$stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare("SELECT MAX(id) AS max_id FROM articles");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $newId = $result['max_id'] + 1;
 
-if (!empty($search)) {
-    $stmt->bindParam(':search', $searchParam);
-}
 
-$stmt->execute();
-$articles = $stmt->fetchAll();
-
-// Fetching the next most relevant title if no exact matches found
-$nextRelevantArticle = null;
-if (empty($articles) && !empty($search)) {
-    $nextSql = "SELECT articles.*, users.profile_image, users.username 
-                FROM articles 
-                JOIN users ON articles.user_id = users.id 
-                WHERE articles.archived = 0 
-                ORDER BY MATCH(title) AGAINST(:search IN BOOLEAN MODE) DESC, created_at DESC
-                LIMIT 1";
-    $nextStmt = $pdo->prepare($nextSql);
-    $nextStmt->bindParam(':search', $searchParam);
-    $nextStmt->execute();
-    $nextRelevantArticle = $nextStmt->fetch();
+    $stmt = $pdo->prepare("INSERT INTO articles (id, user_id, title, content, image_path) VALUES (?, ?, ?, ?, ?)");
+    if ($stmt->execute([$newId, $user_id, $title, $content, $image_path])) {
+        echo "Article created!";
+    } else {
+        echo "Error Creating Article";
+    }
 }
 ?>
 
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Tutorfy | Forums</title>
+    <title>Tutorfy | Create Article</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="forum_styles.css">
@@ -150,97 +140,19 @@ if (empty($articles) && !empty($search)) {
         </div>
     </header>
 
-    <main class="content">
-        <div class="search">
-            <form id="search-form" method="GET" action="tutor.php">
-                <input type="text" id="search" name="search" placeholder="Search for an article...">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
-        <div class="new-article">
-            <h2>Create a New Article</h2>
-            <form id="new-article-form" action="createArticle.php" method="POST" enctype="multipart/form-data">
-                <input type="text" id="article-title" name="article-title" placeholder="Article Title" required>
-                <textarea id="article-content" name="article-content" placeholder="Write your article..." required></textarea>
-                <input type="file" id="article-image" name="article-image" accept="image/*">
-                <button type="submit" id="submit-button">Post</button>
-            </form>
-        </div>
-
-        <div class="time-posted">
-            <button type="button" onclick="window.location.href='tutor.php?order=oldest'">Order by Oldest</button>
-            <button type="button" onclick="window.location.href='tutor.php?order=newest'">Order by Newest</button>
-        </div>
-
-        <div class="article-posts">
-            <?php if (empty($articles) && !empty($search)): ?>
-                <div class="no-results">
-                    <p>No exact matches found for "<?= htmlspecialchars($search) ?>". Showing the most relevant result:</p>
-                    <div class="post-wrapper">
-                        <a href="external_article.php?id=<?= $nextRelevantArticle['id'] ?>" class="post-link">
-                            <div class="posts">
-                                <div class="profile-picture">
-                                    <img src="<?= htmlspecialchars($nextRelevantArticle['profile_image'] ?: 'default-profile.png') ?>" alt="Profile Picture">
-                                </div>
-                                <div class="username">
-                                    <p><?= htmlspecialchars($nextRelevantArticle['username']) ?></p>
-                                </div>
-                                <div class="date-posted">
-                                    <p><?= $nextRelevantArticle['created_at'] ?></p>
-                                </div>
-                                <h2><?= htmlspecialchars($nextRelevantArticle['title']) ?></h2>
-                                <div class="content-text">
-                                    <p><?= htmlspecialchars($nextRelevantArticle['content']) ?></p>
-                                </div>
-                                <?php if (!empty($nextRelevantArticle['image_path'])): ?>
-                                    <div class="content-image">
-                                        <img src="<?= htmlspecialchars($nextRelevantArticle['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($_SESSION['user_id'] == $nextRelevantArticle['user_id'] || $isAdmin): ?>
-                                    <button class="archive-button" data-article-id="<?= $nextRelevantArticle['id'] ?>">Delete</button>
-                                <?php endif; ?>
-                                <a href="external_article.php?id=<?= $nextRelevantArticle['id'] ?>#reply">
-                                    <button type="button" class="reply-button">Reply</button>
-                                </a>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            <?php else: ?>
-                <?php foreach ($articles as $article): ?>
-                    <div class="post-wrapper">
-                        <a href="..article/external_article.php?id=<?= $article['id'] ?>" class="post-link">
-                            <div class="posts">
-                                <div class="profile-picture">
-                                    <img src="<?= htmlspecialchars($article['profile_image'] ?: 'default-profile.png') ?>" alt="Profile Picture">
-                                </div>
-                                <div class="username">
-                                    <p><?= htmlspecialchars($article['username']) ?></p>
-                                </div>
-                                <div class="date-posted">
-                                    <p><?= $article['created_at'] ?></p>
-                                </div>
-                                <h2><?= htmlspecialchars($article['title']) ?></h2>
-                                <div class="content-text">
-                                    <p><?= htmlspecialchars($article['content']) ?></p>
-                                </div>
-                                <?php if (!empty($article['image_path'])): ?>
-                                    <div class="content-image">
-                                        <img src="<?= htmlspecialchars($article['image_path']) ?>" alt="Post Image" style="max-width: 200px; max-height: 150px; cursor: pointer;">
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($_SESSION['user_id'] == $article['user_id'] || $isAdmin): ?>
-                                    <button class="archive-button" data-article-id="<?= $article['id'] ?>">Delete</button>
-                                <?php endif; ?>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </main>
+    <h1>Create a New Article</h1>
+    <form method="POST">
+        <label for="article-title">Title:</label>
+        <input type="text" id="article-title" name="article-title" required>
+        <br>
+        <label for="article-content">Content:</label>
+        <textarea id="article-content" name="article-content" required></textarea>
+        <br>
+        <label for="article-image">Image:</label>
+        <input type="file" id="article-image" name="article-image">
+        <br>
+        <input type="submit" value="Create Article">
+    </form>
 
     <footer>
         <div class="sec-links">
