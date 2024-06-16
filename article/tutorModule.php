@@ -49,9 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $pdo->prepare("INSERT INTO articles (id, user_id, title, content, image_path) VALUES (?, ?, ?, ?, ?)");
     if ($stmt->execute([$newId, $user_id, $title, $content, $image_path])) {
-        echo "Article created!";
-        header ("Location: tutorModule.php");
-    } else {
+        echo "Article created! This page will reload in 5 seconds.";
+        echo'<script>
+                setTimeout(function() {
+                    window.location.href = "tutorModule.php";
+                }, 5000); // Redirect after 5 seconds
+            </script>';
+    }else {
         echo "Error Creating Article";
     }
 }
@@ -142,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <h1>Create a New Article</h1>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" id="articleForm">
         <label for="article-title">Title:</label>
         <input type="text" id="article-title" name="article-title" required>
         <br>
