@@ -38,7 +38,15 @@ $theme = getUserTheme(); // Fetch the user's theme
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <?php if ($theme == 'dark'): ?>
+                    <img src="../assets/img/tutorfy-logo-white.png" alt="Tutorfy Logo">
+                <?php else: ?> 
+                    <?php if ($theme == 'dark'): ?>
+                    <img src="../assets/img/tutorfy-logo-white.png" alt="Tutorfy Logo">
+                <?php else: ?> 
+                    <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <?php endif; ?>
+                <?php endif; ?>
                 <span>Tutorfy</span>
             </div>
         </a>

@@ -84,7 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="main">
         <div class="topnav">
             <div class="logo">
-                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <?php if ($theme == 'dark'): ?>
+                    <img src="../assets/img/tutorfy-logo-white.png" alt="Tutorfy Logo">
+                <?php else: ?> 
+                    <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <?php endif; ?>
                 <span>Tutorfy</span>
             </div>  
             <div class="nav-links">

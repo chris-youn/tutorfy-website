@@ -374,6 +374,40 @@ section > .articles > a {
     background-color: #423c38;
 }
 
+tr:hover {
+    background-color: #655953;
+}
+
+th {
+    background-color: #433c35;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #AC3B61;
+}
+
+tr {
+    background-color: #6D5F58;
+}
+
+.user-management, .thread-management, .reply-management {
+    width: 100%;
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+.back-button {
+    color: #EEE2DC;
+}
+
 @media (max-width: 900px) {
     .search input[type="text"] {
         width: 100%;
@@ -400,5 +434,11 @@ section > .articles > a {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    .sec-links {
+        flex-direction: column;
+        gap: 0;   
+        align-items: center;
     }
 }
