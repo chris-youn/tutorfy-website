@@ -116,6 +116,7 @@ $theme = getUserTheme(); // Fetch the user's theme
 
         <div class="content">
             <form method="post">
+                <h2>Single session bookings</h2>
                 <div class="tutorBooking">
                     <div class="planItem">
                         <h1 class="planHeading">Short session</h1>
@@ -134,18 +135,26 @@ $theme = getUserTheme(); // Fetch the user's theme
                 <div class="tutorBookingBulk">
                     <div class="planItem">
                         <h1 class="planHeading">Short sessions</h1>
-                        <p class="planPrice">$170 for 5x 1 hour sessions</p>
+                        <p class="planPrice">$170 for 5 x 1 hour sessions</p>
                         <p class="planShortDescription">Good for those who will commit to many sessions and need extra support.</p>
                         <input type="button" id="tutorButtonShortBulk" class="selectPlan" value="Add to cart" name="tutorButton">
                     </div>
                     <div class="planItem">
                         <h1 class="planHeading">Long sessions</h1>
-                        <p class="planPrice">$300 for 5x 2 hour sessions</p>
+                        <p class="planPrice">$300 for 5 x 2 hour sessions</p>
                         <p class="planShortDescription">Good for students who will need more time per session.</p>
                         <input type="button" id="tutorButtonLongBulk" class="selectPlan" value="Add to cart" name="tutorButton">
                     </div>
                 </div>
             </form>
+
+            <h2>Need a better deal on tutoring sessions?</h2>
+            <p class="headingsubtext">Please contact us by filling out the form below</p>
+            <div class="button-container">
+                <a href="../contact/contact.php" class="contact-us">
+                    <input type="button" id="contact-button" class="contact-button" value="Contact us" name="contact-button">
+                </a>
+            </div>
         </div>
     </main>
 

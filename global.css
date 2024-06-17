@@ -162,6 +162,7 @@ input[type=submit]#cartCheckout:hover {
 .cart-summary li button, .save-button {
     border: 0;
     width: 10vh;
+    height: 5vh;
     font-size:15px;
     background-color: #AC3B61;
     transition: 250ms;
