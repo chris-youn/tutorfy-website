@@ -22,12 +22,11 @@
     width: 100%;
 }
 
-
 #expiry-cvc > div {
     padding-right: 30px;
     margin-top: -10px;
     justify-content: space-around;
-    width: 150px;
+    width: 200px;
 }
 
 #couponcode {
@@ -46,6 +45,7 @@
 #expiry-cvc > #cvc {
     position: relative;
     left: 5px;
+    padding-right: 5px;
 }
 
 #payment, #cart-summary {

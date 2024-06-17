@@ -1,43 +1,3 @@
-function renderCartItems() {
-    const cartSummaryItems = document.getElementById('cart-summary-items');
-    const cartTotalText = document.getElementById('cart-total-text');
-    cartTotalText.innerHTML = "Total: $" + sessionStorage.getItem("total");
-    cartSummaryItems.innerHTML = '';
-
-    if (sessionStorage.getItem('tutorSessionShort')) {
-        let newItem = document.createElement("li");
-        newItem.innerHTML = "1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShort') + " Price: $" + sessionStorage.getItem('tutorSessionShort') * 40 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionShort');renderCartItems()">X</button>
-            <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionShort');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShort',1);renderCartItems()">+</button>`;
-        cartSummaryItems.appendChild(newItem);
-    }
-    if (sessionStorage.getItem('tutorSessionLong')) {
-        let newItem = document.createElement("li");
-        newItem.innerHTML = "2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLong') + " Price: $" + sessionStorage.getItem('tutorSessionLong') * 70 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionLong');renderCartItems()">X</button>
-            <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionLong');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLong',1);renderCartItems()">+</button>`;
-        cartSummaryItems.appendChild(newItem);
-    }
-    if (sessionStorage.getItem('tutorSessionShortBulk')) {
-        let newItem = document.createElement("li");
-        newItem.innerHTML = "5 x 1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShortBulk') + " Price: $" + sessionStorage.getItem('tutorSessionShortBulk') * 170 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionShortBulk');renderCartItems()">X</button>
-            <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionShortBulk');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShortBulk',1);renderCartItems()">+</button>`;
-        cartSummaryItems.appendChild(newItem);
-    }
-    if (sessionStorage.getItem('tutorSessionLongBulk')) {
-        let newItem = document.createElement("li");
-        newItem.innerHTML = "5 x 2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLongBulk') + " Price: $" + sessionStorage.getItem('tutorSessionLongBulk') * 300 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionLongBulk');renderCartItems()">X</button>
-            <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionLongBulk');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLongBulk',1);renderCartItems()">+</button>`;
-        cartSummaryItems.appendChild(newItem);
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("payment");
 
@@ -84,6 +44,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return !!isValid;
     }
 
+    function formatCardNumber(event) {
+        const input = event.target;
+        const value = input.value.replace(/\D/g, '').substring(0, 16); // Remove non-digits and limit to 16 characters
+        const formattedValue = value.match(/.{1,4}/g)?.join(' ') || value; // Add spaces every 4 digits
+        input.value = formattedValue;
+    }
+
+    function formatCardDate(event) {
+        const input = event.target;
+        const value = input.value.replace(/\D/g, '').substring(0, 4); // Remove non-digits and limit to 4 characters
+        let formattedValue = value;
+        if (value.length >= 3) {
+            formattedValue = value.substring(0, 2) + '/' + value.substring(2, 4); // Add slash after the first two digits
+        }
+        input.value = formattedValue;
+    }
+
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form submission for validation
 
@@ -99,6 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("input").forEach(input => {
         input.addEventListener("input", validateForm);
     });
+
+    document.getElementById("cardNo").addEventListener("input", formatCardNumber);
+    document.getElementById("cardDate").addEventListener("input", formatCardDate);
 
     renderCartItems();
 });
