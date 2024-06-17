@@ -414,4 +414,10 @@ table {
         align-items: center;
         text-align: center;
     }
+
+    .sec-links {
+        flex-direction: column;
+        gap: 0;   
+        align-items: center;
+    }
 }
