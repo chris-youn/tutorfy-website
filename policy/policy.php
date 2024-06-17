@@ -145,6 +145,7 @@ $theme = getUserTheme(); // Fetch the user's theme
                 Email: support@tutorfy.com<br>
             </p>
         </section>
+    <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>
 
     <div class="cookie-consent-overlay" id="cookieConsent">

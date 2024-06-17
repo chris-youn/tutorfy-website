@@ -17,7 +17,7 @@
 }
 
 .contact-button:hover {
-    background-color: #C45F7F;
+    background-color: #8E3150;
     cursor: pointer;
 }
 
@@ -98,7 +98,7 @@ input[type="button"].currentPlan {
 }
 
 input[type="button"].selectPlan:hover {
-    background-color: #C45F7F;
+    background-color: #8E3150;
     cursor: pointer;
     color: white;
 }

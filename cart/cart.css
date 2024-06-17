@@ -78,7 +78,7 @@ button[type=submit] {
 }
 
 button[type=submit]:hover {
-    background-color: #C45F7F;
+    background-color: #8E3150;
 }
 
 input:focus, #couponcode input:focus {

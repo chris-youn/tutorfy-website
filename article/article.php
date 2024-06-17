@@ -146,6 +146,7 @@ function displayArticles($pdo){
                 <button type="submit" onclick="filter()">Filter</button>
             </div>
         </div>
+    <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>
 
     <div class="cookie-consent-overlay" id="cookieConsent">

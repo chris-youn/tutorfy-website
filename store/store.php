@@ -34,6 +34,7 @@ $theme = getUserTheme(); // Fetch the user's theme
     <?php endif; ?>
     <link rel="stylesheet" href="store.css">
     <script src="store.js" defer></script>
+    <script src="../global.js" defer></script>
 </head>
 
 <body>
@@ -156,6 +157,7 @@ $theme = getUserTheme(); // Fetch the user's theme
                 </a>
             </div>
         </div>
+    <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>
 
     <div class="cookie-consent-overlay" id="cookieConsent">

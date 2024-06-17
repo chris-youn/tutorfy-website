@@ -170,6 +170,8 @@ $theme = getUserTheme(); // Fetch the user's theme
                 <button class="next">&#10095;</button>
             </div>
         </section>
+        
+        <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>
     
     <div class="cookie-consent-overlay" id="cookieConsent">
@@ -179,6 +181,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             <button class="cookie-decline-btn">Decline</button>
         </div>
     </div> 
+
                    
     <footer>
         <div class="sec-links">
