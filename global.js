@@ -101,21 +101,19 @@ function clearItem(item) {
     getNoOfItems();
 } 
 
-// Show the button when scrolling down 100px from the top of the document
 window.onscroll = function() {
     const scrollButton = document.querySelector('.scroll-to-top');
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    scrollButton.style.display = "block";
+    if (window.scrollY > 100) {
+        scrollButton.style.display = "block";
     } else {
-    scrollButton.style.display = "none";
+        scrollButton.style.display = "none";
     }
-};
+    };
 
-// Scroll to the top of the page when the button is clicked
 function scrollToTop() {
     window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+        top: 0,
+        behavior: 'smooth'
     });
 }
 

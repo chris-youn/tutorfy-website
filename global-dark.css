@@ -414,6 +414,24 @@ table {
     background-color: #4A403A;
 }
 
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 1000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
 @media (max-width: 900px) {
     .search input[type="text"] {
         width: 100%;

@@ -30,6 +30,7 @@ $theme = getUserTheme(); // Fetch the user's theme
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <script src="../global.js" defer></script>
 </head>
 
 <body>

@@ -54,6 +54,7 @@ $theme = getUserTheme(); // Fetch the user's theme
     <?php endif; ?>
     <link rel="stylesheet" href="external_forum.css">
     <script src="external_forum.js"></script>
+    <script src="../global.js" defer></script>
 </head>
 
 <body>
