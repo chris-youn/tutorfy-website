@@ -146,12 +146,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <ul class="shopping-cart-items" id="items">
                         <li id="tutorSessionListItem">
-                            <div id='tutorSessionCart'></div>
-                            
+                            <div id='tutorSessionCartShort'></div>
                             <button id="tutorSessionClear">X</button>
+                            <button id="tutorSessionRemove">-</button>
+                            <button id="tutorSessionAdd">+</button>
                         </li>
-                        
+                        <li id="tutorSessionLongListItem">
+                            <div id='tutorSessionCartLong'></div>
+                            <button id="tutorSessionLongClear">X</button>
+                            <button id="tutorSessionLongRemove">-</button>
+                            <button id="tutorSessionLongAdd">+</button>
+                        </li>
+                        <li id="tutorSessionShortBulkListItem">
+                            <div id='tutorSessionCartShortBulk'></div>
+                            <button id="tutorSessionShortBulkClear">X</button>
+                            <button id="tutorSessionShortBulkRemove">-</button>
+                            <button id="tutorSessionShortBulkAdd">+</button>
+                        </li>
+                        <li id="tutorSessionLongBulkListItem">
+                            <div id='tutorSessionCartLongBulk'></div>
+                            <button id="tutorSessionLongBulkClear">X</button>
+                            <button id="tutorSessionLongBulkRemove">-</button>
+                            <button id="tutorSessionLongBulkAdd">+</button>
+                        </li>
                     </ul>
+
                     <form action="../cart/cart.php" method="post">
                         <div class="checkout">
                             <input id="cartCheckout" type="submit" value="Checkout"></input>
@@ -161,9 +180,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="profileMenu">
                 <span class="profileIcon">👤</span>
-                    <div class="profileMenuContent">
-                        <?php echo getProfileOptions() ?>
-                    </div>
+                <div class="profileMenuContent">
+                    <?php echo getProfileOptions() ?>
+                </div>
             </div>
         </div>
     </header>
