@@ -387,6 +387,10 @@ table {
     text-align: left;
 }
 
+.back-button {
+    color: black;
+}
+
 @media (max-width: 900px) {
     .search input[type="text"] {
         width: 100%;
