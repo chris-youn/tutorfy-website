@@ -48,7 +48,8 @@ h1, h2, h3, h4, h5, h6, p, .back-button {
 .profile-container, .article, .filter, .planItem,
 .payment-form, .cart-summary, .cookie-policy,
 .contact > .inputForm, .posts, .new-thread,
-.forum-post, .reply-form, .replies-section {
+.forum-post, .reply-form, .replies-section,
+.orderconfirmationcontainer {
     background-color: #282420; 
     border: 1px solid #AC3B61;
 }
@@ -406,6 +407,10 @@ table {
 
 .back-button {
     color: #EEE2DC;
+}
+
+.orderconfirmation {
+    background-color: #4A403A;
 }
 
 @media (max-width: 900px) {
