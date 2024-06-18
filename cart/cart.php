@@ -1,7 +1,9 @@
 <?php
+use FFI\Exception;
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
+
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
@@ -14,6 +16,7 @@ if ($user_id) {
 }
 
 $theme = getUserTheme(); // Fetch the user's theme
+
 ?>
 
 <!DOCTYPE HTML>
@@ -171,16 +174,47 @@ $theme = getUserTheme(); // Fetch the user's theme
                     
                     <!-- Cart items will be dynamically populated here -->
                 </ul>
+                <script>
+                    const d = new Date();
+                    d.setTime(d.getTime() + (7*24*60*60*1000));
+                    let expires = "expires="+ d.toUTCString();
+                    document.cookie = "total" + "=" + sessionStorage.getItem("total") + ";" + expires + ";path=/";
+                </script>
                 
                 <div class="cart-total">
-                    <span id="cart-total-text">Total: $0</span>
+                    <span id="cart-total-text">Total: $0</span><br>
+                    <span id="cart-discount-text">
+                    <?php 
+                            $total = $_COOKIE['total'];
+                            $discount = $_SESSION['discountPercentage'];
+                            try {
+                                $newTotal = $total-($total*($discount/100));
+                            }catch(Exception $e) {
+                                echo "No items in cart";
+                            }
+                            
+                            echo "<script>sessionStorage.setItem('discountedTotal', ".$newTotal.")</script>";
+                            
+                            if (isset($_SESSION['discountPercentage'])) {
+                                $discount = $_SESSION['discountPercentage'];
+                                echo "Discount Applied! ".$discount."% off!";
+                                echo "<br>New Total: ".($total-($total*($discount/100)));                                 
+                            }
+                            ?>
+                            
+                            
+                        </span>
                 </div>
-                
+               
                 <div id="couponcode">
                         <h4>Coupon Code</h4>
+                        <form id="coupon_apply_form" action="coupon_apply.php" method="POST" enctype="multipart/form-data">
                         <p>
                             <label for="coupon_code"></label>
                             <input type="text" name="coupon_code" id="coupon_code" placeholder="ABCD1234">
+                            <input type="submit" id="couponSubmit" value="Apply"></input>
+                            
+            </form>
                         </p>
                     </div>
                 </div>
