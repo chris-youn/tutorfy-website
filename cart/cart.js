@@ -1,7 +1,12 @@
 function renderCartItems() {
     const cartSummaryItems = document.getElementById('cart-summary-items');
     const cartTotalText = document.getElementById('cart-total-text');
+    if (sessionStorage.getItem("total") == null) {
+        cartTotalText.innerHTML = "Total: $0";
+    } else {
+    
     cartTotalText.innerHTML = "Total: $" + sessionStorage.getItem("total");
+    }
     cartSummaryItems.innerHTML = '';
 
     if (sessionStorage.getItem('tutorSessionShort')) {

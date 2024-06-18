@@ -122,6 +122,17 @@ input:focus, #couponcode input:focus {
     margin-top: 20px;
     font-weight: bold;
 }
+#couponSubmit {
+    width: 40%;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #AC3B61;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
 @media (max-width: 900px) {
     .checkout-container {

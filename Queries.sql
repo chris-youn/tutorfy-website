@@ -65,3 +65,14 @@ CREATE TABLE whiteboard_sessions (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (tutor_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE CouponCodes (
+    CouponCode VARCHAR(50) PRIMARY KEY,
+    ExpirationDate DATE NOT NULL,
+    ActivationDate DATE NOT NULL
+);
+ALTER TABLE CouponCodes
+ADD COLUMN DiscountPercentage DECIMAL(5, 2) NOT NULL DEFAULT 0.00;
+
+

@@ -1,7 +1,21 @@
 <?php
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
+include('../adminModule/configuration.php');
 require '../forum/config.php';
+
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
+
+$theme = getUserTheme(); // Fetch the user's theme
 
 $orderID = time() . mt_rand();
 
@@ -36,6 +50,7 @@ $theme = getUserTheme(); // Fetch the user's theme
         <?php endif; ?>
         <link rel="stylesheet" href="order_finished.css">
         <script src="../global.js" defer></script>
+        <script src="order_finished.js" defer></script>
 
     </head>
     <body>
@@ -113,9 +128,15 @@ $theme = getUserTheme(); // Fetch the user's theme
 
     <section class="orderconfirmation">
         <div class="orderconfirmationcontainer">
-            <h1>Your order has been confirmed!</h1>
-            <p id="orderID">Order ID: <?php echo $orderID ?> </p>
-            <p>You will receive an email containing information on booking your purchased sessions</p>
+        <h1>Your order has been confirmed!</h1>
+        <p id="orderID">Order ID: <?php echo $orderID ?> </p>
+        <p>You will receive an email containing information on booking your purchased sessions </p>
+        <div id="orderSummary">
+            <h2>Order Summary:</h2>
+        </div>
+        <script>
+            
+        </script>
         </div>
     </section>
         
@@ -150,6 +171,5 @@ $theme = getUserTheme(); // Fetch the user's theme
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
-    
-    </body>
+</body>
 </html>
