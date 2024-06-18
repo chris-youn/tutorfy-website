@@ -11,6 +11,7 @@ function getNoOfItems() {
 
     }
 }
+
 function addToCart(item, quantity) {
     let currentQuantity = parseInt(sessionStorage.getItem(item))|| 0;
     sessionStorage.setItem(item, currentQuantity + quantity);
@@ -18,6 +19,7 @@ function addToCart(item, quantity) {
     updateCart();
     getNoOfItems();
 }
+
 function updateTotal() {
     let total = 0;
     let shortSession = sessionStorage.getItem("tutorSessionShort");
@@ -29,15 +31,12 @@ function updateTotal() {
     total += shortSessionBulk * 170;
     total += longSessionBulk * 300;
 
-
-
-
     document.getElementById('totalText').innerHTML = "Total: $" + total;
     sessionStorage.setItem("total", total);
     console.log(sessionStorage.getItem("total"))
     updateCart();
-    
 }
+
 function updateCart() {
     let listItem = document.getElementById('tutorSessionListItem')
     let listItemText = document.getElementById('tutorSessionCartShort');
@@ -81,6 +80,7 @@ function updateCart() {
         listItemLongBulk.style.display="none";
     }
 }
+
 function removeFromCart(item) {
     let currentQuantity = parseInt(sessionStorage.getItem(item))|| 0;
     sessionStorage.setItem(item, currentQuantity - 1);
@@ -100,11 +100,25 @@ function clearItem(item) {
     updateTotal();
     getNoOfItems();
 } 
+
+window.onscroll = function() {
+    const scrollButton = document.querySelector('.scroll-to-top');
+    if (window.scrollY > 100) {
+        scrollButton.style.display = "block";
+    } else {
+        scrollButton.style.display = "none";
+    }
+    };
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
-    
-        
-    
     document.getElementById('tutorSessionClear').addEventListener('click', function () {
         clearItem("tutorSessionShort");
     });
@@ -148,37 +162,26 @@ document.addEventListener('DOMContentLoaded', function() {
         removeFromCart("tutorSessionLongBulk");
     });
 
-    
-        updateTotal();
-        getNoOfItems();
-        document.querySelector('.shopping-cart').style.display = 'none';
-    
-        document.getElementById('cartIcon').addEventListener('click', function () {
-            var cart = document.getElementById('shopping-cart');
-            cart.style.display = (cart.style.display === 'none' || cart.style.display === '') ? 'block' : 'none';
-        });
-        console.log(sessionStorage.getItem("tutorSessionShort"))
-        if (sessionStorage.getItem("tutorSessionShort")=="undefined") {
-            document.getElementById('tutorSessionListItem').style.display = 'none';
-            console.log("test")
-        } else if (sessionStorage.getItem('tutorSessionShort')>0){
-            document.getElementById('tutorSessionListItem').style.display = 'flex';
-            
-        }
-    
-        document.getElementById('tutorSessionClear').addEventListener('click', function () {
-            clearItem("tutorSession");
-        });
-    
-     
-    
-        
-        
-    
-        
-    
-        
+    updateTotal();
+    getNoOfItems();
+    document.querySelector('.shopping-cart').style.display = 'none';
 
+    document.getElementById('cartIcon').addEventListener('click', function () {
+        var cart = document.getElementById('shopping-cart');
+        cart.style.display = (cart.style.display === 'none' || cart.style.display === '') ? 'block' : 'none';
+    });
+    console.log(sessionStorage.getItem("tutorSessionShort"))
+    if (sessionStorage.getItem("tutorSessionShort")=="undefined") {
+        document.getElementById('tutorSessionListItem').style.display = 'none';
+        console.log("test")
+    } else if (sessionStorage.getItem('tutorSessionShort')>0){
+        document.getElementById('tutorSessionListItem').style.display = 'flex';
+        
+    }
+
+    document.getElementById('tutorSessionClear').addEventListener('click', function () {
+        clearItem("tutorSession");
+    });
 
     // Cookie consent functionality
     if (!localStorage.getItem("cookieAccepted") && !localStorage.getItem("cookieDeclined")) {

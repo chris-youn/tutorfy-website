@@ -159,9 +159,10 @@ input[type=submit]#cartCheckout:hover {
 }
 
 .shopping-cart-items li button,
-.cart-summary li button, .save-button {
+.cart-summary li button, .save-button, .scroll-to-top {
     border: 0;
     width: 10vh;
+    height: 5vh;
     font-size:15px;
     background-color: #AC3B61;
     transition: 250ms;
@@ -181,9 +182,9 @@ input[type=submit]#cartCheckout:hover {
 .cart-summary li button:hover,
 .time-posted button:hover,
 .new-thread button:hover, .archive-button:hover,
-.save-button:hover {
+.save-button:hover, .scroll-to-top:hover {
     cursor: pointer;
-    background-color: #C45F7F;
+    background-color: #8E3150;
     color: #EEE2DC;
 }
 
@@ -348,7 +349,8 @@ a {
 section, .profile-container, .article, .filter, 
 .planItem, .payment-form, .cart-summary, 
 .cookie-policy, .contact > .inputForm, .posts,
-.new-thread, .forum-post, .reply-form, .replies-section {
+.new-thread, .forum-post, .reply-form, .replies-section,
+.orderconfirmationcontainer {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }
@@ -389,6 +391,28 @@ table {
 
 .back-button {
     color: black;
+}
+
+.orderconfirmation {
+    background-color: #EEE2DC;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 1000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 @media (max-width: 900px) {

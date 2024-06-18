@@ -1,4 +1,5 @@
 <?php
+include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 include('../adminModule/configuration.php');
 require '../forum/config.php';
@@ -17,6 +18,18 @@ if ($user_id) {
 $theme = getUserTheme(); // Fetch the user's theme
 
 $orderID = time() . mt_rand();
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 <!DOCTYPE html>
 
@@ -28,9 +41,13 @@ $orderID = time() . mt_rand();
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../global.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+        <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+        <?php else: ?>
+            <link rel="stylesheet" type="text/css" href="../global.css">
+        <?php endif; ?>
         <link rel="stylesheet" href="order_finished.css">
         <script src="../global.js" defer></script>
         <script src="order_finished.js" defer></script>
@@ -53,7 +70,9 @@ $orderID = time() . mt_rand();
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
-            <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php if ($isAdmin): ?>
+                <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
+            <?php endif; ?>
         </nav>
         <div class="icons">
             <div class="container">
@@ -106,6 +125,7 @@ $orderID = time() . mt_rand();
             </div>
         </div>
     </header>
+
     <section class="orderconfirmation">
         <div class="orderconfirmationcontainer">
         <h1>Your order has been confirmed!</h1>
@@ -120,7 +140,38 @@ $orderID = time() . mt_rand();
         </div>
     </section>
         
-        
+    <div class="cookie-consent-overlay" id="cookieConsent">
+        <div class="cookie-consent-box">
+            <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
+            <button class="cookie-accept-btn">Accept</button>
+            <button class="cookie-decline-btn">Decline</button>
+        </div>
+    </div> 
+                   
+    <footer>
+        <div class="sec-links">
+            <div class="tutorfy">
+                <h4>Tutorfy</h4>
+                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
+                <a href="../article/article.php" class="sec-nav">Articles</a>
+                <a href="../store/store.php" class="sec-nav">Store</a>
+                <a href="../forum/forum.php" class="sec-nav">Forums</a>
+            </div>
+
+            <div class="about">
+                <h4>About</h4>
+                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
+                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
+            </div>
+
+            <div class="account">
+                <h4>Account</h4>
+                <?php echo getProfileFooter() ?>
+            </div>
+        </div>
+        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
+    </footer>
+    
     </body>
     <footer>
         <div class="sec-links">

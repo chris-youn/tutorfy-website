@@ -246,6 +246,7 @@ $theme = getUserTheme(); // Fetch the user's theme
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+    <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>
 
     <footer>

@@ -1,5 +1,5 @@
 #orderID {
-    text-align:center;
+    text-align: center;
 }
 .orderconfirmationcontainer {
     background-color:white;
@@ -10,13 +10,29 @@
     
 }
 .orderconfirmation {
-    text-align:center;
-  
-    width:100%;
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
 
 
+
+#orderSummary {
+    margin:4px;
+    
+}
+.discountText {
+    margin:10px;
+}
+.subTotalText {
+    margin:10px;
+}
+.totalText {
+    font-size:24px;
+    margin:10px;
 }
 
 #orderSummary {

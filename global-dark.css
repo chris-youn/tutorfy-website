@@ -48,7 +48,8 @@ h1, h2, h3, h4, h5, h6, p, .back-button {
 .profile-container, .article, .filter, .planItem,
 .payment-form, .cart-summary, .cookie-policy,
 .contact > .inputForm, .posts, .new-thread,
-.forum-post, .reply-form, .replies-section {
+.forum-post, .reply-form, .replies-section,
+.orderconfirmationcontainer {
     background-color: #282420; 
     border: 1px solid #AC3B61;
 }
@@ -170,14 +171,15 @@ input[type=submit]#cartCheckout {
 
 input[type=submit]#cartCheckout:hover {
     cursor: pointer;
-    background-color: #C45F7F; /* Dark brown background */
+    background-color: #8E3150; /* Dark brown background */
     color: #EEE2DC; /* Light text color */
 }
 
 .shopping-cart-items li button,
-.cart-summary li button, .save-button {
+.cart-summary li button, .save-button, .scroll-to-top {
     border: 0;
     width: 10vh;
+    height: 5vh;
     font-size: 15px;
     background-color: #AC3B61; /* Highlight color */
     transition: 250ms;
@@ -197,9 +199,9 @@ input[type=submit]#cartCheckout:hover {
 .cart-summary li button:hover,
 .time-posted button:hover,
 .new-thread button:hover, .archive-button:hover,
-.save-button:hover {
+.save-button:hover, .scroll-to-top:hover {
     cursor: pointer;
-    background-color: #C45F7F; /* Dark brown background */
+    background-color: #8E3150; /* Dark brown background */
     color: #EEE2DC; /* Light text color */
 }
 
@@ -406,6 +408,28 @@ table {
 
 .back-button {
     color: #EEE2DC;
+}
+
+.orderconfirmation {
+    background-color: #4A403A;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 1000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 @media (max-width: 900px) {

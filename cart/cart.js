@@ -89,6 +89,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return !!isValid;
     }
 
+    function formatCardNumber(event) {
+        const input = event.target;
+        const value = input.value.replace(/\D/g, '').substring(0, 16); // Remove non-digits and limit to 16 characters
+        const formattedValue = value.match(/.{1,4}/g)?.join(' ') || value; // Add spaces every 4 digits
+        input.value = formattedValue;
+    }
+
+    function formatCardDate(event) {
+        const input = event.target;
+        const value = input.value.replace(/\D/g, '').substring(0, 4); // Remove non-digits and limit to 4 characters
+        let formattedValue = value;
+        if (value.length >= 3) {
+            formattedValue = value.substring(0, 2) + '/' + value.substring(2, 4); // Add slash after the first two digits
+        }
+        input.value = formattedValue;
+    }
+
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form submission for validation
 
@@ -104,6 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("input").forEach(input => {
         input.addEventListener("input", validateForm);
     });
+
+    document.getElementById("cardNo").addEventListener("input", formatCardNumber);
+    document.getElementById("cardDate").addEventListener("input", formatCardDate);
 
     renderCartItems();
 });

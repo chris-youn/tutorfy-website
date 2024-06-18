@@ -88,6 +88,7 @@ $theme = getUserTheme(); // Fetch the user's theme
         <?php fetchReplies($pdo) ?>
         </section>
 
+    <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>          
     
     <footer>
