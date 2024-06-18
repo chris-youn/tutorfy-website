@@ -18,3 +18,18 @@
 
 
 }
+
+#orderSummary {
+    margin:4px;
+    
+}
+.discountText {
+    margin:10px;
+}
+.subTotalText {
+    margin:10px;
+}
+.totalText {
+    font-size:24px;
+    margin:10px;
+}

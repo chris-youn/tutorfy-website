@@ -1,5 +1,21 @@
 <?php
 include('../scripts/functions.php');
+include('../adminModule/configuration.php');
+require '../forum/config.php';
+
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$isAdmin = false;
+
+if ($user_id) {
+    // Fetch the isAdmin status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isAdmin = $stmt->fetchColumn();
+}
+
+$theme = getUserTheme(); // Fetch the user's theme
+
 $orderID = time() . mt_rand();
 ?>
 <!DOCTYPE html>
@@ -17,6 +33,7 @@ $orderID = time() . mt_rand();
         <link rel="stylesheet" href="../global.css">
         <link rel="stylesheet" href="order_finished.css">
         <script src="../global.js" defer></script>
+        <script src="order_finished.js" defer></script>
 
     </head>
     <body>
@@ -94,6 +111,9 @@ $orderID = time() . mt_rand();
         <h1>Your order has been confirmed!</h1>
         <p id="orderID">Order ID: <?php echo $orderID ?> </p>
         <p>You will receive an email containing information on booking your purchased sessions </p>
+        <div id="orderSummary">
+            <h2>Order Summary:</h2>
+        </div>
         <script>
             
         </script>
@@ -102,4 +122,27 @@ $orderID = time() . mt_rand();
         
         
     </body>
+    <footer>
+        <div class="sec-links">
+            <div class="tutorfy">
+                <h4>Tutorfy</h4>
+                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
+                <a href="../article/article.php" class="sec-nav">Articles</a>
+                <a href="../store/store.php" class="sec-nav">Store</a>
+                <a href="../forum/forum.php" class="sec-nav">Forums</a>
+            </div>
+
+            <div class="about">
+                <h4>About</h4>
+                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
+                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
+            </div>
+
+            <div class="account">
+                <h4>Account</h4>
+                <?php echo getProfileFooter() ?>
+            </div>
+        </div>
+        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
+    </footer>
 </html>
