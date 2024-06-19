@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let separatorDiv = document.createElement("div");
     separatorDiv.classList.add("separator");
     separatorDiv.innerHTML = "<br>";
-    cartSummaryItems = document.getElementById('orderSummary');
+    cartSummaryItems = document.getElementById('orderSummaryItems');
     cartSummaryItems.appendChild(separatorDiv);
     if (sessionStorage.getItem('tutorSessionShort')) {
         let newItem = document.createElement("li");
@@ -37,8 +37,12 @@ document.addEventListener("DOMContentLoaded", function() {
     discount.innerHTML = "Discount: $"+ (sessionStorage.getItem('total') - sessionStorage.getItem('discountedTotal'));
     let total = document.createElement("div");
     total.classList.add("totalText");
-    
-    total.innerHTML = "Total: $" + sessionStorage.getItem('discountedTotal');
+    if (sessionStorage.getItem('discountedTotal') == null) {
+        total.innerHTML = "Total: $" + sessionStorage.getItem('total');
+    } else {
+        total.innerHTML = "Total: $" + sessionStorage.getItem('discountedTotal')
+    }
+     
     cartSummaryItems.appendChild(discount);
     
     cartSummaryItems.appendChild(separatorDiv);

@@ -134,6 +134,7 @@ $theme = getUserTheme(); // Fetch the user's theme
         <div id="orderSummary">
             <h2 style="margin:8px;">Order Summary:</h2>
             <div class="separator" style="margin-bottom:10px;"></div>
+            <div id="orderSummaryItems"></div>
         </div>
         <script>
             
