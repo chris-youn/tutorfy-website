@@ -119,14 +119,6 @@ button:hover, .btn:hover {
     transform: translateY(-50%);
 }
 
-button.prev, button.next {
-    background-color: transparent;
-    border: none;
-    font-size: 2em;
-    cursor: pointer;
-    color: black;
-}
-
 button.prev {
     display: flex;
     position: relative;
