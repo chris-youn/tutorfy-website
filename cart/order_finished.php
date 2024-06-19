@@ -16,8 +16,15 @@ if ($user_id) {
 }
 
 $theme = getUserTheme(); // Fetch the user's theme
+if (isset($_SESSION['orderID'])) {
+    $orderID = $_SESSION['orderID'];
 
-$orderID = time() . mt_rand();
+} else {
+    $_SESSION['orderID'] = time().mt_rand();
+    $orderID = $_SESSION['orderID'];
+
+}
+
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
