@@ -110,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Prevent form submission for validation
 
         if (validateForm()) {
-            sessionStorage.clear();
             form.submit(); // Submit the form if all validations pass
         } else {
             // Trigger the browser's built-in validation UI
