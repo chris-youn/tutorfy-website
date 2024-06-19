@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    let separatorDiv = document.createElement("div");
+    separatorDiv.classList.add("separator");
+    separatorDiv.innerHTML = "<br>";
     cartSummaryItems = document.getElementById('orderSummary');
+    cartSummaryItems.appendChild(separatorDiv);
     if (sessionStorage.getItem('tutorSessionShort')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShort') + " Price: $" + sessionStorage.getItem('tutorSessionShort') * 40
@@ -33,11 +37,16 @@ document.addEventListener("DOMContentLoaded", function() {
     discount.innerHTML = "Discount: $"+ (sessionStorage.getItem('total') - sessionStorage.getItem('discountedTotal'));
     let total = document.createElement("div");
     total.classList.add("totalText");
+    
     total.innerHTML = "Total: $" + sessionStorage.getItem('discountedTotal');
     cartSummaryItems.appendChild(discount);
+    
+    cartSummaryItems.appendChild(separatorDiv);
+    
     cartSummaryItems.appendChild(total);
+    
 
-    //TODO, figure out how to do this without causing issues on refresh. sessionStorage.clear();
+    //sessionStorage.clear(); TODO, figure out how to do this without causing issues on refresh. 
 
 })
 

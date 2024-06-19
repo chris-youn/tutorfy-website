@@ -132,7 +132,8 @@ $theme = getUserTheme(); // Fetch the user's theme
         <p id="orderID">Order ID: <?php echo $orderID ?> </p>
         <p>You will receive an email containing information on booking your purchased sessions </p>
         <div id="orderSummary">
-            <h2>Order Summary:</h2>
+            <h2 style="margin:8px;">Order Summary:</h2>
+            <div class="separator" style="margin-bottom:10px;"></div>
         </div>
         <script>
             
