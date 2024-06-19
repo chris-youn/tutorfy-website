@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $captcha = trim($_POST['captcha']);
 
     // Validate CAPTCHA
-    if ($captcha !== '10') { // Simple CAPTCHA: 3 + 7 = 10
+    if ($captcha !== $_SESSION['captcha_solution']) {
         echo json_encode(['success' => false, 'message' => 'Captcha failed!']);
         exit;
     }
@@ -101,8 +101,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
     exit; // Ensure the script stops here for POST requests
 }
-?>
 
+$num1 = rand(1, 10);
+$num2 = rand(1, 10);
+$captcha_question = "$num1 + $num2";
+$_SESSION['captcha_solution'] = strval($num1 + $num2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,8 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-            <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo" style>
-            <span>Tutorfy</span>
+                <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                <span>Tutorfy</span>
             </div>
         </a>
         <nav class="nav-links">
@@ -145,32 +149,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <ul class="shopping-cart-items" id="items">
-                        <li id="tutorSessionListItem">
-                            <div id='tutorSessionCartShort'></div>
-                            <button id="tutorSessionClear">X</button>
-                            <button id="tutorSessionRemove">-</button>
-                            <button id="tutorSessionAdd">+</button>
-                        </li>
-                        <li id="tutorSessionLongListItem">
-                            <div id='tutorSessionCartLong'></div>
-                            <button id="tutorSessionLongClear">X</button>
-                            <button id="tutorSessionLongRemove">-</button>
-                            <button id="tutorSessionLongAdd">+</button>
-                        </li>
-                        <li id="tutorSessionShortBulkListItem">
-                            <div id='tutorSessionCartShortBulk'></div>
-                            <button id="tutorSessionShortBulkClear">X</button>
-                            <button id="tutorSessionShortBulkRemove">-</button>
-                            <button id="tutorSessionShortBulkAdd">+</button>
-                        </li>
-                        <li id="tutorSessionLongBulkListItem">
-                            <div id='tutorSessionCartLongBulk'></div>
-                            <button id="tutorSessionLongBulkClear">X</button>
-                            <button id="tutorSessionLongBulkRemove">-</button>
-                            <button id="tutorSessionLongBulkAdd">+</button>
-                        </li>
+                        <!-- Cart items will be displayed here -->
                     </ul>
-
                     <form action="../cart/cart.php" method="post">
                         <div class="checkout">
                             <input id="cartCheckout" type="submit" value="Checkout"></input>
@@ -220,9 +200,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" name="passwordConfirm" id="passwordConfirm" required>
                 <div id="passwordConfirmError" class="error-message"></div>
 
-                <h4>Solve: 3 + 7 = ?</h4>
+                <h4>CAPTCHA: Solve the following:</h4>
                 <label for="captcha"></label>
-                <input type="text" name="captcha" id="captcha" required>
+                <div class="captcha">
+                    <span><?php echo $captcha_question; ?> = </span>
+                    <input type="text" name="captcha" id="captcha" required>
+                </div>
+                <div id="captchaError" class="error-message"></div>
 
                 <br>
 
@@ -233,37 +217,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </main>
-    
-    <div class="cookie-consent-overlay" id="cookieConsent">
-        <div class="cookie-consent-box">
-            <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
-            <button class="cookie-accept-btn">Accept</button>
-            <button class="cookie-decline-btn">Decline</button>
-        </div>
-    </div>  
-    
-    <footer>
-        <div class="sec-links">
-            <div class="tutorfy">
-                <h4>Tutorfy</h4>
-                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
-                <a href="../article/article.php" class="sec-nav">Articles</a>
-                <a href="../store/store.php" class="sec-nav">Store</a>
-                <a href="../forum/forum.php" class="sec-nav">Forums</a>
-            </div>
 
-            <div class="about">
-                <h4>About</h4>
-                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
-                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
-            </div>
-
-            <div class="account">
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
                 <h4>Account</h4>
-                <?php echo getProfileFooter() ?>
+                <div class="profile-footer">
+                    <?php echo getProfileFooter() ?>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: support@tutorfy.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/tutorfy" target="_blank">Facebook</a>
+                    <a href="https://www.twitter.com/tutorfy" target="_blank">Twitter</a>
+                    <a href="https://www.instagram.com/tutorfy" target="_blank">Instagram</a>
+                </div>
             </div>
         </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Tutorfy. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>

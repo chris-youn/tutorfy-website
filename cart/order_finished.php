@@ -171,29 +171,5 @@ $theme = getUserTheme(); // Fetch the user's theme
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
-    
-    </body>
-    <footer>
-        <div class="sec-links">
-            <div class="tutorfy">
-                <h4>Tutorfy</h4>
-                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
-                <a href="../article/article.php" class="sec-nav">Articles</a>
-                <a href="../store/store.php" class="sec-nav">Store</a>
-                <a href="../forum/forum.php" class="sec-nav">Forums</a>
-            </div>
-
-            <div class="about">
-                <h4>About</h4>
-                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
-                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
-            </div>
-
-            <div class="account">
-                <h4>Account</h4>
-                <?php echo getProfileFooter() ?>
-            </div>
-        </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
-    </footer>
+</body>
 </html>
