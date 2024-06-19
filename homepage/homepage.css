@@ -64,9 +64,12 @@ section {
 
 .reviews { 
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     padding: 30px;
     width: 100%;
-    height: 200px;
+    height: auto;
 }
 
 .article:hover {
@@ -91,13 +94,14 @@ button:hover, .btn:hover {
 
 .carousel {
     position: relative;
-    width: 80%;
+    width: 100%;
     margin: auto;
     overflow: hidden;
 }
 
 .carousel-inner {
     display: flex;
+    width: auto;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -106,10 +110,16 @@ button:hover, .btn:hover {
     box-sizing: border-box;
 }
 
-button.prev, button.next {
-    position: absolute;
-    top: 50%;
+.prev-next {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: -30px;
     transform: translateY(-50%);
+}
+
+button.prev, button.next {
     background-color: transparent;
     border: none;
     font-size: 2em;
@@ -118,15 +128,23 @@ button.prev, button.next {
 }
 
 button.prev {
-    left: 10px;
+    display: flex;
+    position: relative;
+    left: -30vw;
 }
 
 button.next {
-    right: 10px;
+    display: flex;
+    position: relative;
+    right: -30vw; 
 }
 
 button:focus {
     outline: none;
+}
+
+.reviews p {
+    overflow: visible;
 }
 
 @media (max-width: 768px) {
@@ -171,6 +189,10 @@ button:focus {
         width: 80%;
         margin: auto;
         overflow: hidden;
+    }
+
+    button.prev, button.next {
+        top: -30px;
     }
 
 }

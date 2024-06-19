@@ -166,6 +166,8 @@ $theme = getUserTheme(); // Fetch the user's theme
                         <p>"I love the flexibility and the quality of the tutors available on Tutorfy. - Mike Johnson"</p>
                     </div>
                 </div>
+            </div>
+            <div class="prev-next">
                 <button class="prev">&#10094;</button>
                 <button class="next">&#10095;</button>
             </div>
@@ -181,7 +183,6 @@ $theme = getUserTheme(); // Fetch the user's theme
             <button class="cookie-decline-btn">Decline</button>
         </div>
     </div> 
-
                    
     <footer>
         <div class="sec-links">
