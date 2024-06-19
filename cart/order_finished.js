@@ -1,67 +1,53 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const cartSummaryItems = document.getElementById('orderSummaryItems');
-    const cartIcon = document.getElementById('cartIcon');
-    const cartBadge = document.getElementById('cartBadge');
-    const cartTotalText = document.getElementById('totalText');
-    const cartItems = document.getElementById('items');
-
-    let subtotal = 0;
-
-    function createItemElement(description, quantity, price) {
-        let newItem = document.createElement("li");
-        newItem.innerHTML = `${description} x ${quantity} - Price: $${(price * quantity).toFixed(2)}`;
-        cartSummaryItems.appendChild(newItem);
-        subtotal += price * quantity;
-    }
-
-    // Fetch and display cart items from local storage
+    let separatorDiv = document.createElement("div");
+    separatorDiv.classList.add("separator");
+    separatorDiv.innerHTML = "<br>";
+    cartSummaryItems = document.getElementById('orderSummary');
+    cartSummaryItems.appendChild(separatorDiv);
     if (sessionStorage.getItem('tutorSessionShort')) {
-        createItemElement("1hr Tutor Session(s)", sessionStorage.getItem('tutorSessionShort'), 40);
+        let newItem = document.createElement("li");
+        newItem.innerHTML = "1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShort') + " Price: $" + sessionStorage.getItem('tutorSessionShort') * 40
+        cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionLong')) {
-        createItemElement("2hr Tutor Session(s)", sessionStorage.getItem('tutorSessionLong'), 70);
+        let newItem = document.createElement("li");
+        newItem.innerHTML = "2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLong') + " Price: $" + sessionStorage.getItem('tutorSessionLong') * 70
+            
+        cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionShortBulk')) {
-        createItemElement("5 x 1hr Tutor Session(s)", sessionStorage.getItem('tutorSessionShortBulk'), 170);
+        let newItem = document.createElement("li");
+        newItem.innerHTML = "5 x 1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShortBulk') + " Price: $" + sessionStorage.getItem('tutorSessionShortBulk') * 170 
+            
+        cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionLongBulk')) {
-        createItemElement("5 x 2hr Tutor Session(s)", sessionStorage.getItem('tutorSessionLongBulk'), 300);
+        let newItem = document.createElement("li");
+        newItem.innerHTML = "5 x 2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLongBulk') + " Price: $" + sessionStorage.getItem('tutorSessionLongBulk') * 300
+        cartSummaryItems.appendChild(newItem);
     }
-
-    // Display subtotal
-    let subtotalElement = document.createElement("div");
-    subtotalElement.classList.add("subTotalText");
-    subtotalElement.innerHTML = `Subtotal: $${subtotal.toFixed(2)}`;
-    cartSummaryItems.appendChild(subtotalElement);
-
-    // Calculate and display discount if applicable
-    if (sessionStorage.getItem('discountedTotal')) {
-        let discountedTotal = parseFloat(sessionStorage.getItem('discountedTotal'));
-        let discountValue = (subtotal - discountedTotal).toFixed(2);
-
-        let discountElement = document.createElement("div");
-        discountElement.classList.add("discountText");
-        discountElement.innerHTML = `Discount: $${discountValue}`;
-        cartSummaryItems.appendChild(discountElement);
-
-        // Display total
-        let totalElement = document.createElement("div");
-        totalElement.classList.add("totalText");
-        totalElement.innerHTML = `Total: $${discountedTotal.toFixed(2)}`;
-        cartSummaryItems.appendChild(totalElement);
-    } else {
-        // Display total as subtotal if no discount
-        let totalElement = document.createElement("div");
-        totalElement.classList.add("totalText");
-        totalElement.innerHTML = `Total: $${subtotal.toFixed(2)}`;
-        cartSummaryItems.appendChild(totalElement);
+    if (sessionStorage.getItem('total')) {
+        let total = document.createElement("div");
+        total.classList.add("subTotalText");
+        total.innerHTML = "Subtotal: $"+ sessionStorage.getItem('total');
+        cartSummaryItems.appendChild(total);
     }
+    let discount = document.createElement("div");
+    discount.classList.add("discountText");
+    discount.innerHTML = "Discount: $"+ (sessionStorage.getItem('total') - sessionStorage.getItem('discountedTotal'));
+    let total = document.createElement("div");
+    total.classList.add("totalText");
+    
+    total.innerHTML = "Total: $" + sessionStorage.getItem('discountedTotal');
+    cartSummaryItems.appendChild(discount);
+    
+    cartSummaryItems.appendChild(separatorDiv);
+    
+    cartSummaryItems.appendChild(total);
+    
 
-    // Clear local storage after displaying the order summary
-    sessionStorage.clear();
+    //sessionStorage.clear(); TODO, figure out how to do this without causing issues on refresh. 
 
-    // Update the shopping cart in the header
-    cartBadge.textContent = "0";
-    cartTotalText.textContent = "Total: $0";
-    cartItems.innerHTML = "";
-});
+})
+
+

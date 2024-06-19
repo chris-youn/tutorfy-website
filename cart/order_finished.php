@@ -66,7 +66,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             </div>
         </a>
         <nav class="nav-links">
-            <a href="../homepage/homepage.php" class="nav-link">Home</a>
+            <a href="../homepage/homepage.php" class="nav-link active">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
@@ -85,29 +85,29 @@ $theme = getUserTheme(); // Fetch the user's theme
                     </div>
                     <ul class="shopping-cart-items" id="items">
                         <li id="tutorSessionListItem">
-                            <div id='tutorSessionCartShort'></div>
-                            <button id="tutorSessionClear">X</button>
-                            <button id="tutorSessionRemove">-</button>
-                            <button id="tutorSessionAdd">+</button>
-                        </li>
-                        <li id="tutorSessionLongListItem">
-                            <div id='tutorSessionCartLong'></div>
-                            <button id="tutorSessionLongClear">X</button>
-                            <button id="tutorSessionLongRemove">-</button>
-                            <button id="tutorSessionLongAdd">+</button>
-                        </li>
-                        <li id="tutorSessionShortBulkListItem">
-                            <div id='tutorSessionCartShortBulk'></div>
-                            <button id="tutorSessionShortBulkClear">X</button>
-                            <button id="tutorSessionShortBulkRemove">-</button>
-                            <button id="tutorSessionShortBulkAdd">+</button>
-                        </li>
-                        <li id="tutorSessionLongBulkListItem">
-                            <div id='tutorSessionCartLongBulk'></div>
-                            <button id="tutorSessionLongBulkClear">X</button>
-                            <button id="tutorSessionLongBulkRemove">-</button>
-                            <button id="tutorSessionLongBulkAdd">+</button>
-                        </li>
+                                    <div id='tutorSessionCartShort'></div>
+                                    <button id="tutorSessionClear">X</button>
+                                    <button id="tutorSessionRemove">-</button>
+                                    <button id="tutorSessionAdd">+</button>
+                                </li>
+                                <li id="tutorSessionLongListItem">
+                                    <div id='tutorSessionCartLong'></div>
+                                    <button id="tutorSessionLongClear">X</button>
+                                    <button id="tutorSessionLongRemove">-</button>
+                                    <button id="tutorSessionLongAdd">+</button>
+                                </li>
+                                <li id="tutorSessionShortBulkListItem">
+                                    <div id='tutorSessionCartShortBulk'></div>
+                                    <button id="tutorSessionShortBulkClear">X</button>
+                                    <button id="tutorSessionShortBulkRemove">-</button>
+                                    <button id="tutorSessionShortBulkAdd">+</button>
+                                </li>
+                                <li id="tutorSessionLongBulkListItem">
+                                    <div id='tutorSessionCartLongBulk'></div>
+                                    <button id="tutorSessionLongBulkClear">X</button>
+                                    <button id="tutorSessionLongBulkRemove">-</button>
+                                    <button id="tutorSessionLongBulkAdd">+</button>
+                                </li>
                     </ul>
 
                     <form action="../cart/cart.php" method="post">
@@ -128,17 +128,19 @@ $theme = getUserTheme(); // Fetch the user's theme
 
     <section class="orderconfirmation">
         <div class="orderconfirmationcontainer">
-            <h1>Your order has been confirmed!</h1>
-            <p id="orderID">Order ID: <?php echo $orderID ?> </p>
-            <p>You will receive an email containing information on booking your purchased sessions.</p>
-            <div id="orderSummary">
-                <h2 style="margin:8px;">Order Summary:</h2>
-                <div class="separator" style="margin-bottom:10px;"></div>
-                <ul id="orderSummaryItems"></ul>
-            </div>
+        <h1>Your order has been confirmed!</h1>
+        <p id="orderID">Order ID: <?php echo $orderID ?> </p>
+        <p>You will receive an email containing information on booking your purchased sessions </p>
+        <div id="orderSummary">
+            <h2 style="margin:8px;">Order Summary:</h2>
+            <div class="separator" style="margin-bottom:10px;"></div>
+        </div>
+        <script>
+            
+        </script>
         </div>
     </section>
-
+        
     <div class="cookie-consent-overlay" id="cookieConsent">
         <div class="cookie-consent-box">
             <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
