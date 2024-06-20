@@ -1,10 +1,10 @@
 <?php
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
-include('../adminModule/configuration.php');
 require '../forum/config.php';
 
 
+// Fetch user ID and admin status
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
 
@@ -15,29 +15,30 @@ if ($user_id) {
     $isAdmin = $stmt->fetchColumn();
 }
 
-$theme = getUserTheme(); // Fetch the user's theme
+// Get the user's theme
+$theme = getUserTheme(); 
+
+// Fetch or create order ID
 if (isset($_SESSION['orderID'])) {
     $orderID = $_SESSION['orderID'];
-
 } else {
     $_SESSION['orderID'] = time().mt_rand();
     $orderID = $_SESSION['orderID'];
-
 }
 
+// Email sending logic
+$to = "s3660619@student.rmit.edu.au";
+$subject = "Order Confirmation - Order ID: " . $orderID;
+$content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\nYou will receive an email containing information on booking your purchased sessions.\n\nThank you for shopping with us!\n\nBest regards,\nTutorfy Team";
+$headers = "From: no-reply@tutorfy.com";
 
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
-$isAdmin = false;
-
-if ($user_id) {
-    // Fetch the isAdmin status if the user is logged in
-    $stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
-    $stmt->execute([$user_id]);
-    $isAdmin = $stmt->fetchColumn();
+if (mail($to, $subject, $content, $headers)) {
+    echo "Test email sent successfully to $to";
+} else {
+    echo "Failed to send test email.";
 }
-
-$theme = getUserTheme(); // Fetch the user's theme
 ?>
+
 <!DOCTYPE html>
 
 <html>
