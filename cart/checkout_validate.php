@@ -1,4 +1,8 @@
 <?php
+
+include('../adminModule/configuration.php');
+include('../scripts/functions.php');
+require '../forum/config.php';
 $_SESSION['orderValidated'] = false;
 function validateFullName($name) {
     // Check if the name only contains letters and spaces

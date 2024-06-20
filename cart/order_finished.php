@@ -1,4 +1,5 @@
 <?php
+
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
@@ -72,12 +73,15 @@ if ($user_email && $cart_details) {
     $headers = "From: no-reply@tutorfy.com";
 
     if (mail($to, $subject, $content, $headers) && $orderValid) {
+       
         echo "Order confirmation email sent successfully to $to";
     } else {
         echo "Failed to send order confirmation email.";
+        
     }
 } else {
     echo "Failed to send test email.";
+    
 }
 ?>
 
