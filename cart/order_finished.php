@@ -20,31 +20,65 @@ if ($user_id) {
     $isAdmin = $stmt->fetchColumn();
 }
 
-// Get the user's theme
-$theme = getUserTheme(); 
+$theme = getUserTheme(); // Fetch the user's theme
 
 // Fetch or create order ID
 if (isset($_SESSION['orderID'])) {
     $orderID = $_SESSION['orderID'];
 } else {
-    $_SESSION['orderID'] = time().mt_rand();
+    $_SESSION['orderID'] = time() . mt_rand();
     $orderID = $_SESSION['orderID'];
 }
 
-// Email sending logic
-if ($orderValid) {
-    $to = "s3660619@student.rmit.edu.au";
-$subject = "Order Confirmation - Order ID: " . $orderID;
-$content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\nYou will receive an email containing information on booking your purchased sessions.\n\nThank you for shopping with us!\n\nBest regards,\nTutorfy Team";
-$headers = "From: no-reply@tutorfy.com";
+// Fetch user's email from session or cookie
+$user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
 
-if (mail($to, $subject, $content, $headers)) {
-    echo "Test email sent successfully to $to";
+if (!$user_email && isset($_COOKIE['user_email'])) {
+    $user_email = $_COOKIE['user_email'];
+}
+
+// Fetch cart details from POST data
+$cart_details = isset($_POST['cart_details']) ? json_decode($_POST['cart_details'], true) : null;
+
+if ($user_email && $cart_details) {
+    // Construct the email content
+    $content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\n\n";
+    $content .= "Here are the details of your purchased items:\n";
+
+    if (!empty($cart_details['tutorSessionShort'])) {
+        $content .= "1hr Tutor Session(s): " . $cart_details['tutorSessionShort'] . " x $40\n";
+    }
+    if (!empty($cart_details['tutorSessionLong'])) {
+        $content .= "2hr Tutor Session(s): " . $cart_details['tutorSessionLong'] . " x $70\n";
+    }
+    if (!empty($cart_details['tutorSessionShortBulk'])) {
+        $content .= "5 x 1hr Tutor Session(s): " . $cart_details['tutorSessionShortBulk'] . " x $170\n";
+    }
+    if (!empty($cart_details['tutorSessionLongBulk'])) {
+        $content .= "5 x 2hr Tutor Session(s): " . $cart_details['tutorSessionLongBulk'] . " x $300\n";
+    }
+
+    $content .= "\nTotal: $" . $cart_details['total'];
+    if (!empty($cart_details['discountedTotal']) && $cart_details['discountedTotal'] < $cart_details['total']) {
+        $content .= "\nDiscounted Total: $" . $cart_details['discountedTotal'];
+    }
+
+    $content .= "\n\nYou will receive an email containing information on booking your purchased sessions.\n\n";
+    $content .= "Thank you for shopping with us!\n\nBest regards,\nTutorfy Team";
+
+    // Email sending logic
+    $to = $user_email;
+    $subject = "Order Confirmation - Order ID: " . $orderID;
+    $headers = "From: no-reply@tutorfy.com";
+
+    if (mail($to, $subject, $content, $headers) && $orderValid) {
+        echo "Order confirmation email sent successfully to $to";
+    } else {
+        echo "Failed to send order confirmation email.";
+    }
 } else {
     echo "Failed to send test email.";
 }
-}
-
 ?>
 
 <!DOCTYPE html>
