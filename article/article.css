@@ -12,6 +12,11 @@ h2, h3, h4, h5, h6 {
     flex: 1;
 }
 
+.article-image {
+    max-width: 100%;
+    height: auto;
+}
+
 .articles-section {
     flex: 3;
     margin-right: 20px;

@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+$theme = getUserTheme();
+
 $user_id = $_SESSION['user_id'];
 
 // Check if the user is an admin or a tutor
@@ -155,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="article-title" name="article-title" required>
         <br>
         <label for="article-content">Content:</label>
-        <textarea id="article-content" name="article-content" required></textarea>
+        <textarea id="article-content" name="article-content" style="white-space: pre-wrap;" required></textarea>
         <br>
         <label for="article-image">Image:</label>
         <input type="file" id="article-image" name="article-image">

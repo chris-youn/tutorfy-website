@@ -23,10 +23,14 @@ function displayArticles($pdo){
                 echo "<div class='article'>";
                 echo "<h2>{$article['title']}</h2>";
                 echo "<p>By {$article['username']} on {$article['created_at']}</p>";
+                echo "<details>";
+                echo "<summary><em>Click here to read the article...</em></summary>";
                 if ($article['image_path']) {
-                    echo "<img src='{$article['image_path']}' alt='Article Image'>";
+                    echo "<img src='{$article['image_path']}' alt='Article Image' class='article-image'>";
+                    echo "<br>";
                 }
-                echo "<p>{$article['content']}</p>";
+                echo "<p style='white-space: pre-line'>".($article['content'])."</p>";
+                echo "</details>";
                 echo "</div>";
             }
 }
@@ -126,8 +130,11 @@ function displayArticles($pdo){
     <main class="content">
         <div class="articles-section">
             <h1>Articles</h1>
-            <?php displayArticles($pdo)?>
+            <div class="articles">
+                <?php displayArticles($pdo); ?>
+            </div>
         </div>
+   
 
         <div class="sidebar">
             <div class="filter">
