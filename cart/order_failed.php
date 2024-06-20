@@ -3,12 +3,7 @@ include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
 
-// make sure the user has in fact made an order
-if(isset($_SESSION['orderValidated'])){
-    $orderValid = $_SESSION['orderValidated'];
-} else {
-    $orderValid = false;
-}
+
 // Fetch user ID and admin status
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
@@ -29,20 +24,6 @@ if (isset($_SESSION['orderID'])) {
 } else {
     $_SESSION['orderID'] = time().mt_rand();
     $orderID = $_SESSION['orderID'];
-}
-
-// Email sending logic
-if ($orderValid) {
-    $to = "s3660619@student.rmit.edu.au";
-$subject = "Order Confirmation - Order ID: " . $orderID;
-$content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\nYou will receive an email containing information on booking your purchased sessions.\n\nThank you for shopping with us!\n\nBest regards,\nTutorfy Team";
-$headers = "From: no-reply@tutorfy.com";
-
-if (mail($to, $subject, $content, $headers)) {
-    echo "Test email sent successfully to $to";
-} else {
-    echo "Failed to send test email.";
-}
 }
 
 ?>
@@ -141,37 +122,17 @@ if (mail($to, $subject, $content, $headers)) {
             </div>
         </div>
     </header>
-    
-    <?php  if($orderValid == true):?>
 
     <section class="orderconfirmation">
         <div class="orderconfirmationcontainer">
-        <h1>Your order has been confirmed!</h1>
+        <h1>Order Failed</h1>
         <p id="orderID">Order ID: <?php echo $orderID ?> </p>
-        <p>You will receive an email containing information on booking your purchased sessions </p>
-        <div id="orderSummary">
-            <h2 style="margin:8px;">Order Summary:</h2>
-            <div class="separator" style="margin-bottom:10px;"></div>
-            <div id="orderSummaryItems"></div>
-        </div>
+        <p>Please ensure you entered correct information when making the purchase.</p>
         <script>
             
         </script>
         </div>
     </section>
-    <?php endif; ?>
-    
-    
-    <?php if($orderValid == false):?>
-        <section class="orderconfirmation">
-        <div class="orderconfirmationcontainer">
-        <h1>You have not made an order.</h1>
-        
-        <p>If you are looking for a previous order you have made, please check your email or your account's order history. </p>
-        
-        </div>
-    </section>
-    <?php endif;?>
         
     <div class="cookie-consent-overlay" id="cookieConsent">
         <div class="cookie-consent-box">

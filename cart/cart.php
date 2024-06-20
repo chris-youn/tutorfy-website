@@ -113,7 +113,7 @@ $theme = getUserTheme(); // Fetch the user's theme
 
     <main class="content">
         <div class="checkout-container">
-            <form id="payment" method="POST" class="payment-form" action="order_finished.php">
+            <form id="payment" method="POST" class="payment-form" action="checkout_validate.php">
                 <h2>Payment Details</h2>
                 <div>
                     <h4>Full Name</h4>
