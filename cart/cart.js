@@ -4,8 +4,7 @@ function renderCartItems() {
     if (sessionStorage.getItem("total") == null) {
         cartTotalText.innerHTML = "Total: $0";
     } else {
-    
-    cartTotalText.innerHTML = "Total: $" + sessionStorage.getItem("total");
+        cartTotalText.innerHTML = "Total: $" + sessionStorage.getItem("total");
     }
     cartSummaryItems.innerHTML = '';
 
@@ -110,6 +109,13 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Prevent form submission for validation
 
         if (validateForm()) {
+            // Store form inputs in sessionStorage
+            const email = document.getElementById("email").value;
+            const fullName = document.getElementById("fullName").value;
+            sessionStorage.setItem('user_email', email);
+            sessionStorage.setItem('user_fullName', fullName);
+            document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
             form.submit(); // Submit the form if all validations pass
         } else {
             // Trigger the browser's built-in validation UI

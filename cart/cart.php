@@ -135,6 +135,14 @@ $theme = getUserTheme(); // Fetch the user's theme
                     </div>
                 </div>
 
+                <script>
+                    document.getElementById('payment').addEventListener('submit', function(event) {
+                        const email = document.getElementById('email').value;
+                        sessionStorage.setItem('user_email', email); // Store email in sessionStorage
+                        document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+                    });
+                </script>
+
                 <div>
                     <h4>Card Number</h4>
                     <p>
