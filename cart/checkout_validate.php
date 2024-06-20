@@ -1,9 +1,10 @@
 <?php
-
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
+
 $_SESSION['orderValidated'] = false;
+
 function validateFullName($name) {
     // Check if the name only contains letters and spaces
     if (preg_match("/^[a-zA-Z\s]+$/", $name)) {
@@ -22,11 +23,6 @@ function validateEmail($email) {
     }
 }
 
-
-
-    
-
-
 // Example usage
 if (isset($_POST['fullName'])){
     $fullName = $_POST['fullName'];
@@ -38,13 +34,19 @@ if (isset($_POST['email'])) {
 } else {
     $email = 0;
 }
-
+if (isset($_POST['cart_details'])) {
+    $cart_details = $_POST['cart_details'];
+} else {
+    $cart_details = null;
+}
 
 $fullNameValidation = validateFullName($fullName);
 $emailValidation = validateEmail($email);
 
 if ($fullNameValidation === true && $emailValidation === true) {
     $_SESSION['orderValidated'] = true;
+    $_SESSION['user_email'] = $email;
+    $_SESSION['cart_details'] = $cart_details; // Store cart details in session
     header("Location: order_finished.php");
     exit;
 } else {

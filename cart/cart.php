@@ -183,14 +183,14 @@ $theme = getUserTheme(); // Fetch the user's theme
                     sessionStorage.setItem('user_email', email); // Store email in sessionStorage
                     document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
 
-                    // Get cart details from localStorage
+                    // Get cart details from sessionStorage
                     const cartDetails = {
-                        tutorSessionShort: localStorage.getItem('tutorSessionShort'),
-                        tutorSessionLong: localStorage.getItem('tutorSessionLong'),
-                        tutorSessionShortBulk: localStorage.getItem('tutorSessionShortBulk'),
-                        tutorSessionLongBulk: localStorage.getItem('tutorSessionLongBulk'),
-                        total: localStorage.getItem('total'),
-                        discountedTotal: localStorage.getItem('discountedTotal')
+                        tutorSessionShort: sessionStorage.getItem('tutorSessionShort'),
+                        tutorSessionLong: sessionStorage.getItem('tutorSessionLong'),
+                        tutorSessionShortBulk: sessionStorage.getItem('tutorSessionShortBulk'),
+                        tutorSessionLongBulk: sessionStorage.getItem('tutorSessionLongBulk'),
+                        total: sessionStorage.getItem('total'),
+                        discountedTotal: sessionStorage.getItem('discountedTotal')
                     };
 
                     // Store cart details in hidden input

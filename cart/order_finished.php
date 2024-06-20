@@ -4,12 +4,13 @@ include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
 
-// make sure the user has in fact made an order
+// Make sure the user has in fact made an order
 if(isset($_SESSION['orderValidated'])){
     $orderValid = $_SESSION['orderValidated'];
 } else {
     $orderValid = false;
 }
+
 // Fetch user ID and admin status
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
@@ -31,17 +32,13 @@ if (isset($_SESSION['orderID'])) {
     $orderID = $_SESSION['orderID'];
 }
 
-// Fetch user's email from session or cookie
+// Fetch user's email from session
 $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
 
-if (!$user_email && isset($_COOKIE['user_email'])) {
-    $user_email = $_COOKIE['user_email'];
-}
+// Fetch cart details from session
+$cart_details = isset($_SESSION['cart_details']) ? json_decode($_SESSION['cart_details'], true) : null;
 
-// Fetch cart details from POST data
-$cart_details = isset($_POST['cart_details']) ? json_decode($_POST['cart_details'], true) : null;
-
-if ($user_email && $cart_details) {
+if ($user_email && $cart_details && $orderValid) {
     // Construct the email content
     $content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\n\n";
     $content .= "Here are the details of your purchased items:\n";
@@ -72,16 +69,13 @@ if ($user_email && $cart_details) {
     $subject = "Order Confirmation - Order ID: " . $orderID;
     $headers = "From: no-reply@tutorfy.com";
 
-    if (mail($to, $subject, $content, $headers) && $orderValid) {
-       
+    if (mail($to, $subject, $content, $headers)) {
         echo "Order confirmation email sent successfully to $to";
     } else {
         echo "Failed to send order confirmation email.";
-        
     }
 } else {
-    echo "Failed to send test email.";
-    
+    echo "User email not found, cart details missing, or order not validated. Cannot send order confirmation email.";
 }
 ?>
 
