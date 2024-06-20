@@ -126,8 +126,8 @@ if ($user_id) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="1079756579805-sm6p2mgi4kp113f46609dejpaf58ng5i.apps.googleusercontent.com">
+    
+    
     <link rel="stylesheet" type="text/css" href="../global.css">
     <script src="login.js" defer></script>
     <script src="../global.js" defer></script>
@@ -219,7 +219,7 @@ if ($user_id) {
                 <input type="hidden" name="referrer" id="referrer" value="<?php echo isset($_GET['referrer']) ? $_GET['referrer'] : 'profile.php'; ?>">
 
                 <button type="submit">Login</button>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                
 
             </form>
             <div class="links">

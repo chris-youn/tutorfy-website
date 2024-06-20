@@ -38,7 +38,7 @@ CREATE TABLE `threads` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1
-ALTER TABLE `threads` ADD FULLTEXT(`title`);
+ALTER TABLE `threads` ADD FULLTEXT(`title`, `content`);
 
 CREATE TABLE `replies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

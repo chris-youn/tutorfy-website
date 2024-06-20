@@ -16,8 +16,15 @@ if ($user_id) {
 }
 
 $theme = getUserTheme(); // Fetch the user's theme
+if (isset($_SESSION['orderID'])) {
+    $orderID = $_SESSION['orderID'];
 
-$orderID = time() . mt_rand();
+} else {
+    $_SESSION['orderID'] = time().mt_rand();
+    $orderID = $_SESSION['orderID'];
+
+}
+
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
@@ -132,7 +139,9 @@ $theme = getUserTheme(); // Fetch the user's theme
         <p id="orderID">Order ID: <?php echo $orderID ?> </p>
         <p>You will receive an email containing information on booking your purchased sessions </p>
         <div id="orderSummary">
-            <h2>Order Summary:</h2>
+            <h2 style="margin:8px;">Order Summary:</h2>
+            <div class="separator" style="margin-bottom:10px;"></div>
+            <div id="orderSummaryItems"></div>
         </div>
         <script>
             
@@ -171,29 +180,5 @@ $theme = getUserTheme(); // Fetch the user's theme
         </div>
         <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
-    
-    </body>
-    <footer>
-        <div class="sec-links">
-            <div class="tutorfy">
-                <h4>Tutorfy</h4>
-                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
-                <a href="../article/article.php" class="sec-nav">Articles</a>
-                <a href="../store/store.php" class="sec-nav">Store</a>
-                <a href="../forum/forum.php" class="sec-nav">Forums</a>
-            </div>
-
-            <div class="about">
-                <h4>About</h4>
-                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
-                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
-            </div>
-
-            <div class="account">
-                <h4>Account</h4>
-                <?php echo getProfileFooter() ?>
-            </div>
-        </div>
-        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
-    </footer>
+</body>
 </html>

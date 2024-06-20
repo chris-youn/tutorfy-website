@@ -24,7 +24,7 @@ $searchQuery = '';
 $searchParam = '';
 
 if (!empty($search)) {
-    $searchQuery = "AND MATCH(title) AGAINST(:search IN BOOLEAN MODE)";
+    $searchQuery = "AND MATCH(title, content) AGAINST(:search IN BOOLEAN MODE)";
     $searchParam = $search;
 }
 
@@ -42,15 +42,15 @@ if (!empty($search)) {
 $stmt->execute();
 $threads = $stmt->fetchAll();
 
-// Fetching the next most relevant title if no exact matches found
+// Fetching the next most relevant title or content if no exact matches found
 $nextRelevantThread = null;
 if (empty($threads) && !empty($search)) {
     $nextSql = "SELECT threads.*, users.profile_image, users.username 
                 FROM threads 
                 JOIN users ON threads.user_id = users.id 
                 WHERE threads.archived = 0 
-                ORDER BY MATCH(title) AGAINST(:search IN BOOLEAN MODE) DESC, created_at DESC
-                LIMIT 1";
+                ORDER BY MATCH(title, content) AGAINST(:search IN BOOLEAN MODE) DESC, created_at DESC
+                LIMIT 3";
     $nextStmt = $pdo->prepare($nextSql);
     $nextStmt->bindParam(':search', $searchParam);
     $nextStmt->execute();

@@ -185,16 +185,28 @@ $theme = getUserTheme(); // Fetch the user's theme
                     <span id="cart-total-text">Total: $0</span><br>
                     <span id="cart-discount-text">
                     <?php 
-                            $total = $_COOKIE['total'];
-                            $discount = $_SESSION['discountPercentage'];
+                    $total = $_COOKIE['total'];
+                             if (isset($_SESSION['discountPercentage'])){
+                            
+                            
+                                $discount = $_SESSION['discountPercentage'];
+                            
+                            
+                             
+                            
                             try {
+                               
                                 $newTotal = $total-($total*($discount/100));
+                                
                             }catch(Exception $e) {
                                 echo "No items in cart";
                             }
                             
                             echo "<script>sessionStorage.setItem('discountedTotal', ".$newTotal.")</script>";
+                        } else {
                             
+                            echo "<script>sessionStorage.setItem('discountedTotal',".$total.")</script>";
+                        }
                             if (isset($_SESSION['discountPercentage'])) {
                                 $discount = $_SESSION['discountPercentage'];
                                 echo "Discount Applied! ".$discount."% off!";

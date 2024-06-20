@@ -432,6 +432,14 @@ table {
     align-content: center;
 }
 
+button.prev, button.next {
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: #EEE2DC;
+}
+
 @media (max-width: 900px) {
     .search input[type="text"] {
         width: 100%;
