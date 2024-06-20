@@ -30,11 +30,38 @@ if (!$user_email && isset($_COOKIE['user_email'])) {
     $user_email = $_COOKIE['user_email'];
 }
 
-if ($user_email) {
+// Fetch cart details from POST data
+$cart_details = isset($_POST['cart_details']) ? json_decode($_POST['cart_details'], true) : null;
+
+if ($user_email && $cart_details) {
+    // Construct the email content
+    $content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\n\n";
+    $content .= "Here are the details of your purchased items:\n";
+
+    if (!empty($cart_details['tutorSessionShort'])) {
+        $content .= "1hr Tutor Session(s): " . $cart_details['tutorSessionShort'] . " x $40\n";
+    }
+    if (!empty($cart_details['tutorSessionLong'])) {
+        $content .= "2hr Tutor Session(s): " . $cart_details['tutorSessionLong'] . " x $70\n";
+    }
+    if (!empty($cart_details['tutorSessionShortBulk'])) {
+        $content .= "5 x 1hr Tutor Session(s): " . $cart_details['tutorSessionShortBulk'] . " x $170\n";
+    }
+    if (!empty($cart_details['tutorSessionLongBulk'])) {
+        $content .= "5 x 2hr Tutor Session(s): " . $cart_details['tutorSessionLongBulk'] . " x $300\n";
+    }
+
+    $content .= "\nTotal: $" . $cart_details['total'];
+    if (!empty($cart_details['discountedTotal']) && $cart_details['discountedTotal'] < $cart_details['total']) {
+        $content .= "\nDiscounted Total: $" . $cart_details['discountedTotal'];
+    }
+
+    $content .= "\n\nYou will receive an email containing information on booking your purchased sessions.\n\n";
+    $content .= "Thank you for shopping with us!\n\nBest regards,\nTutorfy Team";
+
     // Email sending logic
     $to = $user_email;
     $subject = "Order Confirmation - Order ID: " . $orderID;
-    $content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\nYou will receive an email containing information on booking your purchased sessions.\n\nThank you for shopping with us!\n\nBest regards,\nTutorfy Team";
     $headers = "From: no-reply@tutorfy.com";
 
     if (mail($to, $subject, $content, $headers)) {
@@ -43,7 +70,7 @@ if ($user_email) {
         echo "Failed to send order confirmation email.";
     }
 } else {
-    echo "User email not found. Cannot send order confirmation email.";
+    echo "User email not found or cart details missing. Cannot send order confirmation email.";
 }
 ?>
 

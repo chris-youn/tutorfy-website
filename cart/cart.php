@@ -173,8 +173,30 @@ $theme = getUserTheme(); // Fetch the user's theme
                     </div>
                     
                 </div>
+                <input type="hidden" name="cart_details" id="cart_details">
                 <button type="submit" target="order_complete.php">Pay now</button>
             </form>
+
+            <script>
+                document.getElementById('payment').addEventListener('submit', function(event) {
+                    const email = document.getElementById('email').value;
+                    sessionStorage.setItem('user_email', email); // Store email in sessionStorage
+                    document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
+                    // Get cart details from localStorage
+                    const cartDetails = {
+                        tutorSessionShort: localStorage.getItem('tutorSessionShort'),
+                        tutorSessionLong: localStorage.getItem('tutorSessionLong'),
+                        tutorSessionShortBulk: localStorage.getItem('tutorSessionShortBulk'),
+                        tutorSessionLongBulk: localStorage.getItem('tutorSessionLongBulk'),
+                        total: localStorage.getItem('total'),
+                        discountedTotal: localStorage.getItem('discountedTotal')
+                    };
+
+                    // Store cart details in hidden input
+                    document.getElementById('cart_details').value = JSON.stringify(cartDetails);
+                });
+            </script>
 
             <div id="cart-summary" class="cart-summary">
                 <h2>Your Cart</h2>
