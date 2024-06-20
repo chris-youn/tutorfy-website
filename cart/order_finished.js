@@ -65,11 +65,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let discount = document.createElement("div");
     discount.classList.add("discountText");
-    discount.innerHTML = "Discount: $"+ (localStorage.getItem('total') - localStorage.getItem('discountedTotal'));
+    if (localStorage.getItem('discountedTotal') == null ||localStorage.getItem('discountedTotal') == 0) {
+        discount.innerHTML = "Discount: $0"
+    } else {
+        discount.innerHTML = "Discount: $"+ (localStorage.getItem('total') - localStorage.getItem('discountedTotal'));
+    }
+   
     let discountTotal = document.createElement("div");
     discountTotal.classList.add("totalText");
     
-    if (localStorage.getItem('discountedTotal') == null) {
+    if (localStorage.getItem('discountedTotal') == null ||localStorage.getItem('discountedTotal') == 0) {
         discountTotal.innerHTML = "Total: $" + localStorage.getItem('total');
     } else {
         discountTotal.innerHTML = "Total: $" + localStorage.getItem('discountedTotal')
