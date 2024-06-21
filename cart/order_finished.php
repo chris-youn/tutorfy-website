@@ -1,8 +1,11 @@
 <?php
+ob_start(); // Start output buffering
 
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
+
+$messages = ''; // Initialize a variable to store messages
 
 // Make sure the user has in fact made an order
 if(isset($_SESSION['orderValidated'])){
@@ -80,12 +83,12 @@ if ($user_email && $cart_details && $orderValid) {
     $headers = "From: no-reply@tutorfy.com";
 
     if (mail($to, $subject, $content, $headers)) {
-        echo "Order confirmation email sent successfully to $to";
+        $messages .= "Order confirmation email sent successfully to $to<br>";
     } else {
-        echo "Failed to send order confirmation email.";
+        $messages .= "Failed to send order confirmation email.<br>";
     }
 } else {
-    echo "User email not found, cart details missing, or order not validated. Cannot send order confirmation email.";
+    $messages .= "User email not found, cart details missing, or order not validated. Cannot send order confirmation email.<br>";
 }
 
 // check if orderId is in database to avoid duplicate entries:
@@ -122,11 +125,13 @@ if ($orderValid && checkForOrderID($pdo, $orderID)) {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "Order inserted successfully!";
+        $messages .= "Order inserted successfully!<br>";
     } else {
-        echo "Failed to insert order.";
+        $messages .= "Failed to insert order.<br>";
     }
 }
+
+ob_end_flush(); // Flush the output buffer
 ?>
 
 <!DOCTYPE html>
