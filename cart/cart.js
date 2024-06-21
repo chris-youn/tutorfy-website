@@ -117,12 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
 
             // Clear session storage after form submission
-            sessionStorage.removeItem('tutorSessionShort');
-            sessionStorage.removeItem('tutorSessionLong');
-            sessionStorage.removeItem('tutorSessionShortBulk');
-            sessionStorage.removeItem('tutorSessionLongBulk');
-            sessionStorage.removeItem('total');
-            sessionStorage.removeItem('discountedTotal');
+            
 
             form.submit(); // Submit the form if all validations pass
         } else {
