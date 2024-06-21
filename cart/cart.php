@@ -179,26 +179,7 @@ if (isset($_SESSION['orderID'])) {
                 <button type="submit" target="order_complete.php">Pay now</button>
             </form>
 
-            <script>
-                document.getElementById('payment').addEventListener('submit', function(event) {
-                    const email = document.getElementById('email').value;
-                    sessionStorage.setItem('user_email', email); // Store email in sessionStorage
-                    document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
-
-                    // Get cart details from sessionStorage
-                    const cartDetails = {
-                        tutorSessionShort: sessionStorage.getItem('tutorSessionShort'),
-                        tutorSessionLong: sessionStorage.getItem('tutorSessionLong'),
-                        tutorSessionShortBulk: sessionStorage.getItem('tutorSessionShortBulk'),
-                        tutorSessionLongBulk: sessionStorage.getItem('tutorSessionLongBulk'),
-                        total: sessionStorage.getItem('total'),
-                        discountedTotal: sessionStorage.getItem('discountedTotal')
-                    };
-
-                    // Store cart details in hidden input
-                    document.getElementById('cart_details').value = JSON.stringify(cartDetails);
-                });
-            </script>
+           
 
             <div id="cart-summary" class="cart-summary">
                 <h2>Your Cart</h2>
@@ -249,6 +230,26 @@ if (isset($_SESSION['orderID'])) {
                             
                         </span>
                 </div>
+                <script>
+                document.getElementById('payment').addEventListener('submit', function(event) {
+                    const email = document.getElementById('email').value;
+                    sessionStorage.setItem('user_email', email); // Store email in sessionStorage
+                    document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
+                    // Get cart details from sessionStorage
+                    const cartDetails = {
+                        tutorSessionShort: sessionStorage.getItem('tutorSessionShort'),
+                        tutorSessionLong: sessionStorage.getItem('tutorSessionLong'),
+                        tutorSessionShortBulk: sessionStorage.getItem('tutorSessionShortBulk'),
+                        tutorSessionLongBulk: sessionStorage.getItem('tutorSessionLongBulk'),
+                        total: sessionStorage.getItem('total'),
+                        discountedTotal: sessionStorage.getItem('discountedTotal')
+                    };
+
+                    // Store cart details in hidden input
+                    document.getElementById('cart_details').value = JSON.stringify(cartDetails);
+                });
+            </script>
                
                 <div id="couponcode">
                         <h4>Coupon Code</h4>
