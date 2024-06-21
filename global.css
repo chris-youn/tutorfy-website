@@ -3,16 +3,10 @@
     width: 100%;
     background-color: #EEE2DC;
 }
-input[type="text"] {
-    font-family: "Sora", sans-serif;
-}
-input[type="submit"] {
-    font-family: "Sora", sans-serif;
-}
-input[type="button"] {
-    font-family: "Sora", sans-serif;
-}
-input[type="email"] {
+
+input[type="text"], input[type="submit"],
+input[type="button"], input[type="email"], 
+button[type="submit"] {
     font-family: "Sora", sans-serif;
 }
 

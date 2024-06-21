@@ -19,17 +19,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     padding: 30px;
-    text-align: justify;
     width: 100%;
 }
 
-.site-intro h1 {
-    width: 50%;
+.site-intro img {
+    border-radius: 50%;
+    height: 400px;
+    width: auto;
+    object-fit: cover;
 }
 
-.site-intro p {
-    padding: 20px;
+.site-intro div {
+    padding: 0 20px;
     width: 40%;
 }
 
@@ -154,6 +157,11 @@ button:focus {
     .topnav .icons {
         margin-top: 10px;
         margin-left:auto;
+    }
+
+    .site-intro {
+        display: flex;
+        flex-direction: column;
     }
     
     .articles-section {
