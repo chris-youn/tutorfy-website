@@ -22,18 +22,20 @@
     justify-content: space-around;
     padding: 30px;
     width: 100%;
+    flex: 1;
 }
 
 .site-intro img {
     border-radius: 50%;
-    height: 400px;
+    height: 30vh;
     width: auto;
     object-fit: cover;
+    /* flex: 1; */
 }
 
 .site-intro div {
     padding: 0 20px;
-    width: 40%;
+    width: 600px;
 }
 
 section {
@@ -162,6 +164,11 @@ button:focus {
     .site-intro {
         display: flex;
         flex-direction: column;
+    }
+
+    .site-intro div {
+        padding: 0 20px;
+        width: 400px;
     }
     
     .articles-section {
