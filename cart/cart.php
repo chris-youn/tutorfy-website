@@ -142,6 +142,10 @@ if (isset($_SESSION['orderID'])) {
                         const email = document.getElementById('email').value;
                         sessionStorage.setItem('user_email', email); // Store email in sessionStorage
                         document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
+                        const fullName = document.getElementById('fullName').value;
+                        sessionStorage.setItem('full_name', fullName); // Store fullName in sessionStorage
+                        document.cookie = 'full_name=' + fullName + '; path=/'; // Store fullName in cookie
                     });
                 </script>
 
@@ -236,6 +240,10 @@ if (isset($_SESSION['orderID'])) {
                     sessionStorage.setItem('user_email', email); // Store email in sessionStorage
                     document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
 
+                    const fullName = document.getElementById('fullName').value;
+                    sessionStorage.setItem('full_name', fullName); // Store fullName in sessionStorage
+                    document.cookie = 'full_name=' + fullName + '; path=/'; // Store fullName in cookie
+
                     // Get cart details from sessionStorage
                     const cartDetails = {
                         tutorSessionShort: sessionStorage.getItem('tutorSessionShort'),
@@ -250,6 +258,9 @@ if (isset($_SESSION['orderID'])) {
                     document.getElementById('cart_details').value = JSON.stringify(cartDetails);
                 });
             </script>
+             
+
+             
                
                 <div id="couponcode">
                         <h4>Coupon Code</h4>
