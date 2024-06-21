@@ -114,7 +114,7 @@ if ($user_email && $cart_details && $orderValid) {
             </div>
         </a>
         <nav class="nav-links">
-            <a href="../homepage/homepage.php" class="nav-link active">Home</a>
+            <a href="../homepage/homepage.php" class="nav-link">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>

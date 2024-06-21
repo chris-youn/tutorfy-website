@@ -24,15 +24,15 @@ function validateEmail($email) {
 }
 
 // Example usage
-if (isset($_POST['fullName'])){
+if (isset($_POST['fullName'])) {
     $fullName = $_POST['fullName'];
 } else {
-    $fullName = 0;
+    $fullName = '';
 }
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
 } else {
-    $email = 0;
+    $email = '';
 }
 if (isset($_POST['cart_details'])) {
     $cart_details = $_POST['cart_details'];
@@ -47,6 +47,12 @@ if ($fullNameValidation === true && $emailValidation === true) {
     $_SESSION['orderValidated'] = true;
     $_SESSION['user_email'] = $email;
     $_SESSION['cart_details'] = $cart_details; // Store cart details in session
+
+    // Clear the discount session variable
+    unset($_SESSION['discountPercentage']);
+
+    // Optionally, clear other session variables related to the cart
+    unset($_SESSION['cart_items']);
     header("Location: order_finished.php");
     exit;
 } else {
