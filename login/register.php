@@ -218,31 +218,28 @@ $_SESSION['captcha_solution'] = strval($num1 + $num2);
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
+    <footer>
+        <div class="sec-links">
+            <div class="tutorfy">
+                <h4>Tutorfy</h4>
+                <a href="../homepage/homepage.php" class="sec-nav">Home</a>
+                <a href="../article/article.php" class="sec-nav">Articles</a>
+                <a href="../store/store.php" class="sec-nav">Store</a>
+                <a href="../forum/forum.php" class="sec-nav">Forums</a>
+            </div>
+
+            <div class="about">
+                <h4>About</h4>
+                <a href="../policy/policy.php" class="sec-nav">Cookie and Privacy Policy</a>
+                <a href="../contact/contact.php" class="sec-nav">Contact us</a>
+            </div>
+
+            <div class="account">
                 <h4>Account</h4>
-                <div class="profile-footer">
-                    <?php echo getProfileFooter() ?>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>Email: support@tutorfy.com</p>
-                <p>Phone: 123-456-7890</p>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-media">
-                    <a href="https://www.facebook.com/tutorfy" target="_blank">Facebook</a>
-                    <a href="https://www.twitter.com/tutorfy" target="_blank">Twitter</a>
-                    <a href="https://www.instagram.com/tutorfy" target="_blank">Instagram</a>
-                </div>
+                <?php echo getProfileFooter() ?>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Tutorfy. All rights reserved.</p>
-        </div>
+        <h4>&copy Tutorfy | Web Programming Studio 2024</h4>
     </footer>
 </body>
 </html>
