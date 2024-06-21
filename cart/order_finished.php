@@ -26,19 +26,30 @@ $theme = getUserTheme(); // Fetch the user's theme
 
 // Fetch or create order ID
 if (isset($_SESSION['orderID'])) {
+    
     $orderID = $_SESSION['orderID'];
 } else {
     $_SESSION['orderID'] = time() . mt_rand();
     $orderID = $_SESSION['orderID'];
 }
 
+
 // Fetch user's email from session
 $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
+//Fetch other information for database:
+$itemsOrdered =  isset($_SESSION['cart_details']) ? $_SESSION['cart_details']: null;
+if ($itemsOrdered != null){
+    
+    $purchaseDate = time();
+}
+
 
 // Fetch cart details from session
 $cart_details = isset($_SESSION['cart_details']) ? json_decode($_SESSION['cart_details'], true) : null;
-
-if ($user_email && $cart_details && $orderValid) {
+if ($cart_details != null){
+    $totalCost = $cart_details['discountedTotal'];
+}
+    if ($user_email && $cart_details && $orderValid) {
     // Construct the email content
     $content = "Dear Customer,\n\nYour order has been confirmed!\n\nOrder ID: $orderID\n\n";
     $content .= "Here are the details of your purchased items:\n";
@@ -76,6 +87,45 @@ if ($user_email && $cart_details && $orderValid) {
     }
 } else {
     echo "User email not found, cart details missing, or order not validated. Cannot send order confirmation email.";
+}
+// check if orderId is in database to avoid duplicate entries:
+function checkForOrderID($pdo, $orderID) {
+    $sql = "SELECT COUNT(*) FROM orders WHERE orderid = :orderid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':orderid', $orderID, PDO::PARAM_STR);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+    if ($count > 0) {
+        return false; // Order ID exists
+    } else {
+        return true; // Order ID does not exist
+    }
+}
+// insert order into database if valid
+if ($orderValid && checkForOrderID($pdo, $orderID)) {
+    $sql = "INSERT INTO orders (orderid, userid, items_ordered, total_cost, purchase_date) 
+    VALUES (:orderid, :userid, :items_ordered, :total_cost, NOW())";
+    $stmt = $pdo->prepare($sql);
+     
+    // remove order total and discounted total from items ordered
+    $itemsArray = json_decode($itemsOrdered, true);
+     unset($itemsArray['total']);
+     unset($itemsArray['discountedTotal']);
+     $itemsOrdered = json_encode($itemsArray);
+     
+// Bind parameters
+$stmt->bindParam(':orderid', $orderID, PDO::PARAM_STR);
+$stmt->bindParam(':userid', $user_email, PDO::PARAM_STR);
+$stmt->bindParam(':items_ordered', $itemsOrdered, PDO::PARAM_STR);
+$stmt->bindParam(':total_cost', $totalCost, PDO::PARAM_STR);
+
+
+// Execute the statement
+if ($stmt->execute()) {
+echo "Order inserted successfully!";
+} else {
+echo "Failed to insert order.";
+}
 }
 ?>
 
