@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="../article/article.php" class="nav-link">Articles</a>
                 <a href="../store/store.php" class="nav-link">Store</a>
                 <a href="../forum/forum.php" class="nav-link">Forums</a>
+            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
             </div>
             <div class="icons">
                 <div class="container">
