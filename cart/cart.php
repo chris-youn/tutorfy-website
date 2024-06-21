@@ -16,7 +16,9 @@ if ($user_id) {
 }
 
 $theme = getUserTheme(); // Fetch the user's theme
-
+if (isset($_SESSION['orderID'])) {
+    unset($_SESSION['orderID']);
+}
 ?>
 
 <!DOCTYPE HTML>
