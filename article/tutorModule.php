@@ -1,6 +1,7 @@
 <?php
 require '../forum/config.php';
 include('../scripts/functions.php');
+include("../article/fetchArticles.php");
 
 if (!isset($_SESSION['user_id'])) {
     $referrer = urlencode($_SERVER['REQUEST_URI']);
@@ -151,34 +152,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </header>
-
+    <main>
     <h1>Create a New Article</h1>
-    <form method="POST" enctype="multipart/form-data" id="articleForm">
-        <label for="article-title">Title:</label>
-        <input type="text" id="article-title" name="article-title" required>
-        <br>
+        <section>
+            <form method="POST" enctype="multipart/form-data" id="articleForm">
+                <label for="article-title">Title:</label>
+                <input type="text" id="article-title" name="article-title" required>
+                <br>
+                
+                <label for="article-subject">Subject:</label>
+                <select id="article-subject" name="article-subject" required>
+                    <option value="" disabled selected>--Please Select a Subject--</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="English">English</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+                <br>
+                
+                <label for="article-content">Content:</label>
+                <textarea id="article-content" name="article-content" style="white-space: pre-wrap;" required></textarea>
+                <br>
+                
+                <label for="article-image">Image:</label>
+                <input type="file" id="article-image" name="article-image">
+                <br>
+                
+                <input type="submit" value="Create Article">
+            </form>
+        </section>
+
+        <section class="article-management" id="article-management">
+            <h2>Manage Articles</h2>
+            <?php fetchArticles($pdo) ?>
+        </section>
         
-        <label for="article-subject">Subject:</label>
-        <select id="article-subject" name="article-subject" required>
-            <option value="" disabled selected>--Please Select a Subject--</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Science">Science</option>
-            <option value="English">English</option>
-            <option value="Geography">Geography</option>
-            <option value="Miscellaneous">Miscellaneous</option>
-        </select>
-        <br>
-        
-        <label for="article-content">Content:</label>
-        <textarea id="article-content" name="article-content" style="white-space: pre-wrap;" required></textarea>
-        <br>
-        
-        <label for="article-image">Image:</label>
-        <input type="file" id="article-image" name="article-image">
-        <br>
-        
-        <input type="submit" value="Create Article">
-    </form>
+    </main>
 
     <footer>
         <div class="sec-links">
