@@ -46,12 +46,12 @@ function displayArticles($pdo, $isAdmin, $isTutor){
         }
         echo "<p style='white-space: pre-line'>".($article['content']) ."</p>";
         echo "</details>";
-        
+
         if ($isAdmin || $isTutor) {
             echo '<form method="POST" action="archiveArticle.php" class="archive-form">';
             echo "<input type='hidden' name='id' value='{$article['id']}'>";
             echo "<input type='hidden' name='action' value='" . ($article['archived'] == 1 ? 'unarchive' : 'archive') . "'>";
-            echo "<button type='submit'>" . ($article['archived'] == 1 ? 'Unarchive' : 'Archive') . "</button>";
+            echo "<button type='submit' class='archive-button'>" . ($article['archived'] == 1 ? 'Unarchive' : 'Archive') . "</button>";
             echo '</form>';
         }
 
@@ -177,6 +177,9 @@ function displayArticles($pdo, $isAdmin, $isTutor){
                 </select>
                 <button type="submit" onclick="filter()">Filter</button>
             </div>
+            <?php if ($isAdmin || $isTutor): ?>
+                <a href="../article/tutorModule.php" class="create-article-button">For Tutors: Create an Article!</a>
+            <?php endif; ?>
         </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
     </main>

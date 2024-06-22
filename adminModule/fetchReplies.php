@@ -21,7 +21,7 @@ function fetchReplies($pdo) {
                 <form method='post' action='toggleReply.php'>
                     <input type='hidden' name='id' value='".$reply["id"]."'>
                     <input type='hidden' name='action' value='".($reply["archived"] == 1 ? 'unlock' : 'lock')."'>
-                    <button type='submit'>".($reply["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
+                    <button type='submit' class='archive-button'>".($reply["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
                 </form>
             </td>
         </tr>";

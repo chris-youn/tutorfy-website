@@ -25,7 +25,7 @@ function fetchArticles($pdo) {
                 <form method='post' action='toggleArticle.php'>
                     <input type='hidden' name='id' value='".$article["id"]."'>
                     <input type='hidden' name='action' value='".($article["archived"] == 1 ? 'unlock' : 'lock')."'>
-                    <button type='submit'>".($article["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
+                    <button type='submit' class='archive-button'>".($article["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
                 </form>
             </td>
         </tr>";

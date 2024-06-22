@@ -25,7 +25,7 @@ function fetchUsers($pdo) {
                 <form method='post' action='toggleArchive.php'>
                     <input type='hidden' name='id' value='".$user["id"]."'>
                     <input type='hidden' name='action' value='".($user["archived"] == 1 ? 'unlock' : 'lock')."'>
-                    <button type='submit'>".($user["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
+                    <button type='submit' class='archive-button'>".($user["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
                 </form>
             </td>
         </tr>";
