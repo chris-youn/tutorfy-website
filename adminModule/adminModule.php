@@ -81,7 +81,7 @@ $theme = getUserTheme(); // Fetch the user's theme
                 This page is designed for the ease of access of the admininstrators.
                 <br><br>
                 Using this page, you will be able to: check the details of the users; lock and unlock accounts; 
-                archive or delete posts or threads in the discussion forum; add and remove aricles. 
+                archive or delete posts or threads in the discussion forum; archive and unarchive articles. 
             </p>
         </section>
 
