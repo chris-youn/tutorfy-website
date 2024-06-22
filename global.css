@@ -370,7 +370,8 @@ tr {
     background-color: #f9f9f9;
 }
 
-.user-management, .thread-management, .reply-management {
+.user-management, .thread-management, .reply-management,
+.article-management {
     width: 100%;
     padding: 30px;
 }

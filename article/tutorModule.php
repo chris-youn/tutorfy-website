@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tutorModule.css">
+    <link rel="stylesheet" href="forum_styles.css">
     <link rel="stylesheet" href="../global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,9 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
-            <a href="../article/article.php" class="nav-link active">Articles</a>
+            <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
-            <a href="../forum/forum.php" class="nav-link">Forums</a>
+            <a href="../forum/forum.php" class="nav-link active">Forums</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>

@@ -3,6 +3,7 @@ include('../adminModule/configuration.php');
 include('../adminModule/fetchUsers.php');
 include('../adminModule/fetchThreads.php');
 include('../adminModule/fetchReplies.php');
+include("../article/fetchArticles.php");
 include('../scripts/functions.php');
 
 $user_id = $_SESSION['user_id'];
@@ -97,6 +98,11 @@ $theme = getUserTheme(); // Fetch the user's theme
         <section class="reply-management" id="reply-management">
         <h2>Manage Individual Forum Posts/Replies</h2>
         <?php fetchReplies($pdo) ?>
+        </section>
+
+        <section class="article-management" id="article-management">
+            <h2>Manage Articles</h2>
+            <?php fetchArticles($pdo) ?>
         </section>
 
     <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
