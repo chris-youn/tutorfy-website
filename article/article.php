@@ -5,6 +5,7 @@ require '../forum/config.php';
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
+$isTutor = false;
 
 if ($user_id) {
     // Fetch the isAdmin status if the user is logged in
@@ -13,10 +14,17 @@ if ($user_id) {
     $isAdmin = $stmt->fetchColumn();
 }
 
+if ($user_id) {
+    // Fetch the isTutor status if the user is logged in
+    $stmt = $pdo->prepare("SELECT isTutor FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $isTutor = $stmt->fetchColumn();
+}
+
 $theme = getUserTheme(); // Fetch the user's theme
 
 
-function displayArticles($pdo){
+function displayArticles($pdo, $isAdmin, $isTutor){
     $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
             $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($articles as $article) {
@@ -31,6 +39,15 @@ function displayArticles($pdo){
                 }
                 echo "<p style='white-space: pre-line'>".($article['content'])."</p>";
                 echo "</details>";
+
+                if ($isAdmin || $isTutor) {
+                    echo '<form method="POST" action="archiveArticle.php" class="archive-form">';
+                    echo '<input type="hidden" name="id" value="' . $article['id'] . '">';
+                    echo '<input type="hidden" name="action" value="archive">';
+                    echo '<button type="submit" class="archive-button">Archive</button>';
+                    echo '</form>';
+                }
+
                 echo "</div>";
             }
 }
@@ -132,7 +149,7 @@ function displayArticles($pdo){
         <div class="articles-section">
             <h1>Articles</h1>
             <div class="articles">
-                <?php displayArticles($pdo); ?>
+                <?php displayArticles($pdo, $isAdmin, $isTutor); ?>
             </div>
         </div>
    
