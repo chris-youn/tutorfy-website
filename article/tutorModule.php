@@ -1,7 +1,6 @@
 <?php
 require '../forum/config.php';
 include('../scripts/functions.php');
-include("../article/fetchArticles.php");
 
 if (!isset($_SESSION['user_id'])) {
     $referrer = urlencode($_SERVER['REQUEST_URI']);
@@ -102,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
-            <a href="../forum/forum.php" class="nav-link active">Forums</a>
+            <a href="../forum/forum.php" class="nav-link">Forums</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>

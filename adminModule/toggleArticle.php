@@ -16,5 +16,5 @@ $stmt->bindParam(':id', $articleId, PDO::PARAM_INT);
 
 $stmt->execute();
 
-header("Location: tutorModule.php#article-management");
+header("Location: adminModule.php#article-management");
 ?>
