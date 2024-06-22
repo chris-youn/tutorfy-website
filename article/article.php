@@ -25,31 +25,38 @@ $theme = getUserTheme(); // Fetch the user's theme
 
 
 function displayArticles($pdo, $isAdmin, $isTutor){
-    $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
-            $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($articles as $article) {
-                echo "<div class='article'>";
-                echo "<h2>{$article['title']}</h2>";
-                echo "<p>By {$article['username']} <strong>(TUTOR)</strong> on {$article['created_at']} &nbsp&nbsp&nbsp&nbsp Subject: {$article['subject']}</p>";
-                echo "<details>";
-                echo "<summary><em>Click here to read the article...</em></summary>";
-                if ($article['image_path']) {
-                    echo "<img src='{$article['image_path']}' alt='Article Image' class='article-image'>";
-                    echo "<br>";
-                }
-                echo "<p style='white-space: pre-line'>".($article['content'])."</p>";
-                echo "</details>";
+    if ($isAdmin || $isTutor){
+        // Fetch all articles for admins and tutors, including archived ones
+        $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id ORDER BY articles.created_at DESC");
+    } else {
+        // Fetch only non-archived articles for regular users
+        $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
+    }
 
-                if ($isAdmin || $isTutor) {
-                    echo '<form method="POST" action="archiveArticle.php" class="archive-form">';
-                    echo '<input type="hidden" name="id" value="' . $article['id'] . '">';
-                    echo '<input type="hidden" name="action" value="archive">';
-                    echo '<button type="submit" class="archive-button">Archive</button>';
-                    echo '</form>';
-                }
+    $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($articles as $article) {
+        echo "<div class='article'>";
+        echo "<h2>{$article['title']}</h2>";
+        echo "<p>By {$article['username']} <strong>(TUTOR)</strong> on {$article['created_at']} &nbsp&nbsp&nbsp&nbsp Subject: {$article['subject']}</p>";
+        echo "<details>";
+        echo "<summary><em>Click here to read the article...</em></summary>";
+        if ($article['image_path']) {
+            echo "<img src='{$article['image_path']}' alt='Article Image' class='article-image'>";
+            echo "<br>";
+        }
+        echo "<p style='white-space: pre-line'>".($article['content']) ."</p>";
+        echo "</details>";
+        
+        if ($isAdmin || $isTutor) {
+            echo '<form method="POST" action="archiveArticle.php" class="archive-form">';
+            echo "<input type='hidden' name='id' value='{$article['id']}'>";
+            echo "<input type='hidden' name='action' value='" . ($article['archived'] == 1 ? 'unarchive' : 'archive') . "'>";
+            echo "<button type='submit'>" . ($article['archived'] == 1 ? 'Unarchive' : 'Archive') . "</button>";
+            echo '</form>';
+        }
 
-                echo "</div>";
-            }
+        echo "</div>";
+    }
 }
 ?>
 

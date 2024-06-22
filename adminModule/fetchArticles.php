@@ -11,7 +11,7 @@ function fetchArticles($pdo) {
         <th>ID</th><th>Tutor ID</th><th>Title</th><th>Content</th><th>Subject</th><th>Created At</th><th>Archived</th><th>Action</th>
     </tr>";
     foreach ($articles as $article) {
-        $charLimitContent = strlen($article["content"]) > 500 ? substr($article["content"], 0, 500) . '...' : $article["content"];
+        $charLimitContent = strlen($article["content"]) > 500 ? substr($article["content"], 0, 500) . '...&nbsp&nbsp&nbsp&nbsp(CONTINUED)' : $article["content"];
 
         echo "<tr>
             <td>".$article["id"]."</td>
