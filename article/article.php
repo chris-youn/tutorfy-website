@@ -17,7 +17,7 @@ $theme = getUserTheme(); // Fetch the user's theme
 
 
 function displayArticles($pdo){
-    $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id ORDER BY articles.created_at DESC");
+    $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
             $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($articles as $article) {
                 echo "<div class='article'>";
