@@ -49,15 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newId = $result['max_id'] + 1;
 
 
-    $stmt = $pdo->prepare("INSERT INTO articles (id, user_id, title, content, image_path) VALUES (?, ?, ?, ?, ?)");
-    if ($stmt->execute([$newId, $user_id, $title, $content, $image_path])) {
+    $stmt = $pdo->prepare("INSERT INTO articles (id, user_id, title, content, subject, image_path) VALUES (?, ?, ?, ?, ?, ?)");
+    if ($stmt->execute([$newId, $user_id, $title, $content, $subject, $image_path])) {
         echo "Article created! This page will reload in 5 seconds.";
         echo'<script>
                 setTimeout(function() {
                     window.location.href = "tutorModule.php";
                 }, 5000); // Redirect after 5 seconds
             </script>';
-    }else {
+    } else {
         echo "Error Creating Article";
     }
 }
@@ -156,12 +156,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="article-title">Title:</label>
         <input type="text" id="article-title" name="article-title" required>
         <br>
+        
+        <label for="article-subject">Subject:</label>
+        <select id="article-subject" name="article-subject" required>
+            <option value="" disabled selected>--Please Select a Subject--</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="Geography">Geography</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+        </select>
+        <br>
+        
         <label for="article-content">Content:</label>
         <textarea id="article-content" name="article-content" style="white-space: pre-wrap;" required></textarea>
         <br>
+        
         <label for="article-image">Image:</label>
         <input type="file" id="article-image" name="article-image">
         <br>
+        
         <input type="submit" value="Create Article">
     </form>
 
