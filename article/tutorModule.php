@@ -29,6 +29,7 @@ $isTutor = $user['isTutor'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['article-title'];
     $content = $_POST['article-content'];
+    $subject = $_POST['article-subject'];
     $image_path = null;
 
 
