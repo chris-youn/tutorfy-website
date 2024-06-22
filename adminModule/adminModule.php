@@ -5,6 +5,17 @@ include('../adminModule/fetchThreads.php');
 include('../adminModule/fetchReplies.php');
 include('../scripts/functions.php');
 
+$user_id = $_SESSION['user_id'];
+
+$stmt = $pdo->prepare("SELECT isAdmin FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user || (!$user['isAdmin'] )) {
+    header("Location: ../homepage/homepage.php");
+    exit();
+}
+
 $theme = getUserTheme(); // Fetch the user's theme
 ?>
 <!DOCTYPE HTML>
