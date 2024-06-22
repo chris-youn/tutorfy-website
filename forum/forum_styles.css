@@ -54,14 +54,15 @@ main {
 .search button {
     padding: 10px 15px;
     border: 1px solid #ccc;
-    background-color: #EDC7B7;
-    color: #2c3e50;
+    border-radius: 10%;
+    background-color: #AC3B61;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .search button:hover {
-    background-color: #AC3B61;
+    background-color: #8E3150;
     color: #EEE2DC;
 }
 

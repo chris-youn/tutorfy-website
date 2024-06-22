@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
-            <a href="../article/article.php" class="nav-link">Articles</a>
+            <a href="../article/article.php" class="nav-link active">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
             <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <main class="content">
-        <h1>Create a New Article</h1>
+        <h1>Create Article</h1>
         <div class="article-container">
             <form method="POST" enctype="multipart/form-data" id="articleForm" class="inputForm">
                 <h4>Title:</h4>
