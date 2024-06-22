@@ -75,4 +75,12 @@ CREATE TABLE CouponCodes (
 ALTER TABLE CouponCodes
 ADD COLUMN DiscountPercentage DECIMAL(5, 2) NOT NULL DEFAULT 0.00;
 
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderid VARCHAR(255) NOT NULL,
+    userid VARCHAR(255) NOT NULL,
+    items_ordered JSON NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    purchase_date DATETIME NOT NULL
+);
 

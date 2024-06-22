@@ -51,6 +51,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
+            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>
@@ -114,12 +115,15 @@ $theme = getUserTheme(); // Fetch the user's theme
         </section>
 
         <section class="site-intro">
-            <h1>Welcome to Tutorfy!</h1>
-            <p>Tutorfy is an online platform dedicated to enhancing students' learning experiences. 
-                It offers a wealth of accessible articles crafted by experienced tutors, covering a wide range of educational topics. 
-                In addition to these informative resources, Tutorfy serves as a vibrant hub where students can engage in discussions about subjects they are passionate about. 
-                Whether you're looking to improve your study habits, grasp complex concepts, or simply connect with like-minded peers, 
-                Tutorfy provides the tools and community support to help you succeed academically.</p>
+            <img src="../assets/img/AdobeStock_215942539.jpeg" alt="Student being tutored">
+            <div>
+                <h1>Welcome to Tutorfy!</h1>
+                <p>Tutorfy is an online platform dedicated to enhancing students' learning experiences. 
+                    It offers a wealth of accessible articles crafted by experienced tutors, covering a wide range of educational topics. 
+                    In addition to these informative resources, Tutorfy serves as a vibrant hub where students can engage in discussions about subjects they are passionate about. 
+                    Whether you're looking to improve your study habits, grasp complex concepts, or simply connect with like-minded peers, 
+                    Tutorfy provides the tools and community support to help you succeed academically.</p>
+            </div>
         </section>
 
         <section class="articles-section">

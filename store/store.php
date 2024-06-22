@@ -53,6 +53,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link active">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
+            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>

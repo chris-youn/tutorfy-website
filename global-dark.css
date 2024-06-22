@@ -33,6 +33,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
+    color: #EEE2DC;
 }
 
 h1, h2, h3, h4, h5, h6, p, .back-button {
@@ -49,7 +50,7 @@ h1, h2, h3, h4, h5, h6, p, .back-button {
 .payment-form, .cart-summary, .cookie-policy,
 .contact > .inputForm, .posts, .new-thread,
 .forum-post, .reply-form, .replies-section,
-.orderconfirmationcontainer {
+.orderconfirmationcontainer, .quiz-question {
     background-color: #282420; 
     border: 1px solid #AC3B61;
 }

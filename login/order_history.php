@@ -27,6 +27,24 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $isAdmin = $stmt->fetchColumn();
 }
+function fetchOrdersByUserID($pdo, $email) {
+    $sql = "SELECT * FROM orders WHERE userid = :userid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':userid', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    $orders = $stmt->fetchAll();
+    if ($stmt->rowCount() > 0) {
+        return $orders; 
+    } else {
+        return null;
+    }
+}
+ 
+$orders = fetchOrdersByUserID($pdo, $email);
+
+function formatKey($key) {
+    return ucfirst(preg_replace('/(?<!\ )[A-Z]/', ' $0', $key));
+}
 ?>
 
 <!DOCTYPE html>
@@ -121,46 +139,34 @@ if ($user_id) {
     
     <main class="profile-page">
         <div class="profile-container">
-            <h2>Profile</h2>
-            <form action="update_profile.php" method="POST" enctype="multipart/form-data" class="profile-form">
-                <div class="profile-image">
-                    <?php if ($profile_image): ?>
-                        <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image" class="profile-pic">
-                    <?php else: ?>
-                        <div class="image-placeholder">Image here</div>
-                    <?php endif; ?>
-                    <label for="profile_image" class="upload-button">Upload Image</label>
-                    <input type="file" id="profile_image" name="profile_image" style="display:none;">
-                </div>
+                <h2>Order History</h2>
+     <?php 
+     
+     
+    if ($orders !== null) {
+    echo "<h2>Orders for User: $email</h2>";
+    echo "<ul>";
+    foreach ($orders as $order) {
+        
+        $itemsOrdered = json_decode($order['items_ordered']);
+        echo "<li>Order ID: " . $order['orderid'] . "</li>";
+        echo "<li>Total Cost: $" . $order['total_cost'] . "</li>";
+        echo "<li>Purchase Date: " . $order['purchase_date'] . "</li>";
+        foreach ($itemsOrdered as $key => $value) {
+            if ($value !=null) {
+                $formattedKey = formatKey($key);
+                echo "<li><strong>$formattedKey:</strong> QTY: $value</li>";
+            }
+       
+        }
 
-                <div class="information">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-
-                    <label for="theme">Theme:</label>
-                    <div class="themes">
-                        <label>
-                            <input type="radio" name="theme" value="light" <?php if($theme == 'light') echo 'checked'; ?>> Light
-                        </label>
-                        <label>
-                            <input type="radio" name="theme" value="dark" <?php if($theme == 'dark') echo 'checked'; ?>> Dark
-                        </label>
-                    </div>
-
-                    <input type="submit" value="Save Profile" class="save-button">
-                </div>
-            </form>
-
-            <form action="archive_account.php" method="POST" class="archive-logout-form">
-                <input type="submit" value="Delete Account" class="archive-button">
-            </form>
-
-            <form action="logout.php" method="POST" class="archive-logout-form">
-                <input type="submit" value="Logout" class="logout-button">
-            </form>
+        echo "<br>";
+    }
+    echo "</ul>";
+} else {
+    echo "No orders found for User: $userid";
+}
+?>
         </div>
     </main>
 

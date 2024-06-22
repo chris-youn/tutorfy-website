@@ -1,18 +1,8 @@
 <?php
-ob_start(); // Start output buffering
-
 include('../adminModule/configuration.php');
 include('../scripts/functions.php');
 require '../forum/config.php';
 
-$messages = ''; // Initialize a variable to store messages
-
-// Make sure the user has in fact made an order
-if(isset($_SESSION['orderValidated'])){
-    $orderValid = $_SESSION['orderValidated'];
-} else {
-    $orderValid = false;
-}
 
 // Fetch user ID and admin status
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
@@ -25,113 +15,17 @@ if ($user_id) {
     $isAdmin = $stmt->fetchColumn();
 }
 
-$theme = getUserTheme(); // Fetch the user's theme
+// Get the user's theme
+$theme = getUserTheme(); 
 
 // Fetch or create order ID
 if (isset($_SESSION['orderID'])) {
     $orderID = $_SESSION['orderID'];
 } else {
-    $_SESSION['orderID'] = time() . mt_rand();
+    $_SESSION['orderID'] = time().mt_rand();
     $orderID = $_SESSION['orderID'];
 }
 
-// Fetch user's email and full name from cookies
-$user_email = isset($_COOKIE['user_email']) ? $_COOKIE['user_email'] : null;
-$full_name = isset($_COOKIE['full_name']) ? $_COOKIE['full_name'] : null;
-
-// Fetch other information for database:
-$itemsOrdered = isset($_SESSION['cart_details']) ? $_SESSION['cart_details'] : null;
-if ($itemsOrdered != null){
-    $purchaseDate = time();
-}
-
-// Fetch cart details from session
-$cart_details = isset($_SESSION['cart_details']) ? json_decode($_SESSION['cart_details'], true) : null;
-if ($cart_details != null){
-    $totalCost = $cart_details['discountedTotal'];
-}
-
-if ($user_email && $cart_details && $orderValid) {
-    // Construct the email content
-    $content = "Dear " . htmlspecialchars($full_name) . ",\n\nYour order has been confirmed!\n\nOrder ID: $orderID\n\n";
-    $content .= "Here are the details of your purchased items:\n";
-
-    if (!empty($cart_details['tutorSessionShort'])) {
-        $content .= "1hr Tutor Session(s): " . $cart_details['tutorSessionShort'] . " x $40\n";
-    }
-    if (!empty($cart_details['tutorSessionLong'])) {
-        $content .= "2hr Tutor Session(s): " . $cart_details['tutorSessionLong'] . " x $70\n";
-    }
-    if (!empty($cart_details['tutorSessionShortBulk'])) {
-        $content .= "5 x 1hr Tutor Session(s): " . $cart_details['tutorSessionShortBulk'] . " x $170\n";
-    }
-    if (!empty($cart_details['tutorSessionLongBulk'])) {
-        $content .= "5 x 2hr Tutor Session(s): " . $cart_details['tutorSessionLongBulk'] . " x $300\n";
-    }
-
-    $content .= "\nTotal: $" . $cart_details['total'];
-    if (!empty($cart_details['discountedTotal']) && $cart_details['discountedTotal'] < $cart_details['total']) {
-        $content .= "\nDiscounted Total: $" . $cart_details['discountedTotal'];
-    }
-
-    $content .= "\n\nYou will receive an email containing information on booking your purchased sessions.\n\n";
-    $content .= "Thank you for shopping with us!\n\nBest regards,\nTutorfy Team";
-
-    // Email sending logic
-    $to = $user_email;
-    $subject = "Order Confirmation - Order ID: " . $orderID;
-    $headers = "From: no-reply@tutorfy.com";
-
-    if (mail($to, $subject, $content, $headers)) {
-        $messages .= "Order confirmation email sent successfully to $to<br>";
-    } else {
-        $messages .= "Failed to send order confirmation email.<br>";
-    }
-} else {
-    $messages .= "User email not found, cart details missing, or order not validated. Cannot send order confirmation email.<br>";
-}
-
-// check if orderId is in database to avoid duplicate entries:
-function checkForOrderID($pdo, $orderID) {
-    $sql = "SELECT COUNT(*) FROM orders WHERE orderid = :orderid";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':orderid', $orderID, PDO::PARAM_STR);
-    $stmt->execute();
-    $count = $stmt->fetchColumn();
-    if ($count > 0) {
-        return false; // Order ID exists
-    } else {
-        return true; // Order ID does not exist
-    }
-}
-
-// insert order into database if valid
-if ($orderValid && checkForOrderID($pdo, $orderID)) {
-    $sql = "INSERT INTO orders (orderid, userid, items_ordered, total_cost, purchase_date) 
-    VALUES (:orderid, :userid, :items_ordered, :total_cost, NOW())";
-    $stmt = $pdo->prepare($sql);
-     
-    // remove order total and discounted total from items ordered
-    $itemsArray = json_decode($itemsOrdered, true);
-    unset($itemsArray['total']);
-    unset($itemsArray['discountedTotal']);
-    $itemsOrdered = json_encode($itemsArray);
-     
-    // Bind parameters
-    $stmt->bindParam(':orderid', $orderID, PDO::PARAM_STR);
-    $stmt->bindParam(':userid', $user_email, PDO::PARAM_STR);
-    $stmt->bindParam(':items_ordered', $itemsOrdered, PDO::PARAM_STR);
-    $stmt->bindParam(':total_cost', $totalCost, PDO::PARAM_STR);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        $messages .= "Order inserted successfully!<br>";
-    } else {
-        $messages .= "Failed to insert order.<br>";
-    }
-}
-
-ob_end_flush(); // Flush the output buffer
 ?>
 
 <!DOCTYPE html>
@@ -169,7 +63,7 @@ ob_end_flush(); // Flush the output buffer
             </div>
         </a>
         <nav class="nav-links">
-            <a href="../homepage/homepage.php" class="nav-link">Home</a>
+            <a href="../homepage/homepage.php" class="nav-link active">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
@@ -229,37 +123,17 @@ ob_end_flush(); // Flush the output buffer
             </div>
         </div>
     </header>
-    
-    <?php  if($orderValid == true):?>
 
     <section class="orderconfirmation">
         <div class="orderconfirmationcontainer">
-        <h1>Your order has been confirmed!</h1>
+        <h1>Order Failed</h1>
         <p id="orderID">Order ID: <?php echo $orderID ?> </p>
-        <p>You will receive an email containing information on booking your purchased sessions </p>
-        <div id="orderSummary">
-            <h2 style="margin:8px;">Order Summary:</h2>
-            <div class="separator" style="margin-bottom:10px;"></div>
-            <div id="orderSummaryItems"></div>
-        </div>
+        <p>Please ensure you entered correct information when making the purchase.</p>
         <script>
             
         </script>
         </div>
     </section>
-    <?php endif; ?>
-    
-    
-    <?php if($orderValid == false):?>
-        <section class="orderconfirmation">
-        <div class="orderconfirmationcontainer">
-        <h1>You have not made an order.</h1>
-        
-        <p>If you are looking for a previous order you have made, please check your email or your account's order history. </p>
-        
-        </div>
-    </section>
-    <?php endif;?>
         
     <div class="cookie-consent-overlay" id="cookieConsent">
         <div class="cookie-consent-box">

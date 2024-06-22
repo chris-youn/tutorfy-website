@@ -16,7 +16,9 @@ if ($user_id) {
 }
 
 $theme = getUserTheme(); // Fetch the user's theme
-
+if (isset($_SESSION['orderID'])) {
+    unset($_SESSION['orderID']);
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -55,6 +57,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
+            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>
@@ -113,7 +116,7 @@ $theme = getUserTheme(); // Fetch the user's theme
 
     <main class="content">
         <div class="checkout-container">
-            <form id="payment" method="POST" class="payment-form" action="order_finished.php">
+            <form id="payment" method="POST" class="payment-form" action="checkout_validate.php">
                 <h2>Payment Details</h2>
                 <div>
                     <h4>Full Name</h4>
@@ -134,6 +137,18 @@ $theme = getUserTheme(); // Fetch the user's theme
                         </p>
                     </div>
                 </div>
+
+                <script>
+                    document.getElementById('payment').addEventListener('submit', function(event) {
+                        const email = document.getElementById('email').value;
+                        sessionStorage.setItem('user_email', email); // Store email in sessionStorage
+                        document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
+                        const fullName = document.getElementById('fullName').value;
+                        sessionStorage.setItem('full_name', fullName); // Store fullName in sessionStorage
+                        document.cookie = 'full_name=' + fullName + '; path=/'; // Store fullName in cookie
+                    });
+                </script>
 
                 <div>
                     <h4>Card Number</h4>
@@ -165,8 +180,11 @@ $theme = getUserTheme(); // Fetch the user's theme
                     </div>
                     
                 </div>
+                <input type="hidden" name="cart_details" id="cart_details">
                 <button type="submit" target="order_complete.php">Pay now</button>
             </form>
+
+           
 
             <div id="cart-summary" class="cart-summary">
                 <h2>Your Cart</h2>
@@ -217,6 +235,33 @@ $theme = getUserTheme(); // Fetch the user's theme
                             
                         </span>
                 </div>
+                <script>
+                document.getElementById('payment').addEventListener('submit', function(event) {
+                    const email = document.getElementById('email').value;
+                    sessionStorage.setItem('user_email', email); // Store email in sessionStorage
+                    document.cookie = 'user_email=' + email + '; path=/'; // Store email in cookie
+
+                    const fullName = document.getElementById('fullName').value;
+                    sessionStorage.setItem('full_name', fullName); // Store fullName in sessionStorage
+                    document.cookie = 'full_name=' + fullName + '; path=/'; // Store fullName in cookie
+
+                    // Get cart details from sessionStorage
+                    const cartDetails = {
+                        tutorSessionShort: sessionStorage.getItem('tutorSessionShort'),
+                        tutorSessionLong: sessionStorage.getItem('tutorSessionLong'),
+                        tutorSessionShortBulk: sessionStorage.getItem('tutorSessionShortBulk'),
+                        tutorSessionLongBulk: sessionStorage.getItem('tutorSessionLongBulk'),
+                        total: sessionStorage.getItem('total'),
+                        discountedTotal: sessionStorage.getItem('discountedTotal')
+                    };
+
+                    // Store cart details in hidden input
+                    document.getElementById('cart_details').value = JSON.stringify(cartDetails);
+                });
+            </script>
+             
+
+             
                
                 <div id="couponcode">
                         <h4>Coupon Code</h4>

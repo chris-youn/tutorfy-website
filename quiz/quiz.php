@@ -1,22 +1,6 @@
 <?php
+require '../forum/config.php';
 include('../scripts/functions.php');
-include('../forum/config.php');
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
-    exit;
-}
-
-include('config.php');
-$user_id = $_SESSION['user_id'];
-
-$stmt = $conn->prepare("SELECT username, email, theme, profile_image FROM users WHERE id = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($username, $email, $theme, $profile_image);
-$stmt->fetch();
-$stmt->close();
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $isAdmin = false;
@@ -27,42 +11,47 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $isAdmin = $stmt->fetchColumn();
 }
+
+$theme = getUserTheme(); // Fetch the user's theme
 ?>
 
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-    <title>Tutorfy | Profile</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="profile.css">
+    <title>Tutorfy | Get on top of your schoolwork</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="quiz.css">
     <?php if ($theme == 'dark'): ?>
         <link rel="stylesheet" type="text/css" href="../global-dark.css">
     <?php else: ?>
         <link rel="stylesheet" type="text/css" href="../global.css">
     <?php endif; ?>
-    <script src="../global.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet"> 
+    <script src="quiz.js" defer></script>
+    <script src="../global.js" async defer></script>
 </head>
 
 <body>
     <header class="topnav">
         <a href="../homepage/homepage.php">
             <div class="logo">
-            <?php if ($theme == 'dark'): ?>
+                <?php if ($theme == 'dark'): ?>
                     <img src="../assets/img/tutorfy-logo-white.png" alt="Tutorfy Logo">
                 <?php else: ?> 
-                    <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo">
+                    <img src="../assets/img/tutorfy-logo.png" alt="Tutorfy Logo"> 
                 <?php endif; ?>
-            <span>Tutorfy</span>
+                <span>Tutorfy</span>
             </div>
         </a>
         <nav class="nav-links">
-            <a href="../homepage/homepage.php" class="nav-link">Home</a>
+            <a href="../homepage/homepage.php" class="nav-link ">Home</a>
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link">Forums</a>
-            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
+            <a href="../quiz/quiz.php" class="nav-link active">Quiz</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>
@@ -118,52 +107,20 @@ if ($user_id) {
             </div>
         </div>
     </header>
-    
-    <main class="profile-page">
-        <div class="profile-container">
-            <h2>Profile</h2>
-            <form action="update_profile.php" method="POST" enctype="multipart/form-data" class="profile-form">
-                <div class="profile-image">
-                    <?php if ($profile_image): ?>
-                        <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Image" class="profile-pic">
-                    <?php else: ?>
-                        <div class="image-placeholder">Image here</div>
-                    <?php endif; ?>
-                    <label for="profile_image" class="upload-button">Upload Image</label>
-                    <input type="file" id="profile_image" name="profile_image" style="display:none;">
-                </div>
-
-                <div class="information">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-
-                    <label for="theme">Theme:</label>
-                    <div class="themes">
-                        <label>
-                            <input type="radio" name="theme" value="light" <?php if($theme == 'light') echo 'checked'; ?>> Light
-                        </label>
-                        <label>
-                            <input type="radio" name="theme" value="dark" <?php if($theme == 'dark') echo 'checked'; ?>> Dark
-                        </label>
-                    </div>
-
-                    <input type="submit" value="Save Profile" class="save-button">
-                </div>
-            </form>
-
-            <form action="archive_account.php" method="POST" class="archive-logout-form">
-                <input type="submit" value="Delete Account" class="archive-button">
-            </form>
-
-            <form action="logout.php" method="POST" class="archive-logout-form">
-                <input type="submit" value="Logout" class="logout-button">
-            </form>
-        </div>
+    <main class="content">
+        <h1>Take a Quiz!</h1>
+        <h3><a href="../quiz/quiz.php" id="refresh-link">Click Here to Refresh the Page to Try Out Different Sets of Questions!</a></h3>
+        <div id="quiz-container"></div>
     </main>
-
+    
+    <div class="cookie-consent-overlay" id="cookieConsent">
+        <div class="cookie-consent-box">
+            <p>We use cookies to ensure you get the best experience on our website. <a href="../policy/policy.php" target="_blank">Learn more</a></p>
+            <button class="cookie-accept-btn">Accept</button>
+            <button class="cookie-decline-btn">Decline</button>
+        </div>
+    </div> 
+                   
     <footer>
         <div class="sec-links">
             <div class="tutorfy">

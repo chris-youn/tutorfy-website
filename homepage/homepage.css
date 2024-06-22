@@ -19,18 +19,23 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     padding: 30px;
-    text-align: justify;
     width: 100%;
+    flex: 1;
 }
 
-.site-intro h1 {
-    width: 50%;
+.site-intro img {
+    border-radius: 50%;
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+    /* flex: 1; */
 }
 
-.site-intro p {
-    padding: 20px;
-    width: 40%;
+.site-intro div {
+    padding: 0 20px;
+    width: 600px;
 }
 
 section {
@@ -154,6 +159,16 @@ button:focus {
     .topnav .icons {
         margin-top: 10px;
         margin-left:auto;
+    }
+
+    .site-intro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .site-intro div {
+        padding: 0 20px;
+        width: 400px;
     }
     
     .articles-section {

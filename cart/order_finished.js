@@ -19,7 +19,8 @@ function moveSessionStorageToLocalStorage() {
     sessionStorage.clear();
   
     console.log('sessionStorage items have been transferred to localStorage.');
-  }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     
     moveSessionStorageToLocalStorage();
@@ -28,54 +29,60 @@ document.addEventListener("DOMContentLoaded", function() {
     separatorDiv.innerHTML = "<br>";
     cartSummaryItems = document.getElementById('orderSummaryItems');
     cartSummaryItems.appendChild(separatorDiv);
+    
     if (localStorage.getItem('tutorSessionShort')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "1hr Tutor Session(s) x" + localStorage.getItem('tutorSessionShort') + " Price: $" + localStorage.getItem('tutorSessionShort') * 40
         cartSummaryItems.appendChild(newItem);
     }
+
     if (localStorage.getItem('tutorSessionLong')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "2hr Tutor Session(s) x" + localStorage.getItem('tutorSessionLong') + " Price: $" + localStorage.getItem('tutorSessionLong') * 70
             
         cartSummaryItems.appendChild(newItem);
     }
+
     if (localStorage.getItem('tutorSessionShortBulk')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "5 x 1hr Tutor Session(s) x" + localStorage.getItem('tutorSessionShortBulk') + " Price: $" + localStorage.getItem('tutorSessionShortBulk') * 170 
             
         cartSummaryItems.appendChild(newItem);
     }
+    
     if (localStorage.getItem('tutorSessionLongBulk')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "5 x 2hr Tutor Session(s) x" + localStorage.getItem('tutorSessionLongBulk') + " Price: $" + localStorage.getItem('tutorSessionLongBulk') * 300
         cartSummaryItems.appendChild(newItem);
     }
+
     if (localStorage.getItem('total')) {
         let total = document.createElement("div");
         total.classList.add("subTotalText");
         total.innerHTML = "Subtotal: $"+ localStorage.getItem('total');
         cartSummaryItems.appendChild(total);
     }
+
     let discount = document.createElement("div");
     discount.classList.add("discountText");
-    discount.innerHTML = "Discount: $"+ (localStorage.getItem('total') - localStorage.getItem('discountedTotal'));
+    if (localStorage.getItem('discountedTotal') == null ||localStorage.getItem('discountedTotal') == 0 || localStorage.getItem('discountedTotal') > localStorage.getItem('total')) {
+        discount.innerHTML = "Discount: $0"
+    } else {
+        discount.innerHTML = "Discount: $"+ (localStorage.getItem('total') - localStorage.getItem('discountedTotal'));
+    }
+   
     let discountTotal = document.createElement("div");
     discountTotal.classList.add("totalText");
-    if (localStorage.getItem('discountedTotal') == null) {
+    
+    if (localStorage.getItem('discountedTotal') == null ||localStorage.getItem('discountedTotal') == 0 || localStorage.getItem('discountedTotal') < localStorage.getItem('total')){
         discountTotal.innerHTML = "Total: $" + localStorage.getItem('total');
     } else {
         discountTotal.innerHTML = "Total: $" + localStorage.getItem('discountedTotal')
     }
      
     cartSummaryItems.appendChild(discount);
-    
     cartSummaryItems.appendChild(separatorDiv);
-    
     cartSummaryItems.appendChild(discountTotal);
     
-    
     getNoOfItems();
-
 })
-
-
