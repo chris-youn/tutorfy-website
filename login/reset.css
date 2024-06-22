@@ -6,7 +6,7 @@
 }
 
 form {
-    background-color: white;
+    background-color: #EDC7B7;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -43,12 +43,4 @@ form button {
 
 form button:hover {
     background-color: #922D50;
-}
-
-.footer {
-    background-color: #EDC7B7;
-    text-align: center;
-    padding: 10px;
-    font-size: 16px;
-    color: #2c3e50;
 }
