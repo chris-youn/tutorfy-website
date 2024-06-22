@@ -344,7 +344,7 @@ section, .profile-container, .article, .filter,
 .planItem, .payment-form, .cart-summary, 
 .cookie-policy, .contact > .inputForm, .posts,
 .new-thread, .forum-post, .reply-form, .replies-section,
-.orderconfirmationcontainer {
+.orderconfirmationcontainer, .article-container {
     background-color: #EDC7B7;
     border: 1px solid #ccc;
 }

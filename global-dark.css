@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6, p, .back-button {
 .payment-form, .cart-summary, .cookie-policy,
 .contact > .inputForm, .posts, .new-thread,
 .forum-post, .reply-form, .replies-section,
-.orderconfirmationcontainer, .quiz-question {
+.orderconfirmationcontainer, .quiz-question, .article-container {
     background-color: #282420; 
     border: 1px solid #AC3B61;
 }

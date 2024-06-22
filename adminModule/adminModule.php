@@ -70,12 +70,12 @@ $theme = getUserTheme(); // Fetch the user's theme
     </header>
 
     <main class="content">
-        <section class="banner">
+        <!-- <section class="banner">
             <h1>Administration Module</h1>
-        </section>
+        </section> -->
 
         <section class="admin-intro">
-            <h2>Welcome to the Administration Module</h2>
+            <h1>Administration Module</h1>
             <p>
                 This page is designed for the ease of access of the admininstrators.
                 <br><br>

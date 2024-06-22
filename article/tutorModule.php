@@ -70,13 +70,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Tutorfy | Create Article</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="forum_styles.css">
+    <link rel="stylesheet" href="tutorModule.css">
     <link rel="stylesheet" href="../global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <script src="forum_script.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php if ($theme == 'dark'): ?>
+        <link rel="stylesheet" type="text/css" href="../global-dark.css">
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="../global.css">
+    <?php endif; ?>
     <script src="../global.js" defer></script>
 </head>
 
@@ -94,9 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         <nav class="nav-links">
             <a href="../homepage/homepage.php" class="nav-link">Home</a>
-            <a href="../article/article.php" class="nav-link">Articles</a>
+            <a href="../article/article.php" class="nav-link active">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
-            <a href="../forum/forum.php" class="nav-link active">Forums</a>
+            <a href="../forum/forum.php" class="nav-link">Forums</a>
             <?php if ($isAdmin): ?>
                 <a href="../adminModule/adminModule.php" class="nav-link">Administration Module</a>
             <?php endif; ?>
@@ -152,33 +156,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-    <h1>Create a New Article</h1>
-    <form method="POST" enctype="multipart/form-data" id="articleForm">
-        <label for="article-title">Title:</label>
-        <input type="text" id="article-title" name="article-title" required>
-        <br>
-        
-        <label for="article-subject">Subject:</label>
-        <select id="article-subject" name="article-subject" required>
-            <option value="" disabled selected>--Please Select a Subject--</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Science">Science</option>
-            <option value="English">English</option>
-            <option value="Geography">Geography</option>
-            <option value="Miscellaneous">Miscellaneous</option>
-        </select>
-        <br>
-        
-        <label for="article-content">Content:</label>
-        <textarea id="article-content" name="article-content" style="white-space: pre-wrap;" required></textarea>
-        <br>
-        
-        <label for="article-image">Image:</label>
-        <input type="file" id="article-image" name="article-image">
-        <br>
-        
-        <input type="submit" value="Create Article">
-    </form>
+    <main class="content">
+        <h1>Create a New Article</h1>
+        <div class="article-container">
+            <form method="POST" enctype="multipart/form-data" id="articleForm">
+                <h4>Title:</h4>
+                <label for="article-title"></label>
+                <input type="text" id="article-title" name="article-title" class="input" placeholder="Enter the title" required>
+
+                <h4>Subject:</h4>
+                <label for="article-subject"></label>
+                <select id="article-subject" name="article-subject" class="input" required>
+                    <option value="" disabled selected>--Please Select a Subject--</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="English">English</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+
+                <h4>Content:</h4>
+                <label for="article-content"></label>
+                <textarea id="article-content" name="article-content" rows="4" cols="50" class="input" placeholder="Enter the content" style="white-space: pre-wrap;" required></textarea>
+
+                <h4>Image:</h4>
+                <label for="article-image"></label>
+                <input type="file" id="article-image" name="article-image" class="input">
+
+                <input type="submit" id="articleSubmit" value="Create Article">
+            </form>
+        </div>
+    </main>
 
     <footer>
         <div class="sec-links">
