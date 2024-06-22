@@ -54,8 +54,8 @@ $theme = getUserTheme(); // Fetch the user's theme
             <a href="../article/article.php" class="nav-link">Articles</a>
             <a href="../store/store.php" class="nav-link">Store</a>
             <a href="../forum/forum.php" class="nav-link ">Forums</a>
+            <a href="../quiz/quiz.php" class="nav-link">Quiz</a>
             <a href="../adminModule/adminModule.php" class="nav-link active">Administration Module</a>
-            
         </nav>
 
         <!-- No cart icon, as this page is meant to be accessed only by admins -->
