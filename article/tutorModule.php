@@ -152,9 +152,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </header>
-    <main>
-    <h1>Create a New Article</h1>
+    <main class = "content">
+        <section class="banner">
+            <h1>Tutor Module</h1>
+        </section>
+
+        <section class="admin-intro">
+            <h2>Welcome to the Administration Module</h2>
+            <p>
+                This page is designed for the ease of access of the tutors.
+                <br><br>
+                Using this page, you will be able to create articles and archive or unarchive articles. 
+            </p>
+        </section>
+
         <section>
+            <h2>Create a New Article</h2>
             <form method="POST" enctype="multipart/form-data" id="articleForm">
                 <label for="article-title">Title:</label>
                 <input type="text" id="article-title" name="article-title" required>
