@@ -30,12 +30,11 @@
     height: 30vh;
     width: auto;
     object-fit: cover;
-    /* flex: 1; */
 }
 
 .site-intro div {
     padding: 0 20px;
-    width: 600px;
+    width: 40vw;
 }
 
 section {
@@ -200,6 +199,13 @@ button:focus {
 
     button.prev, button.next {
         top: -30px;
+    }
+
+    .site-intro img {
+        border-radius: 50%;
+        height: auto;
+        width: 60vw;
+        object-fit: cover;
     }
 
 }
