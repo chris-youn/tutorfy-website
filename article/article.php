@@ -212,6 +212,11 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
                     }
                 }
             ?>
+            <?php if (!empty($_GET['search'])): ?>
+                <?php $search = htmlspecialchars($_GET['search']); ?>
+                <h2>Showing results for articles matching "<?= $search ?>":</h2>
+            <?php endif; ?>
+
             <div class="articles">
                 <?php
                 $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
@@ -230,8 +235,10 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
         <div class="sidebar">
             <div class="filter">
                 <h3>Filter by Keyword</h3>
-                <input type="text" id="search" name="search" placeholder="Search...">
-                <button type="submit" onclick="search()">Search</button>
+                <form method="GET" action="article.php">
+                    <input type="text" id="search" name="search" placeholder="Search article contents...">
+                    <button type="submit">Search</button>
+                </form>
             </div>
             <div class="filter">
                 <h3>Filter by Subject</h3>
