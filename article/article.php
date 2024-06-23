@@ -24,30 +24,34 @@ if ($user_id) {
 $theme = getUserTheme(); // Fetch the user's theme
 
 
-function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added subject filter
-    if ($isAdmin || $isTutor) {
-        // Fetch all articles for admins and tutors, including archived ones
-        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id"; // Begin an sql query for admins/tutor
-    } else {
-        // Fetch only non-archived articles for all other users
-        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0"; // Begin an sql query for other users
+function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = null) { // Added a subject and word filter parameters
+    if ($isAdmin || $isTutor) { // Fetch all articles for admins and tutors, including archived ones
+        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id";
+    } else { // Fetch only non-archived articles for all other users
+        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0";
     }
 
-    if ($subject) { // If a subject has been selected
-        if ($isAdmin || $isTutor) {
-            $sql .= " WHERE articles.subject = :subject ORDER BY articles.created_at DESC"; // Append sql query to filter the subejct for admins/tutors
-        } else {
-            $sql .= " AND articles.subject = :subject ORDER BY articles.created_at DESC"; // Append sql query to filter the subject for other users
-        }
-    } else { // If a subject hasn't beeen selected
-        $sql .= " ORDER BY articles.created_at DESC"; // Simply append the ordery by desceneding time
+    if ($subject) { // If a subject is provided, adds that to the sql query
+        $sql .= " AND articles.subject = :subject";
     }
+
+    if ($search) { // If a search word/phrase is provided, adds that to the sql
+        $sql .= " AND articles.content LIKE :search";
+    }
+
+    $sql .= " ORDER BY articles.created_at DESC"; //Order the article by the descending order of upload time
 
     $stmt = $pdo->prepare($sql);
 
     if ($subject) {
         $stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
     }
+
+    if ($search) {
+        $searchTerm = "%$search%"; //Sets the searchTerm to be the exact $search provided by the user
+        $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+    }
+
     $stmt->execute();
 
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -220,7 +224,8 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
             <div class="articles">
                 <?php
                 $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
-                displayArticles($pdo, $isAdmin, $isTutor, $subjectFilter);
+                $keywordSearch = isset($_GET['search']) ? $_GET['search'] : null;
+                displayArticles($pdo, $isAdmin, $isTutor, $subjectFilter, $keywordSearch);
                 ?>
             </div>
         </div>
