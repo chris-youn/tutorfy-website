@@ -6,10 +6,13 @@ function fetchUsers($pdo) {
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+    // Table header
     echo "<table border=\"1\"><tr>
         <th>ID</th><th>Email</th><th>Username</th><th>Created At</th><th>Theme</th><th>Archived</th><th>Admin</th><th>Tutor</th><th>Actions</th>
     </tr>";
+
+    // Print table details for each user. Creates buttons for actions, and sends hidden data to toggleArchive.
+    // A similar format applies to all archive forms
     foreach ($users as $user) {
 
         echo "<tr>

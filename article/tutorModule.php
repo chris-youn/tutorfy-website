@@ -26,6 +26,7 @@ $isAdmin = $user['isAdmin'];
 $isTutor = $user['isTutor'];
 
 
+//Process the requests provided with the article creation form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['article-title'];
     $content = $_POST['article-content'];
@@ -157,7 +158,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </header>
-
+    
+    <!-- Create the form with different parameters and send the request to the scripts above -->
     <main class="content">
         <h1>Create Article</h1>
         <div class="article-container">

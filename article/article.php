@@ -54,6 +54,8 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = nu
 
     $stmt->execute();
 
+    // Formatting for the article printing. Checks for the subject and prints it, prints other details, and checks 
+    //for isTutor and isAdmin statuses, for which an archive button is shown.
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($articles as $article) {
         echo "<div class='article'>";
@@ -193,7 +195,7 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = nu
     <main class="content">
         <div class="articles-section">
             <h1>Articles</h1>
-            <?php 
+            <?php //When subject is filtered, it shows the subject up the top
                 if (!empty($_GET['subject'])) {
                     if (($_GET['subject']) == "mathematics") {
                         echo "<h2>Showing results for Mathematics related articles: </h2>";
@@ -216,11 +218,13 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = nu
                     }
                 }
             ?>
-            <?php if (!empty($_GET['search'])): ?>
+            <!-- Shows the search term up the top -->
+            <?php if (!empty($_GET['search'])): ?> 
                 <?php $search = htmlspecialchars($_GET['search']); ?>
                 <h2>Showing results for articles matching "<?= $search ?>":</h2>
             <?php endif; ?>
-
+            
+            <!-- Prints the articles themselves -->
             <div class="articles">
                 <?php
                 $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
@@ -238,7 +242,9 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = nu
    
 
         <div class="sidebar">
+            <!-- Filtration bar -->
             <div class="filter">
+                <!-- Search bar with keyword checking for text in content -->
                 <h3>Filter by Keyword</h3>
                 <form method="GET" action="article.php">
                     <input type="text" id="search" name="search" placeholder="Search article contents...">
@@ -246,6 +252,7 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null, $search = nu
                 </form>
             </div>
             <div class="filter">
+                <!-- Subject filtration with dropdown -->
                 <h3>Filter by Subject</h3>
                 <form method="GET" action="article.php">
                     <select id="subject" name="subject">

@@ -92,7 +92,8 @@ $theme = getUserTheme(); // Fetch the user's theme
                 
             </p>
         </section>
-
+        
+        <!-- Fetch tables from respective php fetch file -->
         <section class="user-management" id="user-management">
         <h2>Manage Users</h2>
             <?php fetchUsers($pdo) ?>
