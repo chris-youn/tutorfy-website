@@ -200,7 +200,7 @@ input[type=submit]#cartCheckout:hover {
 .cart-summary li button:hover,
 .time-posted button:hover,
 .new-thread button:hover, .archive-button:hover,
-.save-button:hover, .scroll-to-top:hover {
+.save-button:hover, .scroll-to-top:hover, .orderhistory-button:hover {
     cursor: pointer;
     background-color: #8E3150; /* Dark brown background */
     color: #EEE2DC; /* Light text color */
