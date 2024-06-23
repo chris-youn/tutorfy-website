@@ -27,7 +27,10 @@ This is a student group project for RMIT. This is a website aimed at providing e
 ## Articles Page: 
 - Users are able to read certified articles that have been published by tutors
 - Users are able to also select what articles they want to see by the subject filter.
-- Users are able to search a article by a keyword also if they like.
+- Users are able to search a article by a keyword in the content of the articles also if they like.
+- Tutors and admins can archive/unarchive articles from within the articles page itself for ease of access, which is only visible to these types of users.
+- Tutors and admins can be redirected to the article creation page by clicking the "create article" button only visible to admins and tutors.
+
 ## Shop Page Functionalities:
 
 - Users can add products to a shopping cart, proceed to checkout.
@@ -37,13 +40,13 @@ This is a student group project for RMIT. This is a website aimed at providing e
 ## Administration Module:
 
 - Admins can archive/unarchive existing threads and comments.
+- Admins can view user details.
 - Admins can make users or remove users from admin roles.
+- Admins can make users or remove users from tutor roles.
 - Admins can lock/unlock user's accounts.
-- Admins can post new products to the shop.
-- Admins can delete products in the shop.
 
-This section in the prototype phase will allow users to archive users, threads, and individual posts. Additional functionality will come in the final version.
-Currently this page will be on the navigation bar for all users to access, but in the final version, it will only be accessible to admin users.
+
+
 
 ## Accessing the website:
 - You can access the website under this link: https://titan.csit.rmit.edu.au/~s4015064/assignment-3-final-website-wps_group_3/homepage/homepage.php
@@ -57,6 +60,10 @@ Currently this page will be on the navigation bar for all users to access, but i
 ### Admin Accounts:
 - Username: aqua
 - Password: gura
+
+### Tutor Accounts:
+- Username: tutor1
+- Password: Tutor001!
 
 ## Website Developed By:
 - Shawn Chew (s4015064)
