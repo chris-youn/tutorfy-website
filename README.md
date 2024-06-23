@@ -58,6 +58,10 @@ Currently this page will be on the navigation bar for all users to access, but i
 - Username: aqua
 - Password: gura
 
+### Tutor Accounts:
+- Username: tutor1
+- Password: Tutor001!
+
 ## Website Developed By:
 - Shawn Chew (s4015064)
 - Braiden Webb (s4032004)
