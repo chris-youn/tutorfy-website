@@ -170,11 +170,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="article-subject"></label>
                 <select id="article-subject" name="article-subject" class="input" required>
                     <option value="" disabled selected>--Please Select a Subject--</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                    <option value="Geography">Geography</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="science">Science</option>
+                    <option value="english">English</option>
+                    <option value="humanities">Humanities</option>
+                    <option value="miscellaneous">Miscellaneous</option>
                 </select>
 
                 <h4>Content:</h4>

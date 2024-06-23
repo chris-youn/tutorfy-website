@@ -174,7 +174,25 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
             <h1>Articles</h1>
             <?php 
                 if (!empty($_GET['subject'])) {
-                    echo "<h2>Showing results for " . htmlspecialchars($_GET['subject']) . "</h2>";
+                    if (($_GET['subject']) == "mathematics") {
+                        echo "<h2>Showing results for Mathematics related articles: </h2>";
+                    }
+
+                    if (($_GET['subject']) == "science") {
+                        echo "<h2>Showing results for Science related articles: </h2>";
+                    }
+
+                    if (($_GET['subject']) == "english") {
+                        echo "<h2>Showing results for English related articles: </h2>";
+                    }
+
+                    if (($_GET['subject']) == "humanities") {
+                        echo "<h2>Showing results for Humanities related articles: </h2>";
+                    }
+
+                    if (($_GET['subject']) == "miscellaneous") {
+                        echo "<h2>Showing results for Miscellaneous articles: </h2>";
+                    }
                 }
             ?>
             <div class="articles">
@@ -206,7 +224,7 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
                         <option value="mathematics">Mathematics</option>
                         <option value="science">Science</option>
                         <option value="english">English</option>
-                        <option value="geography">Geography</option>
+                        <option value="humanities">Humanities</option>
                         <option value="miscellaneous">Miscellaneous</option>
                     </select>
                     <button type="submit">Filter</button>
