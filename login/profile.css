@@ -112,7 +112,7 @@ body {
     border: 1px solid red;
 }
 
-.archive-button, .logout-button {
+.archive-button, .logout-button, .orderhistory-button {
     background-color: #AC3B61;
     color: white;
     border: none;

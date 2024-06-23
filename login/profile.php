@@ -153,7 +153,9 @@ if ($user_id) {
                     <input type="submit" value="Save Profile" class="save-button">
                 </div>
             </form>
-
+            <form action="order_history.php" method="POST" class="archive-logout-form">
+                <input type="submit" value="Order History" class="orderhistory-button">
+            </form>
             <form action="archive_account.php" method="POST" class="archive-logout-form">
                 <input type="submit" value="Delete Account" class="archive-button">
             </form>
