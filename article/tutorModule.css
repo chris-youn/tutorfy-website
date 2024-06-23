@@ -31,7 +31,7 @@ main {
 }
 
 .input {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -64,6 +64,7 @@ input:focus, textarea:focus, select:focus {
 
 #article-content {
     resize: vertical;
+    width: 40vw;
 }
 
 @media (max-width: 768px) {
