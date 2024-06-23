@@ -81,6 +81,7 @@ p {
     font-size: 15px;
     border-radius: 8px;
     border: none;
+    width: 100px;
     transition: background-color 0.3s;
 }
             

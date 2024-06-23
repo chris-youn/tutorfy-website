@@ -119,6 +119,7 @@ h2, h3, h4, h5, h6 {
     font-size: 15px;
     border-radius: 8px;
     border: none;
+    width: 100px;
     transition: background-color 0.3s;
 }
             

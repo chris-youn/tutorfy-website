@@ -29,7 +29,7 @@ function displayArticles($pdo, $isAdmin, $isTutor){
         // Fetch all articles for admins and tutors, including archived ones
         $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id ORDER BY articles.created_at DESC");
     } else {
-        // Fetch only non-archived articles for regular users
+        // Fetch only non-archived articles for all other users
         $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
     }
 
@@ -159,6 +159,12 @@ function displayArticles($pdo, $isAdmin, $isTutor){
                 <?php displayArticles($pdo, $isAdmin, $isTutor); ?>
             </div>
         </div>
+
+        <?php if (isset($_SESSION['message'])): ?>
+            <script>
+                alert("<?php echo $_SESSION['message']; unset($_SESSION['message']); ?>");
+            </script>
+        <?php endif; ?>
    
 
         <div class="sidebar">
