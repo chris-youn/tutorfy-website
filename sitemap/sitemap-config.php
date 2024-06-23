@@ -5,7 +5,7 @@ $base_url = $protocol . $server_name . dirname($_SERVER['PHP_SELF']) . '/';
 
 $folders_to_include = array(
     "adminModule" => array("adminModule.php"),
-    "article" => array("article.php", "tutormodule.php"),
+    "article" => array("article.php", "tutorModule.php"),
     "cart" => array("cart.php", "order_failed.php", "order_finished.php" ),
     "contact" => array("contact.php"),
     "forum" => array("forum.php" ,"external_forum.php"),
