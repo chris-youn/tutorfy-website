@@ -172,6 +172,11 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
     <main class="content">
         <div class="articles-section">
             <h1>Articles</h1>
+            <?php 
+                if (!empty($_GET['subject'])) {
+                    echo "<h2>Showing results for " . htmlspecialchars($_GET['subject']) . "</h2>";
+                }
+            ?>
             <div class="articles">
                 <?php
                 $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
