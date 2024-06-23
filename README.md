@@ -27,7 +27,10 @@ This is a student group project for RMIT. This is a website aimed at providing e
 ## Articles Page: 
 - Users are able to read certified articles that have been published by tutors
 - Users are able to also select what articles they want to see by the subject filter.
-- Users are able to search a article by a keyword also if they like.
+- Users are able to search a article by a keyword in the content of the articles also if they like.
+- Tutors and admins can archive/unarchive articles from within the articles page itself for ease of access, which is only visible to these types of users.
+- Tutors and admins can be redirected to the article creation page by clicking the "create article" button only visible to admins and tutors.
+
 ## Shop Page Functionalities:
 
 - Users can add products to a shopping cart, proceed to checkout.
@@ -41,6 +44,8 @@ This is a student group project for RMIT. This is a website aimed at providing e
 - Admins can make users or remove users from admin roles.
 - Admins can make users or remove users from tutor roles.
 - Admins can lock/unlock user's accounts.
+
+
 
 
 ## Accessing the website:
