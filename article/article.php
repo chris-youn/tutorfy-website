@@ -54,7 +54,24 @@ function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added s
     foreach ($articles as $article) {
         echo "<div class='article'>";
         echo "<h2>{$article['title']}</h2>";
-        echo "<p>By {$article['username']} <strong>(TUTOR)</strong> on {$article['created_at']} &nbsp&nbsp&nbsp&nbsp Subject: {$article['subject']}</p>";
+        echo "<p>By {$article['username']} <strong>(TUTOR)</strong> on {$article['created_at']} &nbsp&nbsp&nbsp&nbsp Subject: ";
+                    if (($article['subject']) == "mathematics") {
+                        echo "Mathematics";
+                    }
+                    if (($article['subject']) == "science") {
+                        echo "Science";
+                    }
+                    if (($article['subject']) == "english") {
+                        echo "English";
+                    }
+                    if (($article['subject']) == "humanities") {
+                        echo "Humanities";
+                    }
+                    if (($article['subject']) == "miscellaneous") {
+                        echo "Miscellaneous";
+                    }
+                
+        echo "</p>";
         echo "<details>";
         echo "<summary><em>Click here to read the article...</em></summary>";
         if ($article['image_path']) {
