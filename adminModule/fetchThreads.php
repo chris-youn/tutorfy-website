@@ -10,11 +10,13 @@ function fetchThreads($pdo) {
         <th>Thread ID</th><th>User ID</th><th>Title</th><th>Content</th><th>Created At</th><th>Archived</th><th>Actions</th>
     </tr>";
     foreach ($threads as $thread) {
+        $charLimitContent = strlen($thread["content"]) > 500 ? substr($thread["content"], 0, 500) . '...&nbsp&nbsp&nbsp&nbsp(CONTINUED)' : $thread["content"];
+
         echo "<tr>
             <td>".$thread["id"]."</td>
             <td>".$thread["user_id"]."</td>
             <td>".$thread["title"]."</td>
-            <td>".$thread["content"]."</td>
+            <td>".$charLimitContent."</td>
             <td>".$thread["created_at"]."</td>
             <td>".($thread["archived"] == 1 ? 'Yes' : 'No')."</td>
             <td>

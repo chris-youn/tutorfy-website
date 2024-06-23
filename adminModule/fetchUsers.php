@@ -27,6 +27,18 @@ function fetchUsers($pdo) {
                     <input type='hidden' name='action' value='".($user["archived"] == 1 ? 'unlock' : 'lock')."'>
                     <button type='submit' class='archive-button'>".($user["archived"] == 1 ? 'Unlock' : 'Lock')."</button>
                 </form>
+
+                <form method='post' action='toggleTutor.php'>
+                    <input type='hidden' name='id' value='".$user["id"]."'>
+                    <input type='hidden' name='action' value='".($user["isTutor"] == 1 ? 'unlock' : 'lock')."'>
+                    <button type='submit' class='archive-button'>".($user["isTutor"] == 1 ? 'Remove as Tutor' : 'Add as Tutor')."</button>
+                </form>
+
+                <form method='post' action='toggleAdmin.php'>
+                    <input type='hidden' name='id' value='".$user["id"]."'>
+                    <input type='hidden' name='action' value='".($user["isAdmin"] == 1 ? 'unlock' : 'lock')."'>
+                    <button type='submit' class='archive-button'>".($user["isAdmin"] == 1 ? 'Remove as Admin' : 'Add as Admin')."</button>
+                </form>
             </td>
         </tr>";
     }

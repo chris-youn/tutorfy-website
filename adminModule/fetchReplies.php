@@ -10,11 +10,13 @@ function fetchReplies($pdo) {
         <th>Post ID</th><th>User ID</th><th>Parent Thread ID</th><th>Content</th><th>Created At</th><th>Archived</th><th>Actions</th>
     </tr>";
     foreach ($replies as $reply) {
+        $charLimitContent = strlen($reply["content"]) > 500 ? substr($reply["content"], 0, 500) . '...&nbsp&nbsp&nbsp&nbsp(CONTINUED)' : $reply["content"];
+
         echo "<tr>
             <td>".$reply["id"]."</td>
             <td>".$reply["thread_id"]."</td>
             <td>".$reply["user_id"]."</td>
-            <td>".$reply["content"]."</td>
+            <td>".$charLimitContent."</td>
             <td>".$reply["created_at"]."</td>
             <td>".($reply["archived"] == 1 ? 'Yes' : 'No')."</td>
             <td>
