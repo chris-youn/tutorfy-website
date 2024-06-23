@@ -24,14 +24,31 @@ if ($user_id) {
 $theme = getUserTheme(); // Fetch the user's theme
 
 
-function displayArticles($pdo, $isAdmin, $isTutor){
-    if ($isAdmin || $isTutor){
+function displayArticles($pdo, $isAdmin, $isTutor, $subject = null) { // Added subject filter
+    if ($isAdmin || $isTutor) {
         // Fetch all articles for admins and tutors, including archived ones
-        $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id ORDER BY articles.created_at DESC");
+        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id"; // Begin an sql query for admins/tutor
     } else {
         // Fetch only non-archived articles for all other users
-        $stmt = $pdo->query("SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0 ORDER BY articles.created_at DESC");
+        $sql = "SELECT articles.*, users.username FROM articles JOIN users ON articles.user_id = users.id WHERE articles.archived = 0"; // Begin an sql query for other users
     }
+
+    if ($subject) { // If a subject has been selected
+        if ($isAdmin || $isTutor) {
+            $sql .= " WHERE articles.subject = :subject ORDER BY articles.created_at DESC"; // Append sql query to filter the subejct for admins/tutors
+        } else {
+            $sql .= " AND articles.subject = :subject ORDER BY articles.created_at DESC"; // Append sql query to filter the subject for other users
+        }
+    } else { // If a subject hasn't beeen selected
+        $sql .= " ORDER BY articles.created_at DESC"; // Simply append the ordery by desceneding time
+    }
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($subject) {
+        $stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
+    }
+    $stmt->execute();
 
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($articles as $article) {
@@ -156,7 +173,10 @@ function displayArticles($pdo, $isAdmin, $isTutor){
         <div class="articles-section">
             <h1>Articles</h1>
             <div class="articles">
-                <?php displayArticles($pdo, $isAdmin, $isTutor); ?>
+                <?php
+                $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
+                displayArticles($pdo, $isAdmin, $isTutor, $subjectFilter);
+                ?>
             </div>
         </div>
 
@@ -175,13 +195,17 @@ function displayArticles($pdo, $isAdmin, $isTutor){
             </div>
             <div class="filter">
                 <h3>Filter by Subject</h3>
-                <select id="subject" name="subject">
-                    <option value="math">Math</option>
-                    <option value="science">Science</option>
-                    <option value="english">English</option>
-                    <option value="geography">Geography</option>
-                </select>
-                <button type="submit" onclick="filter()">Filter</button>
+                <form method="GET" action="article.php">
+                    <select id="subject" name="subject">
+                        <option value="">All Subjects</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="geography">Geography</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                    <button type="submit">Filter</button>
+                </form>
             </div>
             <?php if ($isAdmin || $isTutor): ?>
                 <a href="../article/tutorModule.php" class="create-article-button">Create Article</a>
