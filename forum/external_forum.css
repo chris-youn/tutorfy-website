@@ -159,3 +159,18 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #dd8c6a;
     color: #2c3e50;
 }
+
+.reply-to-reply-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #6A0572;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.reply-to-reply-button:hover {
+    background-color: #9B30A7;
+}
