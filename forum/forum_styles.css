@@ -249,6 +249,10 @@ main {
     color: #EEE2DC;
 }
 
+#thread-content {
+    resize: vertical;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .topnav {
