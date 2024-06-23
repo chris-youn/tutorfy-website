@@ -84,3 +84,14 @@ CREATE TABLE orders (
     purchase_date DATETIME NOT NULL
 );
 
+CREATE TABLE articles (
+    id INT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    archived BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+ALTER TABLE articles ADD subject VARCHAR(255) NOT NULL;
