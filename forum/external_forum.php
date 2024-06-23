@@ -153,7 +153,7 @@ $theme = getUserTheme(); // Fetch the user's theme
             </div>
         </div>
 
-        <div class="reply-form">
+        <div class="reply-form" id="replyForm">
             <h3>Reply to this thread</h3>
             <form action="external_forum.php?id=<?= $thread_id ?>" method="POST">
                 <textarea name="reply_content" rows="4" cols="50" placeholder="Enter your reply..." required></textarea><br>
@@ -178,6 +178,7 @@ $theme = getUserTheme(); // Fetch the user's theme
                     <?php if ($_SESSION['user_id'] == $reply['user_id'] || $isAdmin): ?>
                         <button class="archive-reply-button" data-reply-id="<?= $reply['id'] ?>">Delete</button>
                     <?php endif; ?>
+                    <button class="reply-to-reply-button" onclick="scrollToReplyForm()">Reply</button>
                 </div>
             <?php endforeach; ?>
         </div>

@@ -26,3 +26,10 @@ function archiveReply(replyId) {
     })
     .catch(error => console.error('Error:', error));
 }
+
+function scrollToReplyForm() {
+    const replyForm = document.getElementById('replyForm');
+    if (replyForm) {
+        replyForm.scrollIntoView({ behavior: 'smooth' });
+    }
+}
