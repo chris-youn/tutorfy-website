@@ -184,7 +184,7 @@ function displayArticles($pdo, $isAdmin, $isTutor){
                 <button type="submit" onclick="filter()">Filter</button>
             </div>
             <?php if ($isAdmin || $isTutor): ?>
-                <a href="../article/tutorModule.php" class="create-article-button">For Tutors: Create an Article!</a>
+                <a href="../article/tutorModule.php" class="create-article-button">Create Article</a>
             <?php endif; ?>
         </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#x290A;</button>
