@@ -156,7 +156,10 @@ function displayArticles($pdo, $isAdmin, $isTutor){
         <div class="articles-section">
             <h1>Articles</h1>
             <div class="articles">
-                <?php displayArticles($pdo, $isAdmin, $isTutor); ?>
+                <?php
+                $subjectFilter = isset($_GET['subject']) ? $_GET['subject'] : null;
+                displayArticles($pdo, $isAdmin, $isTutor, $subjectFilter);
+                ?>
             </div>
         </div>
 
@@ -175,13 +178,17 @@ function displayArticles($pdo, $isAdmin, $isTutor){
             </div>
             <div class="filter">
                 <h3>Filter by Subject</h3>
-                <select id="subject" name="subject">
-                    <option value="math">Math</option>
-                    <option value="science">Science</option>
-                    <option value="english">English</option>
-                    <option value="geography">Geography</option>
-                </select>
-                <button type="submit" onclick="filter()">Filter</button>
+                <form method="GET" action="article.php">
+                    <select id="subject" name="subject">
+                        <option value="">All Subjects</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="geography">Geography</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                    <button type="submit">Filter</button>
+                </form>
             </div>
             <?php if ($isAdmin || $isTutor): ?>
                 <a href="../article/tutorModule.php" class="create-article-button">Create Article</a>
