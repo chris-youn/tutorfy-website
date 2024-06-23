@@ -203,7 +203,11 @@ if (isset($_SESSION['orderID'])) {
                     <span id="cart-total-text">Total: $0</span><br>
                     <span id="cart-discount-text">
                     <?php 
-                    $total = $_COOKIE['total'];
+                    if (isset($_COOKIE['total'])) {
+                        $total = $_COOKIE['total'];
+                    } else {
+                        $total = 0;
+                    }
                              if (isset($_SESSION['discountPercentage'])){
                             
                             

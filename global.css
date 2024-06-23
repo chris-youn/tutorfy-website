@@ -167,9 +167,16 @@ input[type=submit]#cartCheckout:hover {
     margin-left:10px;
     margin-bottom:20px;
 }
+div#tutorSessionCartLong, div#tutorSessionCartShort, div#tutorSessionCartShortBulk, div#tutorSessionCartLongBulk {
+width:400px;
+}
+.shopping-cart-items li button {
+    margin-left:0px;
+}
 
 .shopping-cart-items {
     padding: 0px;
+    padding-right:5px;
 }
 
 .shopping-cart-items li button:hover,
@@ -185,10 +192,14 @@ input[type=submit]#cartCheckout:hover {
 .shopping-cart-items li {
     display: flex;
     font-size: 15px;
+    padding-bottom:15px;
 }
 
 .container {
     position: relative;
+}
+.light-text {
+    color: lightgray;
 }
 
 .cookie-consent-overlay {

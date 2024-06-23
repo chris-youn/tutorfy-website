@@ -11,33 +11,42 @@ function renderCartItems() {
     if (sessionStorage.getItem('tutorSessionShort')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShort') + " Price: $" + sessionStorage.getItem('tutorSessionShort') * 40 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionShort');renderCartItems()">X</button>
+
+            `<div class="buttonContainer">
+            <button id="tutorSessionClear" onclick="clearItem('tutorSessionShort');renderCartItems()">X</button>
             <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionShort');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShort',1);renderCartItems()">+</button>`;
+            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShort',1);renderCartItems()">+</button>
+            </div>`;
         cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionLong')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLong') + " Price: $" + sessionStorage.getItem('tutorSessionLong') * 70 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionLong');renderCartItems()">X</button>
+            `<div class="buttonContainer">
+            <button id="tutorSessionClear" onclick="clearItem('tutorSessionLong');renderCartItems()">X</button>
             <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionLong');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLong',1);renderCartItems()">+</button>`;
+            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLong',1);renderCartItems()">+</button>
+            </div>`;
         cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionShortBulk')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "5 x 1hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionShortBulk') + " Price: $" + sessionStorage.getItem('tutorSessionShortBulk') * 170 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionShortBulk');renderCartItems()">X</button>
+            `<div class="buttonContainer">
+            <button id="tutorSessionClear" onclick="clearItem('tutorSessionShortBulk');renderCartItems()">X</button>
             <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionShortBulk');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShortBulk',1);renderCartItems()">+</button>`;
+            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionShortBulk',1);renderCartItems()">+</button>
+            </div>`;
         cartSummaryItems.appendChild(newItem);
     }
     if (sessionStorage.getItem('tutorSessionLongBulk')) {
         let newItem = document.createElement("li");
         newItem.innerHTML = "5 x 2hr Tutor Session(s) x" + sessionStorage.getItem('tutorSessionLongBulk') + " Price: $" + sessionStorage.getItem('tutorSessionLongBulk') * 300 +
-            `<button id="tutorSessionClear" onclick="clearItem('tutorSessionLongBulk');renderCartItems()">X</button>
+            `<div class="buttonContainer">
+            <button id="tutorSessionClear" onclick="clearItem('tutorSessionLongBulk');renderCartItems()">X</button>
             <button id="tutorSessionRemove" onclick="removeFromCart('tutorSessionLongBulk');renderCartItems()">-</button>
-            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLongBulk',1);renderCartItems()">+</button>`;
+            <button id="tutorSessionAdd" onclick="addToCart('tutorSessionLongBulk',1);renderCartItems()">+</button>
+            </div>`;
         cartSummaryItems.appendChild(newItem);
     }
 }
