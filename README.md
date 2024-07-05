@@ -33,9 +33,8 @@ Tutorfy is a website project that provides educational resources for students as
 
 ## Shop Page Functionalities:
 
-- Users can add products to a shopping cart, proceed to checkout.
-- users can select how many one-time classes they would like to purchase or if they would like to purchase a subscription.
-- the checkout cart is able update its current information to what the user adds to their cart.
+- Users can select from a variety of tutoring sessions to purchase.
+- The checkout/cart is able update its current information to what the user adds to their cart.
 
 ## Administration Module:
 
