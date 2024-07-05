@@ -45,9 +45,6 @@ This is a student group project for RMIT. This is a website aimed at providing e
 - Admins can make users or remove users from tutor roles.
 - Admins can lock/unlock user's accounts.
 
-
-
-
 ## Accessing the website:
 - You can access the website under this link: https://titan.csit.rmit.edu.au/~s4015064/assignment-3-final-website-wps_group_3/homepage/homepage.php
 
@@ -66,7 +63,7 @@ This is a student group project for RMIT. This is a website aimed at providing e
 - Password: Tutor001!
 
 ## Website Developed By:
-- Shawn Chew (s4015064)
-- Braiden Webb (s4032004)
-- Parth Purohit (s4053153)
-- Christopher Youn (s3660619)
+- Shawn Chew | (Back-end Developer)
+- Braiden Webb | (Back-end Developer)
+- Parth Purohit | (Front-end Developer)
+- Christopher Youn | (Front-end Developer)
