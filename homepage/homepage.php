@@ -18,7 +18,7 @@ $theme = getUserTheme(); // Fetch the user's theme
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Tutorfy | Get on top of your schoolwork</title>
+    <title>Tutorfy | Get on top of your schoolwork!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="homepage.css">
