@@ -1,6 +1,6 @@
 # Education Provider Web Application
 
-This is a student group project for RMIT. This is a website aimed at providing educational resources for any student.
+Tutorfy is a website project that provides educational resources for students as well as a space for them to communicate.
 
 ## Technologies Used:
 
